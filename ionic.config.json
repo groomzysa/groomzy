@@ -1,0 +1,7 @@
+{
+  "name": "groomzy",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
