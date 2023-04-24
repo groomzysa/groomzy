@@ -1,0 +1,8 @@
+mutation addOperatingTime($day: DayType!, $opens: String!, $closes: String!) {
+  addOperatingTime(day: $day, opens: $opens, closes: $closes) {
+    id
+    day
+    opens
+    closes
+  }
+}

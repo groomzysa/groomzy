@@ -1,0 +1,12 @@
+query service($serviceId: Int!) {
+  service(serviceId: $serviceId) {
+    id
+    name
+    description
+    price
+    duration
+    durationUnit
+    inHouse
+    category
+  }
+}

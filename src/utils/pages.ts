@@ -1,0 +1,10 @@
+export const HOME = "Home";
+export const SIGN_IN = "Sign in";
+export const SIGN_UP = "Sign up";
+export const PROVIDER_TRADING = "Provider trading";
+export const REQUEST_PASSWORD_RESET = "Request password reset";
+export const PASSWORD_RESET = "Password reset";
+export const PROVIDER_DASHBOARD = "Provider dashboard";
+export const ACCOUNT = "Account";
+export const ABOUT = "About";
+export const CONTACTS = "Contacts";

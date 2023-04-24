@@ -1,0 +1,1 @@
+export { useContactMail } from "./useContactMail";

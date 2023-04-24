@@ -1,0 +1,21 @@
+.sign-in-main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.sign-in-space-between {
+  justify-content: space-between;
+}
+
+.sign-in-new-member,
+.sign-in-forgot-password {
+  cursor: pointer;
+  color: var(--ion-color-primary);
+}
+
+.sign-in-error-message {
+  color: var(--ion-color-danger);
+}

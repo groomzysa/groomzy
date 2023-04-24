@@ -1,0 +1,7 @@
+mutation deleteSocial($socialId: Int!) {
+  deleteSocial(socialId: $socialId) {
+    id
+    name
+    username
+  }
+}

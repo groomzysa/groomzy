@@ -1,0 +1,23 @@
+query operatingTimes(
+  $limit: Int
+  $cursor: Int
+  $page: Int
+  $paginationType: PaginationType
+) {
+  operatingTimes(
+    limit: $limit
+    cursor: $cursor
+    page: $page
+    paginationType: $paginationType
+  ) {
+    operatingTimes {
+      id
+      day
+      opens
+      closes
+    }
+    days
+    cursor
+    count
+  }
+}

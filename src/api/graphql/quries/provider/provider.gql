@@ -1,0 +1,22 @@
+query provider($providerId: Int) {
+  provider(providerId: $providerId) {
+    id
+    tradingName
+    phone
+    addresses {
+      id
+      streetNumber
+      streetName
+      town
+      city
+      province
+      areaCode
+    }
+    operatingTimes {
+      id
+      day
+      opens
+      closes
+    }
+  }
+}

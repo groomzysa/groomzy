@@ -1,0 +1,7 @@
+mutation updateSocial($socialId: Int!, $name: String, $username: String) {
+  updateSocial(socialId: $socialId, name: $name, username: $username) {
+    id
+    name
+    username
+  }
+}

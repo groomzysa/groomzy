@@ -1,0 +1,8 @@
+query operatingTime($operatingTimeId: Int!) {
+  operatingTime(operatingTimeId: $operatingTimeId) {
+    id
+    day
+    opens
+    closes
+  }
+}

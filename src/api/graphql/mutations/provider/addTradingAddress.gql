@@ -1,0 +1,25 @@
+mutation addTradingAddress(
+  $streetNumber: String!
+  $streetName: String!
+  $town: String!
+  $city: String!
+  $province: String!
+  $areaCode: String!
+) {
+  addTradingAddress(
+    streetNumber: $streetNumber
+    streetName: $streetName
+    town: $town
+    city: $city
+    province: $province
+    areaCode: $areaCode
+  ) {
+    id
+    streetNumber
+    streetName
+    town
+    city
+    province
+    areaCode
+  }
+}

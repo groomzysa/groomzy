@@ -1,0 +1,7 @@
+mutation addSocial($name: String!, $username: String!) {
+  addSocial(name: $name, username: $username) {
+    id
+    name
+    username
+  }
+}

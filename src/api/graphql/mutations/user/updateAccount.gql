@@ -1,0 +1,23 @@
+mutation updateAccount(
+  $firstName: String
+  $lastName: String
+  $email: String
+  $password: String
+  $userImage: File
+) {
+  updateAccount(
+    firstName: $firstName
+    lastName: $lastName
+    email: $email
+    password: $password
+    userImage: $userImage
+  ) {
+    id
+    firstName
+    lastName
+    email
+    role
+    state
+    userImageUrl
+  }
+}

@@ -1,0 +1,12 @@
+ion-item.g-select-container {
+  --padding-start: 0px;
+}
+
+ion-select.g-select {
+  width: 100%;
+}
+
+.error {
+  position: relative;
+  color: var(--ion-color-danger);
+}

@@ -1,0 +1,18 @@
+mutation updateOperatingTime(
+  $operatingTimeId: Int!
+  $day: DayType
+  $opens: String
+  $closes: String
+) {
+  updateOperatingTime(
+    operatingTimeId: $operatingTimeId
+    day: $day
+    opens: $opens
+    closes: $closes
+  ) {
+    id
+    day
+    opens
+    closes
+  }
+}

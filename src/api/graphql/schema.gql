@@ -1,0 +1,227 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+type Address {
+  id: Int!
+  createdAt: String
+  updatedAt: String
+  streetNumber: String
+  streetName: String
+  town: String
+  city: String
+  province: String
+  areaCode: String
+}
+
+type Booking {
+  id: Int!
+  createdAt: String
+  updatedAt: String
+  bookingTime: String
+  inHouse: Boolean
+  status: BookingStatus
+  provider: Provider
+  client: Client
+  service: Service
+}
+
+enum BookingStatus {
+  ACTIVE
+  CANCELLED
+  DELETED
+  DONE
+  PENDING
+}
+
+enum CategoryType {
+  BARBER
+  HAIRDRESSER
+  MAKEUP_ARTIST
+  NAIL_TECHNICIAN
+  SPA
+}
+
+type Client {
+  id: Int!
+  createdAt: String
+  updatedAt: String
+  phone: String
+  user: User
+  bookings: [Booking!]
+}
+
+enum DayType {
+  MON
+  TUE
+  WED
+  THR
+  FRI
+  SAT
+  SUN
+}
+
+enum DurationUnitType {
+  MIN
+  HRS
+}
+
+scalar File
+
+type Message {
+  message: String!
+}
+
+type Mutation {
+  contactMail(firstName: String!, lastName: String!, email: String!, subject: String!, message: String!): Message!
+  addOperatingTime(day: DayType!, opens: String!, closes: String!): OperatingTime!
+  deleteOperatingTime(operatingTimeId: Int!): OperatingTime!
+  updateOperatingTime(operatingTimeId: Int!, day: DayType, opens: String, closes: String): OperatingTime!
+  addTradingAddress(streetNumber: String!, streetName: String!, town: String!, city: String!, province: String!, areaCode: String!): Address!
+  addTradingInfo(tradingName: String!, phone: String!, logo: File): Provider!
+  updateTradingAddress(addressId: Int!, streetNumber: String, streetName: String, town: String, city: String, province: String, areaCode: String): Address!
+  updateTradingInfo(providerId: Int!, tradingName: String, phone: String, logo: File): Provider!
+  addService(name: String!, description: String!, price: Float!, duration: Float!, durationUnit: DurationUnitType!, inHouse: Boolean!, category: CategoryType!): Service!
+  deleteService(serviceId: Int!): Service!
+  updateService(serviceId: Int!, name: String, description: String, duration: Float, durationUnit: DurationUnitType, inHouse: Boolean, price: Float, category: CategoryType): Service!
+  addSocial(name: String!, username: String!): Social!
+  deleteSocial(socialId: Int!): Social!
+  updateSocial(socialId: Int!, name: String, username: String): Social!
+  addStaff(firstName: String!, lastName: String!): Staff!
+  deleteStaff(staffId: Int!): Staff!
+  updateStaff(staffId: Int!, firstName: String, lastName: String): Staff!
+  addAccountAddress(streetNumber: String!, streetName: String!, town: String!, city: String!, province: String!, areaCode: String!): Address!
+  addUser(firstName: String!, lastName: String!, email: String!, password: String!, role: UserRole!, userImage: File): User!
+  requestPasswordReset(email: String!, role: UserRole!): Message!
+  resetPassword(passwordResetOTP: String!, password: String!): Message!
+  signIn(email: String!, password: String!, role: UserRole!): UserToken!
+  updateAccount(firstName: String, lastName: String, email: String, password: String, userImage: File): User!
+  updateAccountAddress(addressId: Int!, streetNumber: String, streetName: String, town: String, city: String, province: String, areaCode: String): Address!
+}
+
+type OperatingTime {
+  id: Int!
+  createdAt: String
+  updatedAt: String
+  day: DayType
+  opens: String
+  closes: String
+  provider: Provider
+}
+
+type OperatingTimesQueryResults {
+  operatingTimes: [OperatingTime!]!
+  days: [DayType!]!
+  cursor: Int
+  count: Int
+}
+
+enum PaginationType {
+  CURSOR
+  NORMAL
+}
+
+type Provider {
+  id: Int!
+  createdAt: String
+  updatedAt: String
+  tradingName: String
+  phone: String
+  logoUrl: String
+  user: User
+  addresses: [Address!]
+  services: [Service!]
+  staffs: [Staff!]
+  bookings: [Booking!]
+  operatingTimes: [OperatingTime!]
+  socials: [Social!]
+}
+
+type Query {
+  operatingTime(operatingTimeId: Int!): OperatingTime!
+  operatingTimes(limit: Int, cursor: Int, page: Int, paginationType: PaginationType): OperatingTimesQueryResults
+  provider(providerId: Int): Provider
+  providers(search: String): [Provider!]!
+  service(serviceId: Int!): Service!
+  services(providerId: Int, limit: Int, cursor: Int, page: Int, paginationType: PaginationType): ServicesQueryResults
+  socials: [Social!]!
+  user: User
+}
+
+type Service {
+  id: Int!
+  createdAt: String
+  updatedAt: String
+  name: String
+  description: String
+  duration: Float
+  durationUnit: DurationUnitType
+  inHouse: Boolean
+  price: Float
+  category: CategoryType
+  staffs: [Staff!]
+}
+
+type ServicesQueryResults {
+  services: [Service!]!
+  cursor: Int
+  count: Int
+}
+
+type Social {
+  id: Int!
+  createdAt: String
+  updatedAt: String
+  name: String
+  username: String
+  provider: Provider
+}
+
+type Staff {
+  id: Int!
+  createdAt: String
+  updatedAt: String
+  firstName: String
+  lastName: String
+  services: [Service!]
+}
+
+type Subscription {
+  updateBooking: String
+}
+
+type User {
+  id: Int!
+  createdAt: String
+  updatedAt: String
+  userImageUrl: String
+  firstName: String
+  lastName: String
+  email: String
+  state: UserStatus
+  role: UserRole
+  provider: Provider
+  address: Address
+}
+
+enum UserRole {
+  ADMIN
+  CLIENT
+  PROVIDER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+  SUSPENDED
+  DELETED
+}
+
+type UserToken {
+  token: String!
+  user: User!
+}
+

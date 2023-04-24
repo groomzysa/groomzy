@@ -1,0 +1,8 @@
+mutation deleteOperatingTime($operatingTimeId: Int!) {
+  deleteOperatingTime(operatingTimeId: $operatingTimeId) {
+    id
+    day
+    opens
+    closes
+  }
+}

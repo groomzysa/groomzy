@@ -1,0 +1,45 @@
+.icon-container {
+  position: relative;
+  top: 2.5px;
+  display: flex;
+  justify-content: center;
+}
+
+.ellipse-icon-container {
+  cursor: pointer;
+}
+
+.ellipse-icon {
+  color: var(--ion-text-color);
+  font-size: 2rem;
+  pointer-events: none;
+}
+
+.day {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  font-weight: 500;
+  color: var(--ion-text-color);
+}
+
+ion-grid.day-field {
+  padding: 0px;
+}
+
+ion-row.day-field {
+  padding: 0px;
+}
+
+ion-col.day-field {
+  padding: 0px;
+}
+
+ion-popover.actions {
+  --width: 120px;
+}
+
+ion-label.action {
+  cursor: pointer;
+}

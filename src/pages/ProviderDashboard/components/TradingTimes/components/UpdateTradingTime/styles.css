@@ -1,0 +1,58 @@
+ion-modal.update-trading-time-modal {
+  --height: 300px;
+  --width: 300px;
+  --border-radius: 4px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  padding: 10px;
+  overflow-y: auto;
+}
+
+ion-modal.update-trading-time-modal ion-toolbar {
+  position: fixed;
+}
+
+ion-modal.update-trading-time-modal ion-grid {
+  position: relative;
+  top: 56px;
+  height: calc(100% - 56px);
+  overflow-y: auto;
+  padding: 10px;
+}
+
+ion-modal.update-trading-time-modal ion-grid ion-row:last-child {
+  position: absolute;
+  bottom: 0px;
+  right: 5px;
+}
+
+.custom-popover {
+  width: 100%;
+}
+
+.update-trading-time-close-icon {
+  margin-right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.picker {
+  --width: 300px;
+}
+
+.picker-column {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.update-trading-time-time-container {
+  display: flex;
+}
+
+.react-time-picker__inputGroup__input {
+  width: 18px !important;
+}
+
+.react-time-picker__inputGroup__divider {
+  padding: 1px 2px !important;
+}

@@ -1,0 +1,9 @@
+.label-title {
+  font-weight: bold;
+  color: var(--ion-color-primary) !important;
+}
+
+.description {
+  display: flex;
+  width: 160px;
+}

@@ -1,0 +1,7 @@
+query socials {
+  socials {
+    id
+    name
+    username
+  }
+}

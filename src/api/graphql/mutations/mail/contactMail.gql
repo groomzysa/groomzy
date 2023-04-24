@@ -1,0 +1,17 @@
+mutation contactMail(
+  $firstName: String!
+  $lastName: String!
+  $email: String!
+  $subject: String!
+  $message: String!
+) {
+  contactMail(
+    firstName: $firstName
+    lastName: $lastName
+    email: $email
+    subject: $subject
+    message: $message
+  ) {
+    message
+  }
+}

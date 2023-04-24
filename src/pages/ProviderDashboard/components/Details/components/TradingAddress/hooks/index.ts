@@ -1,0 +1,1 @@
+export { useTradingAddress } from "./useTradingAddress";

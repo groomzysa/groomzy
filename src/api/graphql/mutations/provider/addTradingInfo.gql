@@ -1,0 +1,8 @@
+mutation addTradingInfo($tradingName: String!, $phone: String!, $logo: File) {
+  addTradingInfo(tradingName: $tradingName, phone: $phone, logo: $logo) {
+    id
+    tradingName
+    phone
+    logoUrl
+  }
+}

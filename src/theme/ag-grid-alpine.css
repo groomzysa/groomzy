@@ -1,0 +1,25 @@
+.ag-theme-alpine {
+  --ag-range-selection-border-style: none;
+  /* --ag-selected-row-background-color: #acc8d7; */
+
+  --ag-checkbox-checked-color: var(--ion-color-primary);
+  /* --ag-checkbox-indeterminate-color: grey; */
+}
+
+.ag-theme-alpine-dark {
+  --ag-range-selection-border-style: none;
+  /* --ag-selected-row-background-color: #acc8d7; */
+
+  --ag-checkbox-checked-color: var(--ion-color-primary);
+  /* --ag-checkbox-indeterminate-color: grey; */
+}
+
+.ag-theme-alpine,
+.ag-theme-alpine-dark {
+  width: 100%;
+  height: 100%;
+}
+
+.ag-checkbox-input-wrapper input {
+  cursor: pointer;
+}

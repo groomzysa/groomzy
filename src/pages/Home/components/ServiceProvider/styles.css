@@ -1,0 +1,36 @@
+.card {
+  height: 260px;
+}
+
+.view-button-col {
+  display: flex;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 1.2rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.address {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.media-img-container {
+  width: "100%";
+  height: 140px;
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+.media-img {
+  width: "100%";
+  height: 140px;
+}

@@ -1,0 +1,26 @@
+.sign-up-main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.sign-up-existing-member {
+  cursor: pointer;
+  color: var(--ion-color-primary);
+}
+
+.sign-up-error {
+  color: var(--ion-color-danger);
+}
+
+.sign-up-success {
+  color: var(--ion-color-success);
+}
+
+.sign-up-names-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}

@@ -1,0 +1,18 @@
+mutation updateTradingInfo(
+  $providerId: Int!
+  $tradingName: String
+  $phone: String
+  $logo: File
+) {
+  updateTradingInfo(
+    providerId: $providerId
+    tradingName: $tradingName
+    phone: $phone
+    logo: $logo
+  ) {
+    id
+    tradingName
+    phone
+    logoUrl
+  }
+}

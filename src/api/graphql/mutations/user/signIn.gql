@@ -1,0 +1,36 @@
+mutation signIn($email: String!, $password: String!, $role: UserRole!) {
+  signIn(email: $email, password: $password, role: $role) {
+    token
+    user {
+      id
+      firstName
+      lastName
+      email
+      role
+      state
+      address {
+        id
+        streetNumber
+        streetName
+        town
+        city
+        province
+        areaCode
+      }
+      provider {
+        id
+        tradingName
+        phone
+        addresses {
+          id
+          streetNumber
+          streetName
+          town
+          city
+          province
+          areaCode
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+ion-modal.delete-trading-time-modal {
+  --max-height: 200px;
+  --width: 370px;
+  --border-radius: 4px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  padding: 10px;
+  overflow-y: auto;
+}
+
+ion-modal.delete-trading-time-modal ion-toolbar {
+  position: fixed;
+}
+
+ion-modal.delete-trading-time-modal ion-list {
+  position: relative;
+  top: 56px;
+  height: calc(100% - 56px);
+  overflow-y: auto;
+  padding: 10px;
+}
+
+ion-modal.delete-trading-time-modal ion-buttons {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.message {
+  padding: 20px;
+}
+
+.close-icon {
+  margin-right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+h4 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}

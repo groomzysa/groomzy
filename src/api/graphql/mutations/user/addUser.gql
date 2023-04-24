@@ -1,0 +1,25 @@
+mutation addUser(
+  $firstName: String!
+  $lastName: String!
+  $email: String!
+  $password: String!
+  $role: UserRole!
+  $userImage: File
+) {
+  addUser(
+    firstName: $firstName
+    lastName: $lastName
+    email: $email
+    password: $password
+    role: $role
+    userImage: $userImage
+  ) {
+    id
+    firstName
+    lastName
+    email
+    role
+    state
+    userImageUrl
+  }
+}

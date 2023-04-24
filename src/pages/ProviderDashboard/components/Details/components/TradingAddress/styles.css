@@ -1,0 +1,20 @@
+.trading-address-main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.trading-address-street-name-container {
+  display: flex;
+  gap: 10px;
+}
+
+.tradding-address-street-number {
+  width: 180px;
+}
+
+.trading-address-street-name {
+  width: 100%;
+}

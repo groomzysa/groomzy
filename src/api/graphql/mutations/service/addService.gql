@@ -1,0 +1,28 @@
+mutation addService(
+  $name: String!
+  $description: String!
+  $price: Float!
+  $duration: Float!
+  $durationUnit: DurationUnitType!
+  $inHouse: Boolean!
+  $category: CategoryType!
+) {
+  addService(
+    name: $name
+    description: $description
+    price: $price
+    duration: $duration
+    durationUnit: $durationUnit
+    inHouse: $inHouse
+    category: $category
+  ) {
+    id
+    name
+    description
+    price
+    duration
+    durationUnit
+    inHouse
+    category
+  }
+}

@@ -1,0 +1,43 @@
+.contacts-main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.contacts-buttons {
+  margin-top: 20px;
+}
+
+.contacts-social-icon {
+  font-size: 1.5rem;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.contacts-instagram-logo {
+  color: #f77737;
+}
+
+.contacts-whatsapp-logo {
+  color: #075e54;
+}
+
+.contacts-facebook-logo {
+  color: #3b5998;
+}
+
+.contacts-tiktok-logo {
+  color: #ff0050;
+}
+
+.contacts-error {
+  color: var(--ion-color-danger);
+}
+
+.contacts-names-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
