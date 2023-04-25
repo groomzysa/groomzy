@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import { storeToken } from "../../../api/helpers";
 import { setToken } from "../../../store/slices/appSlice/appSlice";
 import { includes } from "lodash";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../../api";
 import { routes } from "../../../route/routes";
 
@@ -12,6 +12,18 @@ export const useMenuHook = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentPageUrl) {
+      return;
+    }
+
+    if (includes(history.location.pathname, "home")) {
+      setCurrentpageUrl(`/${routes.home.base.use()}`);
+    } else {
+      setCurrentpageUrl(`/${routes.providerDashboard.base.use()}`);
+    }
+  }, [history]);
 
   /**
    *
