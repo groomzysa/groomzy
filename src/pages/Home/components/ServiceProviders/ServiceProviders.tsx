@@ -12,6 +12,7 @@ import {
 import { isEmpty } from "lodash";
 import { ServiceProvider } from "../ServiceProvider/ServiceProvider";
 import { ServiceProvidersSearch } from "../ServiceProvidersSearch/ServiceProvidersSearch";
+import "./styles.css";
 
 export const ServiceProviders: FC = () => {
   const { search, providers, providersLoading, refetchProvidersHandler } =
@@ -27,9 +28,7 @@ export const ServiceProviders: FC = () => {
       {!providersLoading && providers.length === 0 && isEmpty(search) && (
         <div className="home-explorer-empty-state">
           <img src="assets/empty-box.svg" alt="Empty box" height={200} />
-          <IonNote>
-            There are currently no service providers. Please check later.
-          </IonNote>
+          <IonNote>There are currently no service providers.</IonNote>
         </div>
       )}
 

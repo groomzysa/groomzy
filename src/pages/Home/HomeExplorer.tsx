@@ -11,8 +11,6 @@ import { FC } from "react";
 import { HOME } from "../../utils/pages";
 import { ServiceProviders } from "./components";
 
-import "./styles.css";
-
 export const HomeExplorer: FC = () => {
   return (
     <IonPage>
