@@ -11,6 +11,7 @@ import {
 } from "@ionic/react";
 import { isEmpty } from "lodash";
 import { ServiceProvider } from "../ServiceProvider/ServiceProvider";
+import { ServiceProvidersSearch } from "../ServiceProvidersSearch/ServiceProvidersSearch";
 
 export const ServiceProviders: FC = () => {
   const { search, providers, providersLoading, refetchProvidersHandler } =
@@ -34,6 +35,8 @@ export const ServiceProviders: FC = () => {
 
       {!providersLoading && providers.length === 0 && !isEmpty(search) && (
         <>
+          <ServiceProvidersSearch />
+
           <div className="home-explorer-empty-search-state">
             <img src="assets/searching-data.svg" alt="Empty box" height={200} />
             <IonNote>
@@ -44,23 +47,26 @@ export const ServiceProviders: FC = () => {
       )}
 
       {!providersLoading && providers.length > 0 && (
-        <IonGrid>
-          <IonRow>
-            {providers?.map((provider) => {
-              return (
-                <IonCol
-                  key={provider.id}
-                  sizeXs="12"
-                  sizeSm="6"
-                  sizeMd="4"
-                  sizeLg="3"
-                >
-                  <ServiceProvider provider={provider} />
-                </IonCol>
-              );
-            })}
-          </IonRow>
-        </IonGrid>
+        <>
+          <ServiceProvidersSearch />
+          <IonGrid>
+            <IonRow>
+              {providers?.map((provider) => {
+                return (
+                  <IonCol
+                    key={provider.id}
+                    sizeXs="12"
+                    sizeSm="6"
+                    sizeMd="4"
+                    sizeLg="3"
+                  >
+                    <ServiceProvider provider={provider} />
+                  </IonCol>
+                );
+              })}
+            </IonRow>
+          </IonGrid>
+        </>
       )}
     </>
   );

@@ -9,7 +9,7 @@ import {
 } from "@ionic/react";
 import { FC } from "react";
 import { HOME } from "../../utils/pages";
-import { ServiceProviders, ServiceProvidersSearch } from "./components";
+import { ServiceProviders } from "./components";
 
 import "./styles.css";
 
@@ -26,8 +26,6 @@ export const HomeExplorer: FC = () => {
       </IonHeader>
 
       <IonContent fullscreen>
-        <ServiceProvidersSearch />
-
         <ServiceProviders />
       </IonContent>
     </IonPage>
