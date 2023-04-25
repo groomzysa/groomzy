@@ -23,7 +23,7 @@ export const useMenuHook = () => {
     } else {
       setCurrentpageUrl(`/${routes.providerDashboard.base.use()}`);
     }
-  }, [history]);
+  }, [history, currentPageUrl]);
 
   /**
    *

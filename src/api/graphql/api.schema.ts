@@ -80,6 +80,15 @@ export enum DurationUnitType {
   Min = 'MIN'
 }
 
+export type Gallery = {
+  __typename?: 'Gallery';
+  createdAt?: Maybe<Scalars['String']>;
+  galleryurl?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  provider?: Maybe<Provider>;
+  updatedAt?: Maybe<Scalars['String']>;
+};
+
 export type Message = {
   __typename?: 'Message';
   message: Scalars['String'];
@@ -88,6 +97,7 @@ export type Message = {
 export type Mutation = {
   __typename?: 'Mutation';
   addAccountAddress: Address;
+  addGallery: Gallery;
   addOperatingTime: OperatingTime;
   addService: Service;
   addSocial: Social;
@@ -96,6 +106,7 @@ export type Mutation = {
   addTradingInfo: Provider;
   addUser: User;
   contactMail: Message;
+  deleteGallery: Gallery;
   deleteOperatingTime: OperatingTime;
   deleteService: Service;
   deleteSocial: Social;
@@ -105,6 +116,7 @@ export type Mutation = {
   signIn: UserToken;
   updateAccount: User;
   updateAccountAddress: Address;
+  updateGallery: Gallery;
   updateOperatingTime: OperatingTime;
   updateService: Service;
   updateSocial: Social;
@@ -121,6 +133,12 @@ export type MutationAddAccountAddressArgs = {
   streetName: Scalars['String'];
   streetNumber: Scalars['String'];
   town: Scalars['String'];
+};
+
+
+export type MutationAddGalleryArgs = {
+  galleryImage: Scalars['File'];
+  name: Scalars['String'];
 };
 
 
@@ -190,6 +208,11 @@ export type MutationContactMailArgs = {
 };
 
 
+export type MutationDeleteGalleryArgs = {
+  galleryId: Scalars['Int'];
+};
+
+
 export type MutationDeleteOperatingTimeArgs = {
   operatingTimeId: Scalars['Int'];
 };
@@ -246,6 +269,13 @@ export type MutationUpdateAccountAddressArgs = {
   streetName?: InputMaybe<Scalars['String']>;
   streetNumber?: InputMaybe<Scalars['String']>;
   town?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateGalleryArgs = {
+  galleryId: Scalars['Int'];
+  galleryImage?: InputMaybe<Scalars['File']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 

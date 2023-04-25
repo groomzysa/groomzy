@@ -112,8 +112,8 @@ ion-avatar.menu-avatar {
 ion-list-header.menu-header {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
   height: 110px;
   border-bottom: 1px solid lightgray;
 }

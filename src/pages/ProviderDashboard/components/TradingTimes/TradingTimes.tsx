@@ -35,6 +35,7 @@ export const TradingTimes: FC<ITradingTimesProps> = ({ gridRef }) => {
     onSelectionChanged,
     onCreateTradingTime,
     onRefetchTradingTimes,
+    onToAddDetails,
   } = useTradingTimes(gridRef);
   return (
     <IonPage>
@@ -61,7 +62,10 @@ export const TradingTimes: FC<ITradingTimesProps> = ({ gridRef }) => {
                     <IonText>
                       Before adding trading times, please add provider details.
                     </IonText>
-                    <IonText class="trading-times-no-provider-link">
+                    <IonText
+                      class="trading-times-no-provider-link"
+                      onClick={onToAddDetails}
+                    >
                       <strong>Click here to add details</strong>
                     </IonText>
                   </IonCol>

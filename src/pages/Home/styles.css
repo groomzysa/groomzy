@@ -1,0 +1,16 @@
+.home-explorer-empty-state,
+.home-explorer-empty-search-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 56px);
+}
+
+.home-explorer-empty-state {
+  height: calc(100vh - 56px);
+}
+
+.home-explorer-empty-search-state {
+  height: calc(100vh - 142px);
+}

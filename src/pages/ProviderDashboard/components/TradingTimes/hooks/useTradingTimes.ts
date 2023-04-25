@@ -44,6 +44,10 @@ export const useTradingTimes = (gridRef: RefObject<AgGridReact<any>>) => {
     );
   };
 
+  const onToAddDetails = () => {
+    history.push(`/${routes.providerDashboard.details.use()}`);
+  };
+
   return {
     noProvider: !provider,
     columnDefs,
@@ -52,5 +56,6 @@ export const useTradingTimes = (gridRef: RefObject<AgGridReact<any>>) => {
     onSelectionChanged,
     onCreateTradingTime,
     onRefetchTradingTimes,
+    onToAddDetails,
   };
 };

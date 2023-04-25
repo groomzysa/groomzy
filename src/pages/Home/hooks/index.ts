@@ -1,1 +1,1 @@
-export { useHomeExplorerHandlers } from "./useHomeExplorerHandlers";
+export { useHomeExplorer } from "./useHomeExplorer";

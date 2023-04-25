@@ -40,6 +40,7 @@ export const Services: FC<IServicesProps> = ({ gridRef }) => {
     onCreateService,
     onGridReady,
     onRefetchSerices,
+    onToAddDetails,
   } = useServices(gridRef);
 
   return (
@@ -68,7 +69,10 @@ export const Services: FC<IServicesProps> = ({ gridRef }) => {
                     <IonText>
                       Before adding services, please add provider details.
                     </IonText>
-                    <IonText class="service-no-provider-link">
+                    <IonText
+                      class="service-no-provider-link"
+                      onClick={onToAddDetails}
+                    >
                       <strong>Click here to add details</strong>
                     </IonText>
                   </IonCol>

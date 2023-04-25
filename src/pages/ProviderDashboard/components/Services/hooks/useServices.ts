@@ -44,6 +44,10 @@ export const useServices = (gridRef: RefObject<AgGridReact<any>>) => {
     history.push(`/${routes.providerDashboard.services.createService.use()}`);
   };
 
+  const onToAddDetails = () => {
+    history.push(`/${routes.providerDashboard.details.use()}`);
+  };
+
   return {
     noProvider: !provider,
     columnDefs,
@@ -52,5 +56,6 @@ export const useServices = (gridRef: RefObject<AgGridReact<any>>) => {
     onCreateService,
     onGridReady,
     onRefetchSerices,
+    onToAddDetails,
   };
 };

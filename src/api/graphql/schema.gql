@@ -70,12 +70,23 @@ enum DurationUnitType {
 
 scalar File
 
+type Gallery {
+  id: Int!
+  createdAt: String
+  updatedAt: String
+  galleryurl: String
+  provider: Provider
+}
+
 type Message {
   message: String!
 }
 
 type Mutation {
   contactMail(firstName: String!, lastName: String!, email: String!, subject: String!, message: String!): Message!
+  addGallery(name: String!, galleryImage: File!): Gallery!
+  deleteGallery(galleryId: Int!): Gallery!
+  updateGallery(galleryId: Int!, name: String, galleryImage: File): Gallery!
   addOperatingTime(day: DayType!, opens: String!, closes: String!): OperatingTime!
   deleteOperatingTime(operatingTimeId: Int!): OperatingTime!
   updateOperatingTime(operatingTimeId: Int!, day: DayType, opens: String, closes: String): OperatingTime!
