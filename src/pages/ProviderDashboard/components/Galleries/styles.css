@@ -1,0 +1,17 @@
+.galleries-grid-container {
+  height: calc(100vh - 180px);
+  width: 100%;
+}
+
+.galleries-no-provider-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 112px);
+}
+
+.galleries-no-provider-link {
+  cursor: pointer;
+  color: var(--ion-color-primary);
+}

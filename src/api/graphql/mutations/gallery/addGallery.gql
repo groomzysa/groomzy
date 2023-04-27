@@ -1,0 +1,7 @@
+mutation addGallery($name: String!, $galleryImage: File!) {
+  addGallery(name: $name, galleryImage: $galleryImage) {
+    id
+    name
+    galleryImageUrl
+  }
+}

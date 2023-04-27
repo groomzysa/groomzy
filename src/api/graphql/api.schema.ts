@@ -80,11 +80,19 @@ export enum DurationUnitType {
   Min = 'MIN'
 }
 
+export type GalleriesQueryResults = {
+  __typename?: 'GalleriesQueryResults';
+  count?: Maybe<Scalars['Int']>;
+  cursor?: Maybe<Scalars['Int']>;
+  galleries: Array<Gallery>;
+};
+
 export type Gallery = {
   __typename?: 'Gallery';
   createdAt?: Maybe<Scalars['String']>;
-  galleryurl?: Maybe<Scalars['String']>;
+  galleryImageUrl?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
   provider?: Maybe<Provider>;
   updatedAt?: Maybe<Scalars['String']>;
 };
@@ -374,6 +382,8 @@ export type Provider = {
 
 export type Query = {
   __typename?: 'Query';
+  galleries?: Maybe<GalleriesQueryResults>;
+  gallery: Gallery;
   operatingTime: OperatingTime;
   operatingTimes?: Maybe<OperatingTimesQueryResults>;
   provider?: Maybe<Provider>;
@@ -382,6 +392,20 @@ export type Query = {
   services?: Maybe<ServicesQueryResults>;
   socials: Array<Social>;
   user?: Maybe<User>;
+};
+
+
+export type QueryGalleriesArgs = {
+  cursor?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  paginationType?: InputMaybe<PaginationType>;
+  providerId?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryGalleryArgs = {
+  galleryId: Scalars['Int'];
 };
 
 
@@ -502,6 +526,30 @@ export type UserToken = {
   token: Scalars['String'];
   user: User;
 };
+
+export type AddGalleryMutationVariables = Exact<{
+  name: Scalars['String'];
+  galleryImage: Scalars['File'];
+}>;
+
+
+export type AddGalleryMutation = { __typename?: 'Mutation', addGallery: { __typename?: 'Gallery', id: number, name?: string | null, galleryImageUrl?: string | null } };
+
+export type DeleteGalleryMutationVariables = Exact<{
+  galleryId: Scalars['Int'];
+}>;
+
+
+export type DeleteGalleryMutation = { __typename?: 'Mutation', deleteGallery: { __typename?: 'Gallery', id: number, name?: string | null, galleryImageUrl?: string | null } };
+
+export type UpdateGalleryMutationVariables = Exact<{
+  galleryId: Scalars['Int'];
+  name?: InputMaybe<Scalars['String']>;
+  galleryImage?: InputMaybe<Scalars['File']>;
+}>;
+
+
+export type UpdateGalleryMutation = { __typename?: 'Mutation', updateGallery: { __typename?: 'Gallery', id: number, name?: string | null, galleryImageUrl?: string | null } };
 
 export type ContactMailMutationVariables = Exact<{
   firstName: Scalars['String'];
@@ -714,6 +762,24 @@ export type UpdateAccountAddressMutationVariables = Exact<{
 
 
 export type UpdateAccountAddressMutation = { __typename?: 'Mutation', updateAccountAddress: { __typename?: 'Address', id: number, streetNumber?: string | null, streetName?: string | null, town?: string | null, city?: string | null, province?: string | null, areaCode?: string | null } };
+
+export type GalleriesQueryVariables = Exact<{
+  providerId?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  cursor?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  paginationType?: InputMaybe<PaginationType>;
+}>;
+
+
+export type GalleriesQuery = { __typename?: 'Query', galleries?: { __typename?: 'GalleriesQueryResults', cursor?: number | null, count?: number | null, galleries: Array<{ __typename?: 'Gallery', id: number, name?: string | null, galleryImageUrl?: string | null }> } | null };
+
+export type GalleryQueryVariables = Exact<{
+  galleryId: Scalars['Int'];
+}>;
+
+
+export type GalleryQuery = { __typename?: 'Query', gallery: { __typename?: 'Gallery', id: number, name?: string | null, galleryImageUrl?: string | null } };
 
 export type OperatingTimeQueryVariables = Exact<{
   operatingTimeId: Scalars['Int'];

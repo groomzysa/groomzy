@@ -6,13 +6,13 @@
   margin-bottom: 10px;
 }
 
-.take-photo-button {
+.trading-info-take-photo-button {
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
 }
 
-.take-photo-button ion-icon {
+.trading-info-take-photo-button ion-icon {
   font-size: 1.25rem;
 }

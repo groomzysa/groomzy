@@ -7,7 +7,6 @@ import {
   IonGrid,
   IonHeader,
   IonMenuButton,
-  IonNote,
   IonPage,
   IonRow,
   IonText,
@@ -30,8 +29,6 @@ export const SignUp: FC = () => {
    */
 
   const {
-    addUserError,
-    addUserHasError,
     addUserLoading,
     email,
     firstName,
@@ -39,7 +36,6 @@ export const SignUp: FC = () => {
     lastName,
     password,
     showPassword,
-    successMessage,
     isKeyboardOpen,
     topToolBarHeight,
     onAddUser,
@@ -73,28 +69,6 @@ export const SignUp: FC = () => {
               : `calc(100vh - ${topToolBarHeight}px - 20px)`,
           }}
         >
-          {addUserHasError && (
-            <IonRow>
-              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-              <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-                <IonRow>
-                  <IonNote class="sign-up-error">{addUserError}</IonNote>
-                </IonRow>
-              </IonCol>
-              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-            </IonRow>
-          )}
-          {successMessage && (
-            <IonRow>
-              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-              <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-                <IonRow>
-                  <IonNote class="sign-up-success">{successMessage}</IonNote>
-                </IonRow>
-              </IonCol>
-              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-            </IonRow>
-          )}
           <IonRow>
             <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
             <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">

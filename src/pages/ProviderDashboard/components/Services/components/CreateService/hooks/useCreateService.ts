@@ -37,7 +37,7 @@ export const useCreateService = (gridRef: RefObject<AgGridReact<any>>) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const history = useHistory();
   const gridApi = gridRef.current?.api;
-  let createServiceLoading = false;
+  const [createServiceLoading, setCreateServiceLoading] = useState(false);
 
   /**
    *
@@ -152,7 +152,7 @@ export const useCreateService = (gridRef: RefObject<AgGridReact<any>>) => {
       return;
     }
 
-    createServiceLoading = true;
+    setCreateServiceLoading(true);
 
     try {
       await createService({
@@ -165,12 +165,12 @@ export const useCreateService = (gridRef: RefObject<AgGridReact<any>>) => {
         inHouse: false,
       }).unwrap();
 
-      createServiceLoading = false;
+      setCreateServiceLoading(false);
 
       successControl(CREATE_SERVICE_MESSAGE, onCloseModal);
       gridApi?.purgeInfiniteCache();
     } catch (error) {
-      createServiceLoading = false;
+      setCreateServiceLoading(false);
       successControl(
         getErrorMessage(error as ErrorResponse) ||
           "Something went wrong creating service."

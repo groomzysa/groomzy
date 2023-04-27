@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
-import { IPhoto } from "../types";
-import { IInput } from "../../../../../utils/types";
+import { IInput, IPhoto } from "../../../../../utils/types";
 import { useUpdateAccount } from "../../../../../api/hooks/mutations";
 import { UPDATE_USER_ACCOUNT_MESSAGE } from "../../../../../utils/messages";
 import isEmail from "validator/lib/isEmail";

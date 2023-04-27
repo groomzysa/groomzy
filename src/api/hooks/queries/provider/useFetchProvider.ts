@@ -1,5 +1,5 @@
-import { useLazyProviderQuery } from "../../graphql/quries/provider/provider.enhanced";
-import { getErrorMessage } from "../../helpers";
+import { useLazyProviderQuery } from "../../../graphql/quries/provider/provider.enhanced";
+import { getErrorMessage } from "../../../helpers";
 
 export const useFetchProvider = () => {
   const [fetchProvider, { data, isLoading, isError, error }] =

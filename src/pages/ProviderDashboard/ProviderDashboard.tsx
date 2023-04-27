@@ -7,9 +7,13 @@ import {
   IonTabs,
 } from "@ionic/react";
 import { Redirect, Route } from "react-router-dom";
-import { businessOutline, informationCircleOutline } from "ionicons/icons";
+import {
+  businessOutline,
+  imageOutline,
+  informationCircleOutline,
+} from "ionicons/icons";
 import { FC } from "react";
-import { Details, Services } from "./components/TradingTimes";
+import { Details, Services, TradingTimes, Gallery } from "./components";
 
 import "./styles.css";
 import {
@@ -20,7 +24,6 @@ import {
 } from "./components/Services/components";
 import { routes } from "../../route/routes";
 import { useProviderDashboard } from "./hooks";
-import { TradingTimes } from "./components/TradingTimes/TradingTimes";
 import {
   CreateTradingTime,
   UpdateTradingTime,
@@ -28,6 +31,10 @@ import {
   ViewTradingTime,
 } from "./components/TradingTimes/components";
 import { VALID_URL_PATH_NAMES } from "../../utils/constants";
+import {
+  CreateGallery,
+  DeleteGallery,
+} from "./components/Galleries/components";
 
 export const ProviderDashboard: FC = () => {
   /**
@@ -109,6 +116,37 @@ export const ProviderDashboard: FC = () => {
           component={ViewTradingTime}
         />
 
+        {/* Gallery routes */}
+        <Route
+          exact
+          path={`/${routes.providerDashboard.gallery.get()}`}
+          render={() => <Gallery gridRef={gridRef} />}
+        />
+
+        <Route
+          exact
+          path={`/${routes.providerDashboard.gallery.createGallery.get()}`}
+          render={() => <CreateGallery gridRef={gridRef} />}
+        />
+
+        <Route
+          exact
+          path={`/${routes.providerDashboard.gallery.updateGallery.get()}`}
+          render={() => <UpdateTradingTime gridRef={gridRef} />}
+        />
+
+        <Route
+          exact
+          path={`/${routes.providerDashboard.gallery.deleteGallery.get()}`}
+          render={() => <DeleteGallery gridRef={gridRef} />}
+        />
+
+        <Route
+          exact
+          path={`/${routes.providerDashboard.gallery.viewGallery.get()}`}
+          component={ViewTradingTime}
+        />
+
         {/* Controlling defaulting routes */}
         <Route
           exact
@@ -163,6 +201,14 @@ export const ProviderDashboard: FC = () => {
         >
           <IonIcon icon={informationCircleOutline} />
           <IonLabel>Times</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton
+          tab="gallery"
+          href={`/${routes.providerDashboard.gallery.use()}`}
+        >
+          <IonIcon icon={imageOutline} />
+          <IonLabel>Gallery</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

@@ -14,6 +14,7 @@ import { closeOutline } from "ionicons/icons";
 import "./styles.css";
 import { useDeleteService } from "./hooks";
 import { IDeleteServiceProps } from "./types";
+import { DELETE_SERVICE_MESSAGE } from "../../../../../../utils/messages";
 
 export const DeleteService: FC<IDeleteServiceProps> = ({ gridRef }) => {
   /**
@@ -43,7 +44,7 @@ export const DeleteService: FC<IDeleteServiceProps> = ({ gridRef }) => {
         </IonToolbar>
         <IonList>
           <div className="message">
-            <IonText>Are you sure you want to delete this service?</IonText>
+            <IonText>{DELETE_SERVICE_MESSAGE}</IonText>
           </div>
           <IonButtons>
             <IonButton

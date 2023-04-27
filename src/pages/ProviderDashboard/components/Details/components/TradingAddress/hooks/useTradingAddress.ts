@@ -23,8 +23,10 @@ export const useTradingAddress = () => {
   const [cityName, setCityName] = useState<IInput<string>>();
   const [provinceName, setProvinceName] = useState<IInput<string>>();
   const [areaCode, setAreaCode] = useState<IInput<string>>();
-  let addTradingAddressLoading = false;
-  let updateTradingAddressLoading = false;
+  const [addTradingAddressLoading, setAddTradingAddressLoading] =
+    useState(false);
+  const [updateTradingAddressLoading, setUpdateTradingAddressLoading] =
+    useState(false);
 
   /**
    *
@@ -152,7 +154,7 @@ export const useTradingAddress = () => {
       return;
     }
 
-    addTradingAddressLoading = true;
+    setAddTradingAddressLoading(true);
 
     try {
       await addTradingAddress({
@@ -163,11 +165,11 @@ export const useTradingAddress = () => {
         province: provinceName!.value,
         areaCode: areaCode!.value,
       }).unwrap();
-      addTradingAddressLoading = false;
+      setAddTradingAddressLoading(false);
 
       successControl(ADD_PROVIDER_TRADING_ADDRESS_MESSAGE, undefined);
     } catch (error) {
-      addTradingAddressLoading = false;
+      setAddTradingAddressLoading(false);
       successControl(
         getErrorMessage(error as ErrorResponse) ||
           "Something went wrong adding trading address",
@@ -179,7 +181,7 @@ export const useTradingAddress = () => {
   const onUpdateTradingAddress = async () => {
     if (!provider?.addresses) return;
 
-    updateTradingAddressLoading = true;
+    setUpdateTradingAddressLoading(true);
     try {
       await updateTradingAddress({
         addressId: provider.addresses[0].id,
@@ -191,10 +193,10 @@ export const useTradingAddress = () => {
         areaCode: areaCode?.value,
       }).unwrap();
 
-      updateTradingAddressLoading = false;
+      setUpdateTradingAddressLoading(false);
       successControl(UPDATE_PROVIDER_TRADING_ADDRESS_MESSAGE, undefined);
     } catch (error) {
-      updateTradingAddressLoading = false;
+      setUpdateTradingAddressLoading(false);
       successControl(
         getErrorMessage(error as ErrorResponse) ||
           "Something went wrong updating trading address",

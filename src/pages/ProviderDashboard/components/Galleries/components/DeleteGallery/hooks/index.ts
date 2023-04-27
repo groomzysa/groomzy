@@ -1,0 +1,1 @@
+export { useDeleteGallery } from "./useDeleteGallery";

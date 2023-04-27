@@ -11,7 +11,8 @@ import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/Graphq
 export const useDeleteTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const gridApi = gridRef.current?.api;
-  let deleteOperatingTimeLoading = false;
+  const [deleteOperatingTimeLoading, setDeleteOperatingTimeLoading] =
+    useState(false);
 
   /**
    *
@@ -52,19 +53,19 @@ export const useDeleteTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
    */
 
   const onDeleteOperatingTime = async () => {
-    deleteOperatingTimeLoading = true;
+    setDeleteOperatingTimeLoading(true);
 
     try {
       await deleteOperatingTime({
         operatingTimeId: Number(id),
       }).unwrap();
 
-      deleteOperatingTimeLoading = false;
+      setDeleteOperatingTimeLoading(false);
 
       successControl(DELETED_OPERATING_TIME_MESSAGE, onCloseModal);
       gridApi?.purgeInfiniteCache();
     } catch (error) {
-      deleteOperatingTimeLoading = false;
+      setDeleteOperatingTimeLoading(false);
       successControl(
         getErrorMessage(error as ErrorResponse) ||
           "Something went wrong deleting Operating time."

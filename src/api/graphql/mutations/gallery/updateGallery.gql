@@ -1,0 +1,11 @@
+mutation updateGallery($galleryId: Int!, $name: String, $galleryImage: File) {
+  updateGallery(
+    galleryId: $galleryId
+    name: $name
+    galleryImage: $galleryImage
+  ) {
+    id
+    name
+    galleryImageUrl
+  }
+}

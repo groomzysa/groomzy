@@ -12,3 +12,8 @@ export interface IInput<T> {
   value: T;
   error?: string;
 }
+
+export interface IPhoto {
+  filepath: string;
+  webviewPath?: string;
+}

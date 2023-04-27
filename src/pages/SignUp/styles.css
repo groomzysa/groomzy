@@ -11,14 +11,6 @@
   color: var(--ion-color-primary);
 }
 
-.sign-up-error {
-  color: var(--ion-color-danger);
-}
-
-.sign-up-success {
-  color: var(--ion-color-success);
-}
-
 .sign-up-names-container {
   display: flex;
   justify-content: space-between;

@@ -1,0 +1,23 @@
+query galleries(
+  $providerId: Int
+  $limit: Int
+  $cursor: Int
+  $page: Int
+  $paginationType: PaginationType
+) {
+  galleries(
+    providerId: $providerId
+    limit: $limit
+    cursor: $cursor
+    page: $page
+    paginationType: $paginationType
+  ) {
+    galleries {
+      id
+      name
+      galleryImageUrl
+    }
+    cursor
+    count
+  }
+}

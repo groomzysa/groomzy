@@ -7,9 +7,13 @@ import {
   IonTabs,
 } from "@ionic/react";
 import { Redirect, Route, useParams } from "react-router-dom";
-import { businessOutline, informationCircleOutline } from "ionicons/icons";
+import {
+  businessOutline,
+  imageOutline,
+  informationCircleOutline,
+} from "ionicons/icons";
 import { FC } from "react";
-import { Details, Services } from "./components";
+import { Details, Gallery, Services } from "./components";
 
 import "./styles.css";
 import { routes } from "../../route/routes";
@@ -28,6 +32,11 @@ export const ProviderTrading: FC = () => {
         <Route
           path={`/${routes.providerTrading.details.get()}`}
           component={Details}
+        />
+
+        <Route
+          path={`/${routes.providerTrading.gallery.get()}`}
+          component={Gallery}
         />
 
         <Route
@@ -62,6 +71,14 @@ export const ProviderTrading: FC = () => {
         >
           <IonIcon icon={informationCircleOutline} />
           <IonLabel>Details</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton
+          tab="gallery"
+          href={`/${routes.providerTrading.gallery.use(id)}`}
+        >
+          <IonIcon icon={imageOutline} />
+          <IonLabel>Gallery</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

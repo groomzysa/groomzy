@@ -14,6 +14,32 @@ export { useFetchService } from "./service/useFetchService";
 export { useFetchOperatingTimes } from "./operatingTime/useFetchOperatingTimes";
 export { useFetchOperatingTime } from "./operatingTime/useFetchOperatingTime";
 
-export { useFetchProviders } from "./useFetchProviders";
-export { useFetchUser } from "./useFetchUser";
-export { useFetchProvider } from "./useFetchProvider";
+/**
+ *
+ * Provider queries
+ *
+ */
+export { useFetchProviders } from "./provider/useFetchProviders";
+export { useFetchProvider } from "./provider/useFetchProvider";
+
+/**
+ *
+ * Gallery queries
+ *
+ */
+export { useFetchGallery } from "./gallery/useFetchGallery";
+export { useFetchGalleries } from "./gallery/useFetchGalleries";
+
+/**
+ *
+ * User queries
+ *
+ */
+export { useFetchUser } from "./user/useFetchUser";
+
+/**
+ *
+ * Social queries
+ *
+ */
+export { useFetchSocials } from "./social/useFetchSocials";

@@ -22,13 +22,13 @@ import { PAGE_SIZE } from "./constants";
 import { useServicesHandlers } from "./hooks";
 
 export const Services: FC = () => {
-  const { id } = useParams<{ id: string }>();
-
   /**
    *
    * Custom hooks
    *
    */
+  const { id } = useParams<{ id: string }>();
+
   const {
     services,
     cursor,
@@ -51,12 +51,6 @@ export const Services: FC = () => {
       </IonHeader>
 
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Services</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
         <IonRefresher slot="fixed" onIonRefresh={refetchServicesHandler}>
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>

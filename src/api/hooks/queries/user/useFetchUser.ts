@@ -1,5 +1,5 @@
-import { useLazyUserQuery } from "../../graphql/quries/user/user.enhanced";
-import { getErrorMessage } from "../../helpers";
+import { useLazyUserQuery } from "../../../graphql/quries/user/user.enhanced";
+import { getErrorMessage } from "../../../helpers";
 
 export const useFetchUser = () => {
   const [

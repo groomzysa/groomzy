@@ -35,7 +35,7 @@ export const useCreateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
   const [closes, setCloses] = useState<IInput<TimePickerValue>>();
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const gridApi = gridRef.current?.api;
-  let addOperatingTimeLoading = false;
+  const [addOperatingTimeLoading, setAddOperatingTimeLoading] = useState(false);
 
   /**
    *
@@ -126,7 +126,7 @@ export const useCreateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
       return;
     }
 
-    addOperatingTimeLoading = true;
+    setAddOperatingTimeLoading(true);
     try {
       await addOperatingTime({
         day: day!.value,
@@ -134,12 +134,12 @@ export const useCreateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
         closes: `${closes!.value} hrz`,
       }).unwrap();
 
-      addOperatingTimeLoading = false;
+      setAddOperatingTimeLoading(false);
 
       successControl(ADD_OPERATING_TIME_MESSAGE, onCloseModal);
       gridApi?.purgeInfiniteCache();
     } catch (error) {
-      addOperatingTimeLoading = false;
+      setAddOperatingTimeLoading(false);
       successControl(
         getErrorMessage(error as ErrorResponse) ||
           "Something went wrong adding operating time."

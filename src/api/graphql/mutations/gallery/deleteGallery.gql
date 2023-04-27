@@ -1,0 +1,7 @@
+mutation deleteGallery($galleryId: Int!) {
+  deleteGallery(galleryId: $galleryId) {
+    id
+    name
+    galleryImageUrl
+  }
+}

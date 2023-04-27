@@ -26,7 +26,7 @@ export const useUpdateService = (gridRef: RefObject<AgGridReact<any>>) => {
   const [durationUnit, setDurationUnit] = useState<DurationUnitType>();
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const gridApi = gridRef.current?.api;
-  let updateServiceLoading = false;
+  const [updateServiceLoading, setUpdateServiceLoading] = useState(false);
 
   /**
    *
@@ -125,7 +125,7 @@ export const useUpdateService = (gridRef: RefObject<AgGridReact<any>>) => {
   };
 
   const onUpdateService = async () => {
-    updateServiceLoading = true;
+    setUpdateServiceLoading(true);
 
     try {
       await updateService({
@@ -139,10 +139,11 @@ export const useUpdateService = (gridRef: RefObject<AgGridReact<any>>) => {
         inHouse: false,
       }).unwrap();
 
-      updateServiceLoading = false;
+      setUpdateServiceLoading(false);
       successControl(UPDATE_SERVICE_MESSAGE, onCloseModal);
       gridApi?.purgeInfiniteCache();
     } catch (error) {
+      setUpdateServiceLoading(false);
       successControl(
         getErrorMessage(error as ErrorResponse) ||
           "Something went wrong, updating service."

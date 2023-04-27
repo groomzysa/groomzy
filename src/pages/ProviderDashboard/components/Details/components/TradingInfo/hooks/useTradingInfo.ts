@@ -9,8 +9,7 @@ import {
   ADD_PROVIDER_TRADING_INFO_MESSAGE,
   UPDATE_PROVIDER_TRADING_INFO_MESSAGE,
 } from "../../../../../../../utils/messages";
-import { IInput } from "../../../../../../../utils/types";
-import { IPhoto } from "../types";
+import { IInput, IPhoto } from "../../../../../../../utils/types";
 import { useNativeElementsSizeInfo } from "../../../../../../../hooks";
 import { useFetchProvider } from "../../../../../../../api/hooks/queries";
 import { useSuccessControl } from "../../../../../../../hooks/useSuccessControl";
@@ -23,8 +22,9 @@ export const useTradingInfo = () => {
   const [phoneNumber, setPhoneNumber] = useState<IInput<string>>();
   const [photo, setPhoto] = useState<IPhoto>();
   const [logo, setLogo] = useState<Blob>();
-  let addTradingInfoLoading = false;
-  let updateTradingInfoLoading = false;
+  const [addTradingInfoLoading, setAddTradingInfoLoading] = useState(false);
+  const [updateTradingInfoLoading, setUpdateTradingInfoLoading] =
+    useState(false);
 
   /**
    *
@@ -127,7 +127,7 @@ export const useTradingInfo = () => {
   const onAddTradingInfo = async () => {
     if (!onCanAddTradingInfo) return;
 
-    addTradingInfoLoading = true;
+    setAddTradingInfoLoading(true);
 
     try {
       await addTradingInfo({
@@ -135,11 +135,11 @@ export const useTradingInfo = () => {
         phone: phoneNumber!.value,
         logo,
       }).unwrap();
-      addTradingInfoLoading = false;
+      setAddTradingInfoLoading(false);
 
       successControl(ADD_PROVIDER_TRADING_INFO_MESSAGE, undefined);
     } catch (error) {
-      addTradingInfoLoading = false;
+      setAddTradingInfoLoading(false);
       successControl(
         getErrorMessage(error as ErrorResponse) ||
           "Something went wrong creating provider",
@@ -151,7 +151,7 @@ export const useTradingInfo = () => {
   const onUpdateTradingInfo = async () => {
     if (!provider) return;
 
-    updateTradingInfoLoading = true;
+    setUpdateTradingInfoLoading(true);
     try {
       await updateTradingInfo({
         providerId: provider.id,
@@ -159,10 +159,10 @@ export const useTradingInfo = () => {
         phone: phoneNumber?.value,
         logo,
       }).unwrap();
-      updateTradingInfoLoading = false;
+      setUpdateTradingInfoLoading(false);
       successControl(UPDATE_PROVIDER_TRADING_INFO_MESSAGE, undefined);
     } catch (error) {
-      updateTradingInfoLoading = false;
+      setUpdateTradingInfoLoading(false);
 
       successControl(
         getErrorMessage(error as ErrorResponse) ||

@@ -35,7 +35,8 @@ export const useUpdateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
   const [closes, setCloses] = useState<IInput<TimePickerValue>>();
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const gridApi = gridRef.current?.api;
-  let updateOperatingTimeLoading = false;
+  const [updateOperatingTimeLoading, setUpdateOperatingTimeLoading] =
+    useState(false);
 
   /**
    *
@@ -129,7 +130,7 @@ export const useUpdateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
       return;
     }
 
-    updateOperatingTimeLoading = true;
+    setUpdateOperatingTimeLoading(true);
 
     try {
       await updateOperatingTime({
@@ -138,12 +139,12 @@ export const useUpdateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
         opens: `${opens?.value || "00"} hrz`,
         closes: `${closes?.value || "00"} hrz`,
       }).unwrap();
-      updateOperatingTimeLoading = false;
+      setUpdateOperatingTimeLoading(false);
 
       successControl(UPDATE_OPERATING_TIME_MESSAGE, onCloseModal);
       gridApi?.purgeInfiniteCache();
     } catch (error) {
-      updateOperatingTimeLoading = false;
+      setUpdateOperatingTimeLoading(false);
 
       successControl(
         getErrorMessage(error as ErrorResponse) ||

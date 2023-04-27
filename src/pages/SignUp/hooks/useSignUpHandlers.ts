@@ -1,14 +1,17 @@
 import { isEmpty } from "lodash";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
 import { UserRole } from "../../../api/graphql/api.schema";
 import { useAddUser } from "../../../api/hooks/mutations";
-import { formatPathName } from "../../../route/routes";
+import { formatPathName, routes } from "../../../route/routes";
 import { SIGN_UP_MESSAGE } from "../../../utils/messages";
 import { SIGN_IN } from "../../../utils/pages";
 import { IInput } from "../../../utils/types";
 import isEmail from "validator/lib/isEmail";
 import { useNativeElementsSizeInfo } from "../../../hooks";
+import { useSuccessControl } from "../../../hooks/useSuccessControl";
+import { getErrorMessage } from "../../../api/helpers";
+import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
 
 export const useSignUpHandlers = () => {
   const [firstName, setFirstName] = useState<IInput<string>>();
@@ -17,49 +20,19 @@ export const useSignUpHandlers = () => {
   const [password, setPassword] = useState<IInput<string>>();
   const [isProvider, setIsProvider] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [successMessage, setSuccessMessage] = useState<string>();
+  const [addUserLoading, setAddUserLoading] = useState(false);
 
   /**
    *
    * Hooks
    *
    */
+  const { successControl } = useSuccessControl();
+
   const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
 
-  const {
-    addUserTrigger,
-    addUser,
-    addUserLoading,
-    addUserHasError,
-    addUserError,
-  } = useAddUser();
+  const { addUserTrigger } = useAddUser();
   const history = useHistory();
-
-  /**
-   *
-   * Effects
-   *
-   */
-
-  useEffect(() => {
-    if (!addUser) {
-      return;
-    }
-
-    setSuccessMessage(SIGN_UP_MESSAGE);
-
-    setTimeout(() => {
-      history.replace(`/${formatPathName(SIGN_IN)}`);
-    }, 5000);
-  }, [addUser, history]);
-
-  useEffect(() => {
-    if (!successMessage) return;
-
-    setTimeout(() => {
-      setSuccessMessage("");
-    }, 5000);
-  }, [successMessage]);
 
   /**
    *
@@ -110,16 +83,26 @@ export const useSignUpHandlers = () => {
     setIsProvider(!isProvider);
   };
 
-  const onAddUser = () => {
+  const onAddUser = async () => {
     if (!onCanSignUp()) return;
 
-    addUserTrigger({
-      email: email?.value!,
-      firstName: firstName?.value!,
-      lastName: lastName?.value!,
-      password: password?.value!,
-      role: isProvider ? UserRole.Provider : UserRole.Client,
-    });
+    setAddUserLoading(true);
+
+    try {
+      await addUserTrigger({
+        email: email?.value!,
+        firstName: firstName?.value!,
+        lastName: lastName?.value!,
+        password: password?.value!,
+        role: isProvider ? UserRole.Provider : UserRole.Client,
+      }).unwrap();
+      setAddUserLoading(false);
+      successControl(SIGN_UP_MESSAGE, undefined);
+      history.replace(`/${routes.signIn.base.use()}`);
+    } catch (error) {
+      setAddUserLoading(false);
+      successControl(getErrorMessage(error as ErrorResponse) || "", undefined);
+    }
   };
 
   const onCanSignUp = (): boolean => {
@@ -153,9 +136,6 @@ export const useSignUpHandlers = () => {
     password,
     showPassword,
     addUserLoading,
-    addUserHasError,
-    addUserError,
-    successMessage,
     isKeyboardOpen,
     topToolBarHeight,
     onFirstNameChange,

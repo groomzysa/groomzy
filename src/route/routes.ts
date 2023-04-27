@@ -86,6 +86,14 @@ export const routes = {
         return `${routes.providerTrading.base.use(id)}/details`;
       },
     },
+    gallery: {
+      get() {
+        return `${routes.providerTrading.base.get()}/gallery`;
+      },
+      use(id: string) {
+        return `${routes.providerTrading.base.use(id)}/gallery`;
+      },
+    },
   },
   providerDashboard: {
     base: {
@@ -184,6 +192,47 @@ export const routes = {
         },
         use(id: string) {
           return `${routes.providerDashboard.tradingTimes.get()}/${id}/delete`;
+        },
+      },
+    },
+
+    gallery: {
+      get() {
+        return `${routes.providerDashboard.base.get()}/gallery`;
+      },
+      use() {
+        return `${routes.providerDashboard.base.get()}/gallery`;
+      },
+      createGallery: {
+        get() {
+          return `${routes.providerDashboard.gallery.get()}/create`;
+        },
+        use() {
+          return `${routes.providerDashboard.gallery.get()}/create`;
+        },
+      },
+      viewGallery: {
+        get() {
+          return `${routes.providerDashboard.gallery.get()}/:id/view`;
+        },
+        use(id: string) {
+          return `${routes.providerDashboard.gallery.get()}/${id}/view`;
+        },
+      },
+      updateGallery: {
+        get() {
+          return `${routes.providerDashboard.gallery.get()}/:id/update`;
+        },
+        use(id: string) {
+          return `${routes.providerDashboard.gallery.get()}/${id}/update`;
+        },
+      },
+      deleteGallery: {
+        get() {
+          return `${routes.providerDashboard.gallery.get()}/:id/delete`;
+        },
+        use(id: string) {
+          return `${routes.providerDashboard.gallery.get()}/${id}/delete`;
         },
       },
     },

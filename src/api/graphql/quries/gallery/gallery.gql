@@ -1,0 +1,7 @@
+query gallery($galleryId: Int!) {
+  gallery(galleryId: $galleryId) {
+    id
+    name
+    galleryImageUrl
+  }
+}

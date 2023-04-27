@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDeleteService as useDeleteServiceMutation } from "../../../../../../../api/hooks/mutations";
 import { routes } from "../../../../../../../route/routes";
-import { DELETE_SERVICE_MESSAGE } from "../../../../../../../utils/messages";
+import { DELETED_SERVICE_MESSAGE } from "../../../../../../../utils/messages";
 import { useSuccessControl } from "../../../../../../../hooks/useSuccessControl";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
@@ -13,7 +13,7 @@ export const useDeleteService = (
 ) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const gridApi = gridRef.current?.api;
-  let deleteServiceLoading = false;
+  const [deleteServiceLoading, setDeleteServiceLoading] = useState(false);
 
   /**
    *
@@ -56,18 +56,18 @@ export const useDeleteService = (
    */
 
   const onDeleteService = async () => {
-    deleteServiceLoading = true;
+    setDeleteServiceLoading(true);
     try {
       await deleteService({
         serviceId: Number(id),
       }).unwrap();
 
-      deleteServiceLoading = false;
+      setDeleteServiceLoading(false);
 
-      successControl(DELETE_SERVICE_MESSAGE, onCloseModal);
+      successControl(DELETED_SERVICE_MESSAGE, onCloseModal);
       gridApi?.purgeInfiniteCache();
     } catch (error) {
-      deleteServiceLoading = false;
+      setDeleteServiceLoading(false);
       successControl(
         getErrorMessage(error as ErrorResponse) ||
           "Something went wrong deleting service."

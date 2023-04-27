@@ -50,6 +50,15 @@ export { useUpdateSocial } from "./social/useUpdateSocial";
 
 /**
  *
+ * Gallery mutations
+ *
+ */
+export { useCreateGallery } from "./gallery/useAddGallery";
+export { useUpdateGallery } from "./gallery/useUpdateGallery";
+export { useDeleteGallery } from "./gallery/useDeleteGallery";
+
+/**
+ *
  * Contact mail mutations
  *
  */

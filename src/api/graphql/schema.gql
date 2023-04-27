@@ -70,11 +70,18 @@ enum DurationUnitType {
 
 scalar File
 
+type GalleriesQueryResults {
+  galleries: [Gallery!]!
+  cursor: Int
+  count: Int
+}
+
 type Gallery {
   id: Int!
   createdAt: String
   updatedAt: String
-  galleryurl: String
+  name: String
+  galleryImageUrl: String
   provider: Provider
 }
 
@@ -151,6 +158,8 @@ type Provider {
 }
 
 type Query {
+  galleries(providerId: Int, limit: Int, cursor: Int, page: Int, paginationType: PaginationType): GalleriesQueryResults
+  gallery(galleryId: Int!): Gallery!
   operatingTime(operatingTimeId: Int!): OperatingTime!
   operatingTimes(limit: Int, cursor: Int, page: Int, paginationType: PaginationType): OperatingTimesQueryResults
   provider(providerId: Int): Provider

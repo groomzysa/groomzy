@@ -15,7 +15,3 @@
   cursor: pointer;
   color: var(--ion-color-primary);
 }
-
-.sign-in-error-message {
-  color: var(--ion-color-danger);
-}

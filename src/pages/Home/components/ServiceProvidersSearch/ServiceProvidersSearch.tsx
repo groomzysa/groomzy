@@ -3,12 +3,13 @@ import { FC } from "react";
 import { useServiceProvidersSearch } from "./hooks";
 
 export const ServiceProvidersSearch: FC = () => {
-  const { onSearchChange, onSearchClear } = useServiceProvidersSearch();
+  const { search, onSearchChange, onSearchClear } = useServiceProvidersSearch();
   return (
     <IonGrid>
       <IonRow>
         <IonCol>
           <IonSearchbar
+            value={search}
             onIonInput={onSearchChange}
             debounce={800}
             onIonClear={onSearchClear}

@@ -6,9 +6,7 @@ import {
   IonContent,
   IonGrid,
   IonHeader,
-  IonItem,
   IonMenuButton,
-  IonNote,
   IonPage,
   IonRow,
   IonText,
@@ -36,8 +34,6 @@ export const SignIn: FC = () => {
     password,
     showPassword,
     signInLoading,
-    signInHasError,
-    signInError,
     isKeyboardOpen,
     topToolBarHeight,
     onEmailChange,
@@ -71,19 +67,6 @@ export const SignIn: FC = () => {
                 : `calc(100vh - ${topToolBarHeight}px - 20px)`,
             }}
           >
-            {signInHasError && (
-              <IonRow>
-                <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-                <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-                  <IonItem lines="none">
-                    <IonNote slot="start" class="sign-in-error-message">
-                      {signInError}
-                    </IonNote>
-                  </IonItem>
-                </IonCol>
-                <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-              </IonRow>
-            )}
             <IonRow>
               <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
               <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">

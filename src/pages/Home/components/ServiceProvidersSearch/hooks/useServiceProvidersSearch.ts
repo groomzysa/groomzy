@@ -1,7 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../../../../../store/slices/homeSlice/homeSlice";
+import { RootState } from "../../../../../store/store";
 
 export const useServiceProvidersSearch = () => {
+  const {
+    home: { search },
+  } = useSelector<RootState, Pick<RootState, "home">>((state) => state);
+
   /**
    *
    * Hooks
@@ -25,6 +30,7 @@ export const useServiceProvidersSearch = () => {
   };
 
   return {
+    search,
     onSearchChange,
     onSearchClear,
   };

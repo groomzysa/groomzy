@@ -27,9 +27,7 @@ export const UPDATE_PROVIDER_TRADING_ADDRESS_MESSAGE = `Trading address updated 
  * Service success messages
  *
  */
-export const CREATE_SERVICE_MESSAGE = `Service created successfuly!
-
-This dialog will close shortly`;
+export const CREATE_SERVICE_MESSAGE = `Service created successfuly!`;
 export const UPDATE_SERVICE_MESSAGE = `Service updated successfuly!`;
 export const DELETE_SERVICE_MESSAGE = `Are you sure want to delete this service?
         
@@ -41,16 +39,24 @@ export const DELETED_SERVICE_MESSAGE = `Service deleted successfuly!`;
  * Social success messages
  *
  */
-export const ADD_SOCIAL_MESSAGE = `Social added successfuly!
-
-This dialog will close shortly`;
-export const UPDATE_SOCIAL_MESSAGE = `Social updated successfuly!
-
-This dialog will close shortly`;
+export const ADD_SOCIAL_MESSAGE = `Social added successfuly!`;
+export const UPDATE_SOCIAL_MESSAGE = `Social updated successfuly!`;
 export const DELETE_SOCIAL_MESSAGE = `Are you sure want to delete this social?
         
 This will be deleted permanently.`;
 export const DELETED_SOCIAL_MESSAGE = `Social deleted successfuly!`;
+
+/**
+ *
+ * Gallery response messages
+ *
+ */
+export const CREATE_GALLERY_MESSAGE = `Gallery image added successfuly!`;
+export const UPDATE_GALLERY_MESSAGE = `Gallery image updated successfuly!`;
+export const DELETE_GALLERY_MESSAGE = `Are you sure want to delete this gallery image?
+        
+This will be deleted permanently.`;
+export const DELETED_GALLERY_MESSAGE = `Gallery image deleted successfuly!`;
 
 /**
  *

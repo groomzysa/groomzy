@@ -1,5 +1,5 @@
-import { useSocialsQuery } from "../../graphql/quries/social/socials.enhanced";
-import { getErrorMessage } from "../../helpers";
+import { useSocialsQuery } from "../../../graphql/quries/social/socials.enhanced";
+import { getErrorMessage } from "../../../helpers";
 
 export const useFetchSocials = () => {
   const { data, isLoading, isError, error } = useSocialsQuery();
