@@ -1,11 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setSearch } from "../../../../../store/slices/homeSlice/homeSlice";
-import { RootState } from "../../../../../store/store";
+import { useState } from "react";
 
 export const useServiceProvidersSearch = () => {
-  const {
-    home: { search },
-  } = useSelector<RootState, Pick<RootState, "home">>((state) => state);
+  const [searchTmp, setSearchTmp] = useState<string>();
 
   /**
    *
@@ -21,16 +19,17 @@ export const useServiceProvidersSearch = () => {
    */
   const onSearchChange = (ev: Event) => {
     const value = (ev.target as HTMLInputElement).value;
-
+    setSearchTmp(value);
     dispatch(setSearch({ search: value }));
   };
 
   const onSearchClear = () => {
+    setSearchTmp(undefined);
     dispatch(setSearch({ search: undefined }));
   };
 
   return {
-    search,
+    searchTmp,
     onSearchChange,
     onSearchClear,
   };

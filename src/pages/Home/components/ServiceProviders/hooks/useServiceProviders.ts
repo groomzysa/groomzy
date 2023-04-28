@@ -6,6 +6,7 @@ import { getErrorMessage } from "../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../store/store";
+import { isEmpty } from "lodash";
 
 export const useServiceProviders = () => {
   const {
@@ -28,7 +29,10 @@ export const useServiceProviders = () => {
     try {
       const response = await fetchProviders({ search }).unwrap();
       setProvidersLoading(false);
-      setProviders(response.providers);
+      const providersWithAddress = response.providers.filter(
+        (provider) => !isEmpty(provider.addresses)
+      );
+      setProviders(providersWithAddress);
     } catch (error) {
       setProvidersLoading(false);
       present({

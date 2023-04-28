@@ -11,7 +11,6 @@ import {
   IonRefresher,
   IonRefresherContent,
   IonRow,
-  IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
@@ -42,12 +41,6 @@ export const Details: FC = () => {
       </IonHeader>
 
       <IonContent fullscreen class="provider-trading-ion-content">
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Details</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
         <IonRefresher slot="fixed" onIonRefresh={() => {}}>
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
@@ -77,10 +70,10 @@ export const Details: FC = () => {
             <IonCol sizeXs="12" sizeSm="8" sizeMd="6">
               <IonRow>
                 <IonCol>
-                  <IonText class="time-header">Day</IonText>
+                  <IonNote class="time-header">Day</IonNote>
                 </IonCol>
                 <IonCol>
-                  <IonText class="time-header">Times</IonText>
+                  <IonNote class="time-header">Times</IonNote>
                 </IonCol>
               </IonRow>
             </IonCol>

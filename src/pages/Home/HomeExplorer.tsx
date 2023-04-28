@@ -9,9 +9,16 @@ import {
 } from "@ionic/react";
 import { FC } from "react";
 import { HOME } from "../../utils/pages";
-import { ServiceProviders } from "./components";
+import { ServiceProviders, ServiceProvidersSearch } from "./components";
+import { useHomeExplorer } from "./hooks";
 
 export const HomeExplorer: FC = () => {
+  /**
+   *
+   * Hooks
+   *
+   */
+  const { hasProviders } = useHomeExplorer();
   return (
     <IonPage>
       <IonHeader>
@@ -24,6 +31,7 @@ export const HomeExplorer: FC = () => {
       </IonHeader>
 
       <IonContent fullscreen>
+        {hasProviders && <ServiceProvidersSearch />}
         <ServiceProviders />
       </IonContent>
     </IonPage>

@@ -23,7 +23,7 @@ export const ProviderTrading: FC = () => {
 
   return (
     <IonTabs>
-      <IonRouterOutlet>
+      <IonRouterOutlet animated={false}>
         <Route
           path={`/${routes.providerTrading.services.get()}`}
           component={Services}

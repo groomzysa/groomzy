@@ -46,7 +46,7 @@ export const ProviderDashboard: FC = () => {
 
   return (
     <IonTabs>
-      <IonRouterOutlet>
+      <IonRouterOutlet animated={false}>
         {/* Services routes */}
         <Route
           exact

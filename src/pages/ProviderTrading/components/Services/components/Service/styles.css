@@ -1,22 +1,26 @@
-.provider-trading-card.content {
+.provider-trading-service-container {
   height: 130px;
 }
 
-.provider-trading-price-container {
+.provider-trading-service-content {
+  height: 100%;
+}
+
+.provider-trading-service-price-container {
   display: flex;
   justify-content: flex-end;
 }
 
-.provider-trading-name {
+.provider-trading-service-name {
   font-weight: 700;
   color: var(--ion-text-color);
 }
 
-.provider-trading-duration {
+.provider-trading-service-duration {
   margin-right: 5px;
 }
 
-.provider-trading-description {
+.provider-trading-service-description {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

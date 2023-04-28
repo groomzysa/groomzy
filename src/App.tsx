@@ -58,7 +58,7 @@ const App: React.FC = () => {
         ) : (
           <>
             <Menu user={user} />
-            <IonRouterOutlet id="main">
+            <IonRouterOutlet id="main" animated={false}>
               <Route
                 exact
                 path={"/"}
