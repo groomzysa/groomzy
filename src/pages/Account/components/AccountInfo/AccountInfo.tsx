@@ -98,14 +98,17 @@ export const AccountInfo: FC<IAccountInfoProps> = ({ user }) => {
                     onClick={takePhoto}
                   >
                     <IonIcon icon={cameraOutline}></IonIcon>
-                    <span>Take a picture</span>
+                    <span>Upload your profile image</span>
                   </div>
                 </IonCol>
               </IonRow>
               {photo && (
                 <IonRow>
                   <IonCol size="6">
-                    <IonImg src={photo.webviewPath} />
+                    <IonImg
+                      class="account-info-photo-preview"
+                      src={photo.webviewPath}
+                    />
                   </IonCol>
                 </IonRow>
               )}

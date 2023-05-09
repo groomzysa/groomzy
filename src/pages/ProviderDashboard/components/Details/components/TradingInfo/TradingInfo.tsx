@@ -55,7 +55,8 @@ export const TradingInfo: FC = () => {
               placeholder={provider?.tradingName || ""}
               onValueChange={onTradingNameChange}
               type="text"
-              error={tradingName?.error}
+              error={provider ? undefined : tradingName?.error}
+              required={provider ? false : true}
             />
           </IonCol>
           <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -70,7 +71,8 @@ export const TradingInfo: FC = () => {
               placeholder={provider?.phone || ""}
               onValueChange={onPhoneNumberChange}
               type={"text"}
-              error={phoneNumber?.error}
+              error={provider ? undefined : phoneNumber?.error}
+              required={provider ? false : true}
             />
           </IonCol>
           <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -81,16 +83,22 @@ export const TradingInfo: FC = () => {
             <IonGrid>
               <IonRow>
                 <IonCol>
-                  <div className="take-photo-button" onClick={takePhoto}>
+                  <div
+                    className="trading-info-take-photo-button"
+                    onClick={takePhoto}
+                  >
                     <IonIcon icon={cameraOutline}></IonIcon>
-                    <span>Take a picture</span>
+                    <span>Upload trading profile</span>
                   </div>
                 </IonCol>
               </IonRow>
               {photo && (
                 <IonRow>
                   <IonCol size="6">
-                    <IonImg src={photo.webviewPath} />
+                    <IonImg
+                      class="trading-info-photo-preview"
+                      src={photo.webviewPath}
+                    />
                   </IonCol>
                 </IonRow>
               )}

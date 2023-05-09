@@ -17,7 +17,7 @@ import { eyeOffOutline, eyeOutline } from "ionicons/icons";
 import { FC } from "react";
 import { GInput } from "../../components";
 import { SIGN_UP } from "../../utils/pages";
-import { useSignUpHandlers } from "./hooks";
+import { useSignUp } from "./hooks";
 
 import "./styles.css";
 
@@ -47,7 +47,7 @@ export const SignUp: FC = () => {
     onShowPassword,
     onNavigateToSignUp,
     onCanSignUp,
-  } = useSignUpHandlers();
+  } = useSignUp();
 
   return (
     <IonPage>
@@ -73,21 +73,27 @@ export const SignUp: FC = () => {
             <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
             <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
               <div className="sign-up-names-container">
-                <GInput
-                  label="First name"
-                  value={firstName?.value || ""}
-                  onValueChange={onFirstNameChange}
-                  type="text"
-                  error={firstName?.error}
-                />
+                <div className="sign-up-first-name">
+                  <GInput
+                    label="First name"
+                    value={firstName?.value || ""}
+                    onValueChange={onFirstNameChange}
+                    type="text"
+                    error={firstName?.error}
+                    required
+                  />
+                </div>
 
-                <GInput
-                  label="Last name"
-                  value={lastName?.value || ""}
-                  onValueChange={onLastNameChange}
-                  type="text"
-                  error={lastName?.error}
-                />
+                <div className="sign-up-lastname">
+                  <GInput
+                    label="Last name"
+                    value={lastName?.value || ""}
+                    onValueChange={onLastNameChange}
+                    type="text"
+                    error={lastName?.error}
+                    required
+                  />
+                </div>
               </div>
             </IonCol>
             <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -101,6 +107,7 @@ export const SignUp: FC = () => {
                 onValueChange={onEmailChange}
                 type="email"
                 error={email?.error}
+                required
               />
             </IonCol>
             <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -118,6 +125,7 @@ export const SignUp: FC = () => {
                 iconClass="icon"
                 iconAction={onShowPassword}
                 error={password?.error}
+                required
               />
             </IonCol>
             <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>

@@ -21,7 +21,7 @@ import { RootState } from "../../../../../../../store/store";
 import { ADD_OPERATING_TIME_MESSAGE } from "../../../../../../../utils/messages";
 import { IInput } from "../../../../../../../utils/types";
 import { DAYS } from "../../../constants";
-import { useSuccessControl } from "../../../../../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { AgGridReact } from "ag-grid-react";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
@@ -42,7 +42,7 @@ export const useCreateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
    * Custom hooks
    *
    */
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
 
   const { addOperatingTime } = useAddOperatingTime();
 
@@ -136,14 +136,16 @@ export const useCreateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
 
       setAddOperatingTimeLoading(false);
 
-      successControl(ADD_OPERATING_TIME_MESSAGE, onCloseModal);
+      autoDisimissToast({ message: ADD_OPERATING_TIME_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setAddOperatingTimeLoading(false);
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
-          "Something went wrong adding operating time."
-      );
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
+          "Something went wrong adding operating time.",
+        buttonDismiss: true,
+      });
     }
   };
 

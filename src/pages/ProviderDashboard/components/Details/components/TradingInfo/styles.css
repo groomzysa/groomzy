@@ -16,3 +16,9 @@
 .trading-info-take-photo-button ion-icon {
   font-size: 1.25rem;
 }
+
+.trading-info-photo-preview {
+  height: 120px;
+  object-fit: cover;
+  object-position: center;
+}

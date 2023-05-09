@@ -20,7 +20,7 @@ import { routes } from "../../../../../../../route/routes";
 import { SERVICE_CATEGORIES } from "../../../../../../../utils/constants";
 import { CREATE_SERVICE_MESSAGE } from "../../../../../../../utils/messages";
 import { IInput, ISelectOption } from "../../../../../../../utils/types";
-import { useSuccessControl } from "../../../../../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { formatCategoryLabel } from "../../../utils";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
@@ -44,7 +44,7 @@ export const useCreateService = (gridRef: RefObject<AgGridReact<any>>) => {
    * Hooks
    *
    */
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
 
   const { createService } = useCreateServiceMutation();
 
@@ -167,14 +167,16 @@ export const useCreateService = (gridRef: RefObject<AgGridReact<any>>) => {
 
       setCreateServiceLoading(false);
 
-      successControl(CREATE_SERVICE_MESSAGE, onCloseModal);
+      autoDisimissToast({ message: CREATE_SERVICE_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setCreateServiceLoading(false);
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
-          "Something went wrong creating service."
-      );
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
+          "Something went wrong creating service.",
+        buttonDismiss: true,
+      });
     }
   };
 

@@ -13,8 +13,14 @@ export const useServices = (gridRef: RefObject<AgGridReact<any>>) => {
    *
    */
 
-  const { columnDefs, defaultColDef, onSelectionChanged, onGridReady } =
-    useGridSettings(gridRef);
+  const {
+    servicesLoading,
+    hasServices,
+    columnDefs,
+    defaultColDef,
+    onSelectionChanged,
+    onGridReady,
+  } = useGridSettings(gridRef);
 
   const { fetchProvider, provider } = useFetchProvider();
 
@@ -49,7 +55,9 @@ export const useServices = (gridRef: RefObject<AgGridReact<any>>) => {
   };
 
   return {
-    noProvider: !provider,
+    servicesLoading,
+    hasServices,
+    hasProvider: !!provider,
     columnDefs,
     defaultColDef,
     onSelectionChanged,

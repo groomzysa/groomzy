@@ -5,7 +5,7 @@ import isEmail from "validator/lib/isEmail";
 import { useRequestPasswordReset as useRequestPasswordResetMutation } from "../../../api/hooks/mutations";
 import { isEmpty } from "lodash";
 import { UserRole } from "../../../api/graphql/api.schema";
-import { useSuccessControl } from "../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../hooks/useCustomToast";
 import { getErrorMessage } from "../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
 import { useHistory } from "react-router";
@@ -24,7 +24,7 @@ export const useRequestPasswordReset = () => {
    */
   const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
 
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
 
   const { requestPasswordReset } = useRequestPasswordResetMutation();
 
@@ -69,12 +69,14 @@ export const useRequestPasswordReset = () => {
         role: isProvider ? UserRole.Provider : UserRole.Client,
       }).unwrap();
       setRequestPasswordResetLoading(false);
-      successControl(response.requestPasswordReset.message, () => {
-        history.push(`/${routes.passwordReset.base.use()}`);
-      });
+      autoDisimissToast({ message: response.requestPasswordReset.message });
+      history.push(`/${routes.passwordReset.base.use()}`);
     } catch (error) {
       setRequestPasswordResetLoading(false);
-      successControl(getErrorMessage(error as ErrorResponse) || "", undefined);
+      autoDisimissToast({
+        message: getErrorMessage(error as ErrorResponse) || "",
+        buttonDismiss: true,
+      });
     }
   };
 

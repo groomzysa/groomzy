@@ -13,6 +13,10 @@
 
 .sign-up-names-container {
   display: flex;
-  justify-content: space-between;
   gap: 10px;
+}
+
+.sign-up-first-name,
+.sign-up-lastname {
+  width: 100%;
 }

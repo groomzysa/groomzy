@@ -1,5 +1,4 @@
 import {
-  IonBackButton,
   IonButtons,
   IonCol,
   IonContent,
@@ -20,6 +19,8 @@ import { useParams } from "react-router-dom";
 import { Service } from "./components";
 import { PAGE_SIZE } from "./constants";
 import { useServicesHandlers } from "./hooks";
+import { GIconBackButton } from "../../../../components";
+import { routes } from "../../../../route/routes";
 
 export const Services: FC = () => {
   /**
@@ -44,7 +45,7 @@ export const Services: FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/" />
+            <GIconBackButton route={routes.home.base.use()} />
           </IonButtons>
           <IonTitle>Services</IonTitle>
         </IonToolbar>

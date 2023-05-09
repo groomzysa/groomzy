@@ -39,7 +39,7 @@ ion-modal.create-trading-time-modal ion-grid ion-row:last-child {
   border-bottom: 1px solid gray;
 }
 
-.create-tradint-time-time-container {
+.create-trading-time-time-container {
   display: flex;
 }
 

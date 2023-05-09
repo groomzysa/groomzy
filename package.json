@@ -26,6 +26,7 @@
     "@capacitor/haptics": "4.1.0",
     "@capacitor/keyboard": "^4.1.1",
     "@capacitor/preferences": "^4.0.2",
+    "@capacitor/splash-screen": "^4.2.0",
     "@capacitor/status-bar": "4.1.1",
     "@graphql-codegen/add": "^3.2.3",
     "@graphql-codegen/cli": "^2.16.4",

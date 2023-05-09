@@ -7,10 +7,12 @@ import {
   IonHeader,
   IonIcon,
   IonMenuButton,
+  IonNote,
   IonPage,
   IonRefresher,
   IonRefresherContent,
   IonRow,
+  IonSpinner,
   IonText,
   IonTitle,
   IonToolbar,
@@ -33,7 +35,9 @@ export const Services: FC<IServicesProps> = ({ gridRef }) => {
    *
    */
   const {
-    noProvider,
+    servicesLoading,
+    hasProvider,
+    hasServices,
     columnDefs,
     defaultColDef,
     onSelectionChanged,
@@ -58,8 +62,63 @@ export const Services: FC<IServicesProps> = ({ gridRef }) => {
         <IonRefresher slot="fixed" onIonRefresh={onRefetchSerices}>
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
+        {hasProvider && (
+          <IonGrid>
+            <IonRow>
+              <IonCol>
+                <IonButton onClick={() => onCreateService()}>
+                  <IonIcon slot="start" icon={addOutline}></IonIcon>
+                  Create
+                </IonButton>
+              </IonCol>
+            </IonRow>
 
-        {noProvider ? (
+            <IonRow>
+              <IonCol class="services-grid-container">
+                {servicesLoading ? (
+                  <IonSpinner></IonSpinner>
+                ) : (
+                  !hasServices && (
+                    <div className="services-empty-state">
+                      <div>
+                        <img
+                          src="assets/empty-box.svg"
+                          alt="Empty box"
+                          height={200}
+                        />
+                      </div>
+                      <div>
+                        <IonNote>
+                          There are currently no services added.
+                        </IonNote>
+                      </div>
+                    </div>
+                  )
+                )}
+
+                <div className={"ag-theme-alpine"}>
+                  <AgGridReact
+                    ref={gridRef}
+                    columnDefs={columnDefs}
+                    defaultColDef={defaultColDef}
+                    onSelectionChanged={onSelectionChanged}
+                    onGridReady={onGridReady}
+                    paginationPageSize={PAGE_SIZE}
+                    cacheBlockSize={PAGE_SIZE}
+                    modules={[InfiniteRowModelModule]}
+                    getRowId={({ data }) => data.id}
+                    rowSelection="single"
+                    rowModelType="infinite"
+                    animateRows
+                    pagination
+                  />
+                </div>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        )}
+
+        {!hasProvider && (
           <div className="services-no-provider-container">
             <div>
               <IonGrid>
@@ -81,39 +140,6 @@ export const Services: FC<IServicesProps> = ({ gridRef }) => {
               </IonGrid>
             </div>
           </div>
-        ) : (
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <IonButton onClick={() => onCreateService()}>
-                  <IonIcon slot="start" icon={addOutline}></IonIcon>
-                  Create
-                </IonButton>
-              </IonCol>
-            </IonRow>
-
-            <IonRow>
-              <IonCol class="services-grid-container">
-                <div className={"ag-theme-alpine"}>
-                  <AgGridReact
-                    ref={gridRef}
-                    columnDefs={columnDefs}
-                    defaultColDef={defaultColDef}
-                    onSelectionChanged={onSelectionChanged}
-                    onGridReady={onGridReady}
-                    paginationPageSize={PAGE_SIZE}
-                    cacheBlockSize={PAGE_SIZE}
-                    modules={[InfiniteRowModelModule]}
-                    getRowId={({ data }) => data.id}
-                    rowSelection="single"
-                    rowModelType="infinite"
-                    animateRows
-                    pagination
-                  />
-                </div>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
         )}
       </IonContent>
     </IonPage>

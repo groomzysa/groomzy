@@ -12,74 +12,22 @@ import {
 } from "@ionic/react";
 import { FC } from "react";
 
-import {
-  callOutline,
-  homeOutline,
-  informationCircleOutline,
-  logInOutline,
-  logOutOutline,
-  personAddOutline,
-  personCircleOutline,
-} from "ionicons/icons";
+import { logOutOutline } from "ionicons/icons";
 
 import {
   ABOUT,
   ACCOUNT,
   CONTACTS,
   HOME,
-  PROVIDER_DASHBOARD,
+  DASHBOARD,
   SIGN_IN,
   SIGN_UP,
 } from "../../utils/pages";
 
 import "./styles.css";
 import { useMenuHook } from "./hooks";
-import { routes } from "../../route/routes";
 import { User, UserRole } from "../../api/graphql/api.schema";
-
-interface AppPage {
-  url: string;
-  icon: string;
-  title: string;
-}
-
-const appPages: AppPage[] = [
-  {
-    title: HOME,
-    url: `/${routes.home.base.get()}`,
-    icon: homeOutline,
-  },
-  {
-    title: PROVIDER_DASHBOARD,
-    url: `/${routes.providerDashboard.base.get()}`,
-    icon: homeOutline,
-  },
-  {
-    title: ACCOUNT,
-    url: `/${routes.account.base.get()}`,
-    icon: personCircleOutline,
-  },
-  {
-    title: ABOUT,
-    url: `/${routes.about.base.get()}`,
-    icon: informationCircleOutline,
-  },
-  {
-    title: CONTACTS,
-    url: `/${routes.contacts.base.get()}`,
-    icon: callOutline,
-  },
-  {
-    title: SIGN_IN,
-    url: `/${routes.signIn.base.get()}`,
-    icon: logInOutline,
-  },
-  {
-    title: SIGN_UP,
-    url: `/${routes.signUp.base.get()}`,
-    icon: personAddOutline,
-  },
-];
+import { APP_PAGES } from "./constants";
 
 export const Menu: FC<{ user?: User | null }> = ({ user }) => {
   /**
@@ -110,19 +58,37 @@ export const Menu: FC<{ user?: User | null }> = ({ user }) => {
             )}
           </IonListHeader>
 
-          {appPages
-            .filter((page) => {
-              if (user?.role === UserRole.Provider) {
-                return [PROVIDER_DASHBOARD, ACCOUNT, ABOUT, CONTACTS].includes(
-                  page.title
-                );
-              } else if (user?.role === UserRole.Client) {
-                return [HOME, ACCOUNT, ABOUT, CONTACTS].includes(page.title);
-              }
+          {APP_PAGES.filter((page) => {
+            if (user?.role === UserRole.Provider) {
+              return [DASHBOARD, ACCOUNT, ABOUT, CONTACTS].includes(page.title);
+            } else if (user?.role === UserRole.Client) {
+              return [HOME, ACCOUNT, ABOUT, CONTACTS].includes(page.title);
+            }
 
-              return [HOME, ABOUT, CONTACTS].includes(page.title);
-            })
-            .map((appPage, index) => {
+            return [HOME, ABOUT, CONTACTS].includes(page.title);
+          }).map((appPage, index) => {
+            return (
+              <IonMenuToggle key={index} autoHide={false}>
+                <IonItem
+                  className={selectedPage(appPage.url) ? "selected" : ""}
+                  onClick={() => onSetCurrentPageUrl(appPage.url)}
+                  routerLink={appPage.url}
+                  routerDirection="none"
+                  lines="none"
+                  detail={false}
+                >
+                  <IonIcon slot="start" icon={appPage.icon} />
+                  <IonLabel>{appPage.title}</IonLabel>
+                </IonItem>
+              </IonMenuToggle>
+            );
+          })}
+        </IonList>
+        <IonList>
+          {!user &&
+            APP_PAGES.filter((page) => {
+              return [SIGN_IN, SIGN_UP].includes(page.title);
+            }).map((appPage, index) => {
               return (
                 <IonMenuToggle key={index} autoHide={false}>
                   <IonItem
@@ -139,30 +105,6 @@ export const Menu: FC<{ user?: User | null }> = ({ user }) => {
                 </IonMenuToggle>
               );
             })}
-        </IonList>
-        <IonList>
-          {!user &&
-            appPages
-              .filter((page) => {
-                return [SIGN_IN, SIGN_UP].includes(page.title);
-              })
-              .map((appPage, index) => {
-                return (
-                  <IonMenuToggle key={index} autoHide={false}>
-                    <IonItem
-                      className={selectedPage(appPage.url) ? "selected" : ""}
-                      onClick={() => onSetCurrentPageUrl(appPage.url)}
-                      routerLink={appPage.url}
-                      routerDirection="none"
-                      lines="none"
-                      detail={false}
-                    >
-                      <IonIcon slot="start" icon={appPage.icon} />
-                      <IonLabel>{appPage.title}</IonLabel>
-                    </IonItem>
-                  </IonMenuToggle>
-                );
-              })}
           {user && (
             <IonMenuToggle>
               <IonItem

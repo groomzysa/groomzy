@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useMemo } from "react";
+import { RefObject, useCallback, useMemo, useState } from "react";
 import {
   ColDef,
   Column,
@@ -15,6 +15,8 @@ import { useFetchServices } from "../../../../../api/hooks/queries";
 import { AgGridReact } from "ag-grid-react";
 
 export const useGridSettings = (gridRef: RefObject<AgGridReact<any>>) => {
+  const [hasServices, setHasServices] = useState(false);
+  const [servicesLoading, setServicesLoading] = useState(true);
   const isMobile = isPlatform("mobile");
 
   /**
@@ -101,6 +103,8 @@ export const useGridSettings = (gridRef: RefObject<AgGridReact<any>>) => {
     async (gridParams: GridReadyEvent) => {
       const dataSource: IDatasource = {
         getRows: async (params) => {
+          setServicesLoading(true);
+
           const { data } = await fetchServices({
             limit: PAGE_SIZE,
             paginationType: PaginationType.Normal,
@@ -128,8 +132,13 @@ export const useGridSettings = (gridRef: RefObject<AgGridReact<any>>) => {
               count = rows.length;
             }
 
+            setHasServices(count > 0);
+            setServicesLoading(false);
+
             params.successCallback(rows, count);
           } catch (error) {
+            setServicesLoading(false);
+
             console.error(error);
           }
         },
@@ -141,6 +150,8 @@ export const useGridSettings = (gridRef: RefObject<AgGridReact<any>>) => {
   );
 
   return {
+    servicesLoading,
+    hasServices,
     columnDefs,
     defaultColDef,
     onSelectionChanged,

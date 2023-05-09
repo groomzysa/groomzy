@@ -10,9 +10,19 @@ import { routes } from "../../../route/routes";
 export const useMenuHook = () => {
   const [currentPageUrl, setCurrentpageUrl] = useState<string>();
 
+  /**
+   *
+   * Hooks
+   *
+   */
   const history = useHistory();
   const dispatch = useDispatch();
 
+  /**
+   *
+   * Effects
+   *
+   */
   useEffect(() => {
     if (currentPageUrl) {
       return;
@@ -23,7 +33,34 @@ export const useMenuHook = () => {
     } else {
       setCurrentpageUrl(`/${routes.providerDashboard.base.use()}`);
     }
+
+    return history.listen(() => {
+      if (history.action === "PUSH" || history.action === "POP") {
+        if (includes(history.location.pathname, "home")) {
+          setCurrentpageUrl(`/${routes.home.base.use()}`);
+        } else if (includes(history.location.pathname, "provider-dashboard")) {
+          setCurrentpageUrl(`/${routes.providerDashboard.base.use()}`);
+        } else {
+          console.log(history.location.pathname);
+          setCurrentpageUrl(`/${history.location.pathname}`);
+        }
+      }
+    });
   }, [history, currentPageUrl]);
+
+  useEffect(() => {
+    return history.listen(() => {
+      if (history.action === "PUSH" || history.action === "POP") {
+        if (includes(history.location.pathname, "home")) {
+          setCurrentpageUrl(`/${routes.home.base.use()}`);
+        } else if (includes(history.location.pathname, "provider-dashboard")) {
+          setCurrentpageUrl(`/${routes.providerDashboard.base.use()}`);
+        } else {
+          setCurrentpageUrl(`/${history.location.pathname}`);
+        }
+      }
+    });
+  }, [history]);
 
   /**
    *

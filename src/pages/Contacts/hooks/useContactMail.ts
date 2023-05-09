@@ -4,7 +4,7 @@ import isEmail from "validator/lib/isEmail";
 import { useContactMail as useContactMailMutation } from "../../../api/hooks/mutations";
 import { CONTACT_MAIL_SENT_MESSAGE } from "../../../utils/messages";
 import { IInput } from "../../../utils/types";
-import { useSuccessControl } from "../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../hooks/useCustomToast";
 import { useNativeElementsSizeInfo } from "../../../hooks";
 import { getErrorMessage } from "../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
@@ -24,7 +24,7 @@ export const useContactMail = () => {
    */
   const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
 
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
 
   const { contactMail } = useContactMailMutation();
 
@@ -116,13 +116,15 @@ export const useContactMail = () => {
 
       contactMailLoading = false;
 
-      successControl(CONTACT_MAIL_SENT_MESSAGE, undefined);
+      autoDisimissToast({ message: CONTACT_MAIL_SENT_MESSAGE });
     } catch (error) {
       contactMailLoading = false;
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
-          "Something went wrong sending email."
-      );
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
+          "Something went wrong sending email.",
+        buttonDismiss: true,
+      });
     }
   };
 

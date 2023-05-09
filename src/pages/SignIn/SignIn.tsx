@@ -17,7 +17,7 @@ import { eyeOffOutline, eyeOutline } from "ionicons/icons";
 import { FC } from "react";
 import { GInput } from "../../components";
 import { SIGN_IN } from "../../utils/pages";
-import { useSignInHandlers } from "./hooks";
+import { useSignIn } from "./hooks";
 
 import "./styles.css";
 
@@ -44,7 +44,7 @@ export const SignIn: FC = () => {
     onSignIn,
     onNewMember,
     onCanSignIn,
-  } = useSignInHandlers();
+  } = useSignIn();
 
   return (
     <IonPage>
@@ -76,6 +76,7 @@ export const SignIn: FC = () => {
                   onValueChange={onEmailChange}
                   type="email"
                   error={email?.error}
+                  required
                 />
               </IonCol>
               <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -93,6 +94,7 @@ export const SignIn: FC = () => {
                   iconClass="icon"
                   iconAction={onShowPassword}
                   error={password?.error}
+                  required
                 />
               </IonCol>
               <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>

@@ -13,7 +13,7 @@ import {
   informationCircleOutline,
 } from "ionicons/icons";
 import { FC } from "react";
-import { Details, Services, TradingTimes, Gallery } from "./components";
+import { Details, Services, TradingTimes, GalleryImages } from "./components";
 
 import "./styles.css";
 import {
@@ -32,9 +32,9 @@ import {
 } from "./components/TradingTimes/components";
 import { VALID_URL_PATH_NAMES } from "../../utils/constants";
 import {
-  CreateGallery,
-  DeleteGallery,
-} from "./components/Galleries/components";
+  CreateGalleryImage,
+  DeleteGalleryImage,
+} from "./components/GalleryImages/components";
 
 export const ProviderDashboard: FC = () => {
   /**
@@ -116,17 +116,17 @@ export const ProviderDashboard: FC = () => {
           component={ViewTradingTime}
         />
 
-        {/* Gallery routes */}
+        {/* GalleryImages routes */}
         <Route
           exact
           path={`/${routes.providerDashboard.gallery.get()}`}
-          render={() => <Gallery gridRef={gridRef} />}
+          render={() => <GalleryImages gridRef={gridRef} />}
         />
 
         <Route
           exact
           path={`/${routes.providerDashboard.gallery.createGallery.get()}`}
-          render={() => <CreateGallery gridRef={gridRef} />}
+          render={() => <CreateGalleryImage gridRef={gridRef} />}
         />
 
         <Route
@@ -138,7 +138,7 @@ export const ProviderDashboard: FC = () => {
         <Route
           exact
           path={`/${routes.providerDashboard.gallery.deleteGallery.get()}`}
-          render={() => <DeleteGallery gridRef={gridRef} />}
+          render={() => <DeleteGalleryImage gridRef={gridRef} />}
         />
 
         <Route

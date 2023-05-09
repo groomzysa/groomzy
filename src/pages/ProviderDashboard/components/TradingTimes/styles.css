@@ -15,3 +15,14 @@
   cursor: pointer;
   color: var(--ion-color-primary);
 }
+
+.trading-times-empty-state {
+  margin: auto;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  text-align: center;
+}

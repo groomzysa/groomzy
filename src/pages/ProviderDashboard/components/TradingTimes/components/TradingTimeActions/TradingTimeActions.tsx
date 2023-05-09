@@ -8,7 +8,7 @@ import {
   IonPopover,
   IonRow,
 } from "@ionic/react";
-import { ellipsisHorizontalOutline } from "ionicons/icons";
+import { ellipsisVerticalOutline } from "ionicons/icons";
 import { FC } from "react";
 
 import { IServiceActionsProps } from "./types";
@@ -47,7 +47,7 @@ export const TradingTimesActions: FC<IServiceActionsProps> = ({ props }) => {
               onClick={onOpenPopover}
             >
               <IonIcon
-                icon={ellipsisHorizontalOutline}
+                icon={ellipsisVerticalOutline}
                 className="ellipse-icon"
               ></IonIcon>
             </span>

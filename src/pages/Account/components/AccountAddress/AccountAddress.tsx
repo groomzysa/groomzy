@@ -61,7 +61,8 @@ export const AccountAddress: FC<IAccountAddressProps> = ({ user }) => {
                   placeholder={userAddress?.streetNumber || ""}
                   onValueChange={onStreetNumberChanged}
                   type="text"
-                  error={streetNumber?.error}
+                  error={userAddress ? undefined : streetNumber?.error}
+                  required={userAddress ? false : true}
                 />
               </div>
 
@@ -73,7 +74,8 @@ export const AccountAddress: FC<IAccountAddressProps> = ({ user }) => {
                   placeholder={userAddress?.streetName || ""}
                   onValueChange={onStreetNameChanged}
                   type="text"
-                  error={streetName?.error}
+                  error={userAddress ? undefined : streetName?.error}
+                  required={userAddress ? false : true}
                 />
               </div>
             </div>
@@ -91,7 +93,8 @@ export const AccountAddress: FC<IAccountAddressProps> = ({ user }) => {
               placeholder={userAddress?.town || ""}
               onValueChange={onTownNameChanged}
               type="text"
-              error={townName?.error}
+              error={userAddress ? undefined : townName?.error}
+              required={userAddress ? false : true}
             />
           </IonCol>
           <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -106,7 +109,8 @@ export const AccountAddress: FC<IAccountAddressProps> = ({ user }) => {
               placeholder={userAddress?.city || ""}
               onValueChange={onCityNameChanged}
               type="text"
-              error={cityName?.error}
+              error={userAddress ? undefined : cityName?.error}
+              required={userAddress ? false : true}
             />
           </IonCol>
           <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -121,7 +125,8 @@ export const AccountAddress: FC<IAccountAddressProps> = ({ user }) => {
               placeholder={userAddress?.province || ""}
               onValueChange={onProvinceNameChanged}
               type="text"
-              error={provinceName?.error}
+              error={userAddress ? undefined : provinceName?.error}
+              required={userAddress ? false : true}
             />
           </IonCol>
           <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -137,7 +142,8 @@ export const AccountAddress: FC<IAccountAddressProps> = ({ user }) => {
               placeholder={userAddress?.areaCode || ""}
               onValueChange={onAreaCodeChanged}
               type="text"
-              error={areaCode?.error}
+              error={userAddress ? undefined : areaCode?.error}
+              required={userAddress ? false : true}
             />
           </IonCol>
           <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>

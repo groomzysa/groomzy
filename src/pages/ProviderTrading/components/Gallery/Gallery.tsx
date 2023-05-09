@@ -1,5 +1,4 @@
 import {
-  IonBackButton,
   IonButtons,
   IonCol,
   IonContent,
@@ -21,6 +20,8 @@ import { useGallery } from "./hooks";
 import { PAGE_SIZE } from "./constants";
 import { useParams } from "react-router-dom";
 import "./styles.css";
+import { GIconBackButton } from "../../../../components";
+import { routes } from "../../../../route/routes";
 
 export const Gallery: FC = () => {
   /**
@@ -44,7 +45,7 @@ export const Gallery: FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/" />
+            <GIconBackButton route={routes.home.base.use()} />
           </IonButtons>
           <IonTitle>Gallery</IonTitle>
         </IonToolbar>

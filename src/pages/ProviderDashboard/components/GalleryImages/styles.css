@@ -1,0 +1,28 @@
+.gallery-images-grid-container {
+  height: calc(100vh - 180px);
+  width: 100%;
+}
+
+.gallery-images-no-provider-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 112px);
+}
+
+.gallery-images-no-provider-link {
+  cursor: pointer;
+  color: var(--ion-color-primary);
+}
+
+.gallery-images-empty-state {
+  margin: auto;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  text-align: center;
+}

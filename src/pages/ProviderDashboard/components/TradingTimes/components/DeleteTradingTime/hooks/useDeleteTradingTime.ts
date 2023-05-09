@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDeleteOperatingTime } from "../../../../../../../api/hooks/mutations";
 import { routes } from "../../../../../../../route/routes";
 import { DELETED_OPERATING_TIME_MESSAGE } from "../../../../../../../utils/messages";
-import { useSuccessControl } from "../../../../../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
 
@@ -20,7 +20,7 @@ export const useDeleteTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
    *
    */
   const { id } = useParams<{ id: string }>();
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
   const { deleteOperatingTime } = useDeleteOperatingTime();
 
   const history = useHistory();
@@ -62,14 +62,19 @@ export const useDeleteTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
 
       setDeleteOperatingTimeLoading(false);
 
-      successControl(DELETED_OPERATING_TIME_MESSAGE, onCloseModal);
+      autoDisimissToast({
+        message: DELETED_OPERATING_TIME_MESSAGE,
+        onCloseModal,
+      });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setDeleteOperatingTimeLoading(false);
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
-          "Something went wrong deleting Operating time."
-      );
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
+          "Something went wrong deleting Operating time.",
+        buttonDismiss: true,
+      });
     }
   };
 

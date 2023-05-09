@@ -7,10 +7,12 @@ import {
   IonHeader,
   IonIcon,
   IonMenuButton,
+  IonNote,
   IonPage,
   IonRefresher,
   IonRefresherContent,
   IonRow,
+  IonSpinner,
   IonText,
   IonTitle,
   IonToolbar,
@@ -28,9 +30,11 @@ import "./styles.css";
 
 export const TradingTimes: FC<ITradingTimesProps> = ({ gridRef }) => {
   const {
-    noProvider,
+    tradingTimesLoading,
+    hasProvider,
     columnDefs,
     defaultColDef,
+    hasTradingTimes,
     onGridReady,
     onSelectionChanged,
     onCreateTradingTime,
@@ -52,7 +56,63 @@ export const TradingTimes: FC<ITradingTimesProps> = ({ gridRef }) => {
         <IonRefresher slot="fixed" onIonRefresh={onRefetchTradingTimes}>
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
-        {noProvider ? (
+        {hasProvider && (
+          <IonGrid>
+            <IonRow>
+              <IonCol>
+                <IonButton onClick={onCreateTradingTime}>
+                  <IonIcon slot="start" icon={addOutline}></IonIcon>
+                  Create
+                </IonButton>
+              </IonCol>
+            </IonRow>
+
+            <IonRow>
+              <IonCol class="trading-times-grid-container">
+                {tradingTimesLoading ? (
+                  <IonSpinner></IonSpinner>
+                ) : (
+                  !hasTradingTimes && (
+                    <div className="trading-times-empty-state">
+                      <div>
+                        <img
+                          src="assets/empty-box.svg"
+                          alt="Empty box"
+                          height={200}
+                        />
+                      </div>
+                      <div>
+                        <IonNote>
+                          There are currently no trading times added.
+                        </IonNote>
+                      </div>
+                    </div>
+                  )
+                )}
+
+                <div className="ag-theme-alpine">
+                  <AgGridReact
+                    ref={gridRef}
+                    columnDefs={columnDefs}
+                    defaultColDef={defaultColDef}
+                    onSelectionChanged={onSelectionChanged}
+                    onGridReady={onGridReady}
+                    paginationPageSize={PAGE_SIZE}
+                    cacheBlockSize={PAGE_SIZE}
+                    modules={[InfiniteRowModelModule]}
+                    getRowId={({ data }) => data.id}
+                    rowSelection="single"
+                    rowModelType="infinite"
+                    animateRows
+                    pagination
+                  />
+                </div>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        )}
+
+        {!hasProvider && (
           <div className="trading-times-no-provider-container">
             <div>
               <IonGrid>
@@ -74,39 +134,6 @@ export const TradingTimes: FC<ITradingTimesProps> = ({ gridRef }) => {
               </IonGrid>
             </div>
           </div>
-        ) : (
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <IonButton onClick={onCreateTradingTime}>
-                  <IonIcon slot="start" icon={addOutline}></IonIcon>
-                  Create
-                </IonButton>
-              </IonCol>
-            </IonRow>
-
-            <IonRow>
-              <IonCol class="trading-times-grid-container">
-                <div className="ag-theme-alpine">
-                  <AgGridReact
-                    ref={gridRef}
-                    columnDefs={columnDefs}
-                    defaultColDef={defaultColDef}
-                    onSelectionChanged={onSelectionChanged}
-                    onGridReady={onGridReady}
-                    paginationPageSize={PAGE_SIZE}
-                    cacheBlockSize={PAGE_SIZE}
-                    modules={[InfiniteRowModelModule]}
-                    getRowId={({ data }) => data.id}
-                    rowSelection="single"
-                    rowModelType="infinite"
-                    animateRows
-                    pagination
-                  />
-                </div>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
         )}
       </IonContent>
     </IonPage>

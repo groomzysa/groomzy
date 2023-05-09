@@ -1,8 +1,10 @@
 .icon-container {
   position: relative;
-  top: 2.5px;
+  top: 5px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .ellipse-icon-container {
@@ -11,7 +13,6 @@
 
 .ellipse-icon {
   color: var(--ion-text-color);
-  font-size: 2rem;
   pointer-events: none;
 }
 
@@ -20,7 +21,7 @@
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--ion-text-color);
 }
 

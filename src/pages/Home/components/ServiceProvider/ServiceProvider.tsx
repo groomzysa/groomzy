@@ -60,13 +60,11 @@ export const ServiceProvider: FC<IServiceProviderProps> = ({ provider }) => {
             </IonCol>
           </IonRow>
           <IonRow></IonRow>
-          {addresses && addresses.length > 0 && (
-            <IonRow>
-              <IonCol className="address">
-                <IonText>{addressName(addresses[0])}</IonText>
-              </IonCol>
-            </IonRow>
-          )}
+          <IonRow>
+            <IonCol className="address">
+              <IonText>{addressName(addresses![0])}</IonText>
+            </IonCol>
+          </IonRow>
         </IonGrid>
       </IonCardContent>
     </IonCard>

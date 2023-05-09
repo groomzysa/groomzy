@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDeleteService as useDeleteServiceMutation } from "../../../../../../../api/hooks/mutations";
 import { routes } from "../../../../../../../route/routes";
 import { DELETED_SERVICE_MESSAGE } from "../../../../../../../utils/messages";
-import { useSuccessControl } from "../../../../../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
 
@@ -22,7 +22,7 @@ export const useDeleteService = (
    */
   const { id } = useParams<{ id: string }>();
 
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
 
   const { deleteService } = useDeleteServiceMutation();
 
@@ -64,14 +64,16 @@ export const useDeleteService = (
 
       setDeleteServiceLoading(false);
 
-      successControl(DELETED_SERVICE_MESSAGE, onCloseModal);
+      autoDisimissToast({ message: DELETED_SERVICE_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setDeleteServiceLoading(false);
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
-          "Something went wrong deleting service."
-      );
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
+          "Something went wrong deleting service.",
+        buttonDismiss: true,
+      });
     }
   };
 

@@ -1,1 +1,1 @@
-export { useSignUpHandlers } from "./useSignUpHandlers";
+export { useSignUp } from "./useSignUp";

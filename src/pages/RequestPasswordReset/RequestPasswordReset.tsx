@@ -1,5 +1,4 @@
 import {
-  IonBackButton,
   IonButton,
   IonButtons,
   IonCheckbox,
@@ -14,9 +13,10 @@ import {
 } from "@ionic/react";
 import { FC } from "react";
 import { REQUEST_PASSWORD_RESET } from "../../utils/pages";
-import { GInput } from "../../components";
+import { GIconBackButton, GInput } from "../../components";
 import { useRequestPasswordReset } from "./hooks";
 import "./styles.css";
+import { routes } from "../../route/routes";
 
 export const RequestPasswordReset: FC = () => {
   const {
@@ -36,7 +36,7 @@ export const RequestPasswordReset: FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/" />
+            <GIconBackButton route={routes.signIn.base.use()} />
           </IonButtons>
           <IonTitle>{REQUEST_PASSWORD_RESET}</IonTitle>
         </IonToolbar>
@@ -61,6 +61,7 @@ export const RequestPasswordReset: FC = () => {
                   onValueChange={onEmailChange}
                   type="email"
                   error={email?.error}
+                  required
                 />
               </IonCol>
               <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>

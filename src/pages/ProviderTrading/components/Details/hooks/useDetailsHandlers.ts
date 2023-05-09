@@ -69,11 +69,11 @@ export const useDetailsHandlers = () => {
    *
    */
 
-  // const markerClick = (marker: MarkerClickCallbackData) => {
-  //   window.open(
-  //     `https://maps.google.com?q=${marker.latitude},${marker.longitude}`
-  //   );
-  // };
+  const markerClick = (marker: MarkerClickCallbackData) => {
+    window.open(
+      `https://maps.google.com?q=${marker.latitude},${marker.longitude}`
+    );
+  };
 
   const createMap = async (mapConfig: GoogleMapConfig) => {
     if (!mapRef.current) return;
@@ -85,7 +85,7 @@ export const useDetailsHandlers = () => {
       config: mapConfig,
     });
 
-    // map.setOnMarkerClickListener((marker) => markerClick(marker));
+    map.setOnMarkerClickListener((marker) => markerClick(marker));
 
     if (
       mapConfig.center.lat !== MAP_CONFIG.center.lat &&

@@ -11,7 +11,7 @@ import {
 } from "../../../../../utils/messages";
 import { useNativeElementsSizeInfo } from "../../../../../hooks";
 import { User } from "../../../../../api/graphql/api.schema";
-import { useSuccessControl } from "../../../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../../../hooks/useCustomToast";
 import { getErrorMessage } from "../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
 import { RefresherEventDetail } from "@ionic/react";
@@ -32,7 +32,7 @@ export const useAccountAddress = (user: User) => {
    * Hooks
    *
    */
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
 
   const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
 
@@ -156,14 +156,15 @@ export const useAccountAddress = (user: User) => {
       }).unwrap();
 
       addAccountAddressLoading = false;
-      successControl(ADD_PROVIDER_TRADING_ADDRESS_MESSAGE, undefined);
+      autoDisimissToast({ message: ADD_PROVIDER_TRADING_ADDRESS_MESSAGE });
     } catch (error) {
       addAccountAddressLoading = false;
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
           "Something went wrong adding address",
-        undefined
-      );
+        buttonDismiss: true,
+      });
     }
   };
 
@@ -183,15 +184,16 @@ export const useAccountAddress = (user: User) => {
 
       updateAccountAddressLoading = false;
       addAccountAddressLoading = false;
-      successControl(UPDATE_PROVIDER_TRADING_ADDRESS_MESSAGE, undefined);
+      autoDisimissToast({ message: UPDATE_PROVIDER_TRADING_ADDRESS_MESSAGE });
     } catch (error) {
       updateAccountAddressLoading = false;
       addAccountAddressLoading = false;
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
           "Something went wrong updating address",
-        undefined
-      );
+        buttonDismiss: true,
+      });
     }
   };
 

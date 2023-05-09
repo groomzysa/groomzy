@@ -2,11 +2,10 @@ import { useSignInMutation } from "../../../graphql/mutations/user/signIn.enhanc
 import { getErrorMessage } from "../../../helpers";
 
 export const useSignIn = () => {
-  const [signInTrigger, { data, isLoading, isError, error }] =
-    useSignInMutation();
+  const [signIn, { data, isLoading, isError, error }] = useSignInMutation();
 
   return {
-    signInTrigger,
+    signIn,
     token: data?.signIn.token,
     user: data?.signIn.user,
     signInLoading: isLoading,

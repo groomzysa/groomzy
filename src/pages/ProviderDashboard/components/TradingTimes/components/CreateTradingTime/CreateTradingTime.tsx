@@ -10,6 +10,7 @@ import {
   IonRow,
   IonCol,
   IonText,
+  IonNote,
 } from "@ionic/react";
 import { FC } from "react";
 import TimePicker from "react-time-picker";
@@ -70,11 +71,16 @@ export const CreateTradingTime: FC<ICreateTradingTimeProps> = ({ gridRef }) => {
               />
             </IonCol>
           </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonNote>NB! Fill both hours and minutes</IonNote>
+            </IonCol>
+          </IonRow>
           <IonRow class="ion-align-items-center">
             <IonCol>
               <IonText>Opens:</IonText>
             </IonCol>
-            <IonCol class="create-tradint-time-time-container ion-justify-content-end">
+            <IonCol class="create-trading-time-time-container ion-justify-content-end">
               <TimePicker
                 onChange={(value) => onOpensChange(value)}
                 value={opens?.value || ""}
@@ -89,7 +95,7 @@ export const CreateTradingTime: FC<ICreateTradingTimeProps> = ({ gridRef }) => {
             <IonCol>
               <IonText>Closes:</IonText>
             </IonCol>
-            <IonCol class="create-tradint-time-time-container ion-justify-content-end">
+            <IonCol class="create-trading-time-time-container ion-justify-content-end">
               <TimePicker
                 onChange={(value) => onClosesChange(value)}
                 value={closes?.value || ""}

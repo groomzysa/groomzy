@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useMemo } from "react";
+import { RefObject, useCallback, useMemo, useState } from "react";
 import {
   ColDef,
   Column,
@@ -14,6 +14,9 @@ import { useFetchOperatingTimes } from "../../../../../api/hooks/queries";
 import { PaginationType } from "../../../../../api/graphql/api.schema";
 
 export const useGridSettings = (gridRef: RefObject<AgGridReact<any>>) => {
+  const [hasTradingTimes, setHasTradingTimes] = useState(false);
+  const [tradingTimesLoading, setTradingTimesLoading] = useState(true);
+
   /**
    *
    * Hooks
@@ -74,6 +77,8 @@ export const useGridSettings = (gridRef: RefObject<AgGridReact<any>>) => {
     async (gridParams: GridReadyEvent) => {
       const dataSource: IDatasource = {
         getRows: async (params) => {
+          setTradingTimesLoading(true);
+
           const { data } = await fetchOperatingTimes({
             limit: PAGE_SIZE,
             paginationType: PaginationType.Normal,
@@ -99,8 +104,12 @@ export const useGridSettings = (gridRef: RefObject<AgGridReact<any>>) => {
               count = rows.length;
             }
 
+            setHasTradingTimes(count > 0);
+            setTradingTimesLoading(false);
+
             params.successCallback(rows, count);
           } catch (error) {
+            setTradingTimesLoading(false);
             console.error(error);
           }
         },
@@ -112,8 +121,10 @@ export const useGridSettings = (gridRef: RefObject<AgGridReact<any>>) => {
   );
 
   return {
+    tradingTimesLoading,
     columnDefs,
     defaultColDef,
+    hasTradingTimes,
     onSelectionChanged,
     onGridReady,
   };

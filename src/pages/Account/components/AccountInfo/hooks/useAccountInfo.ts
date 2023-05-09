@@ -5,7 +5,7 @@ import { useUpdateAccount } from "../../../../../api/hooks/mutations";
 import { UPDATE_USER_ACCOUNT_MESSAGE } from "../../../../../utils/messages";
 import isEmail from "validator/lib/isEmail";
 import { useNativeElementsSizeInfo } from "../../../../../hooks";
-import { useSuccessControl } from "../../../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../../../hooks/useCustomToast";
 import { getErrorMessage } from "../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
 import { RefresherEventDetail } from "@ionic/react";
@@ -24,7 +24,7 @@ export const useAccountInfo = () => {
    * Hooks
    *
    */
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
 
   const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
 
@@ -106,14 +106,15 @@ export const useAccountInfo = () => {
 
       updateAccountLoading = false;
 
-      successControl(UPDATE_USER_ACCOUNT_MESSAGE, undefined);
+      autoDisimissToast({ message: UPDATE_USER_ACCOUNT_MESSAGE });
     } catch (error) {
       updateAccountLoading = false;
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
           "Something went wrong updating account.",
-        undefined
-      );
+        buttonDismiss: true,
+      });
     }
   };
 

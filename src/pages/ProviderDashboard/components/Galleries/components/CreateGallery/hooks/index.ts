@@ -1,1 +1,0 @@
-export { useCreateGallery } from "./useCreateGallery";

@@ -1,6 +1,6 @@
 import { useHistory } from "react-router";
 import { useNativeElementsSizeInfo } from "../../../hooks";
-import { useSuccessControl } from "../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../hooks/useCustomToast";
 import { useResetPassword } from "../../../api/hooks/mutations";
 import { useState } from "react";
 import { IInput } from "../../../utils/types";
@@ -23,7 +23,7 @@ export const usePasswordReset = () => {
    */
   const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
 
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
 
   const { resetPassword } = useResetPassword();
 
@@ -80,13 +80,16 @@ export const usePasswordReset = () => {
         passwordResetOTP: passwordResetOTP?.value!,
       }).unwrap();
       setResetPasswordLoading(false);
-      successControl(response.resetPassword.message, undefined);
+      autoDisimissToast({ message: response.resetPassword.message });
       setTimeout(() => {
         history.push(`/${routes.signIn.base.use()}`);
       }, 2500);
     } catch (error) {
       setResetPasswordLoading(false);
-      successControl(getErrorMessage(error as ErrorResponse) || "", undefined);
+      autoDisimissToast({
+        message: getErrorMessage(error as ErrorResponse) || "",
+        buttonDismiss: true,
+      });
     }
   };
 

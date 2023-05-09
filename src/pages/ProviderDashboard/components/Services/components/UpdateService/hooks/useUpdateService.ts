@@ -12,7 +12,7 @@ import { routes } from "../../../../../../../route/routes";
 import { SERVICE_CATEGORIES } from "../../../../../../../utils/constants";
 import { UPDATE_SERVICE_MESSAGE } from "../../../../../../../utils/messages";
 import { IInput, ISelectOption } from "../../../../../../../utils/types";
-import { useSuccessControl } from "../../../../../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { formatCategoryLabel } from "../../../utils";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
@@ -34,7 +34,7 @@ export const useUpdateService = (gridRef: RefObject<AgGridReact<any>>) => {
    *
    */
   const { id } = useParams<{ id: string }>();
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
   const { fetchService, serviceError, serviceLoading, service } =
     useFetchService();
   const { updateService } = useUpdateServiceMutation();
@@ -57,7 +57,10 @@ export const useUpdateService = (gridRef: RefObject<AgGridReact<any>>) => {
    *
    */
   if (serviceError) {
-    successControl(serviceError || "Something went wrong, updating service.");
+    autoDisimissToast({
+      message: serviceError || "Something went wrong, updating service.",
+      buttonDismiss: true,
+    });
   }
 
   /**
@@ -140,14 +143,16 @@ export const useUpdateService = (gridRef: RefObject<AgGridReact<any>>) => {
       }).unwrap();
 
       setUpdateServiceLoading(false);
-      successControl(UPDATE_SERVICE_MESSAGE, onCloseModal);
+      autoDisimissToast({ message: UPDATE_SERVICE_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setUpdateServiceLoading(false);
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
-          "Something went wrong, updating service."
-      );
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
+          "Something went wrong, updating service.",
+        buttonDismiss: true,
+      });
     }
   };
 

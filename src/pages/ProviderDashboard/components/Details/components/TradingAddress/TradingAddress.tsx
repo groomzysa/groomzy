@@ -61,7 +61,8 @@ export const TradingAddress: FC = () => {
                   placeholder={providerAddress?.streetNumber || ""}
                   onValueChange={onStreetNumberChanged}
                   type="text"
-                  error={streetNumber?.error}
+                  error={providerAddress ? undefined : streetNumber?.error}
+                  required={providerAddress ? false : true}
                 />
               </div>
               <div className="trading-address-street-name">
@@ -72,7 +73,8 @@ export const TradingAddress: FC = () => {
                   placeholder={providerAddress?.streetName || ""}
                   onValueChange={onStreetNameChanged}
                   type="text"
-                  error={streetName?.error}
+                  error={providerAddress ? undefined : streetName?.error}
+                  required={providerAddress ? false : true}
                 />
               </div>
             </div>
@@ -89,7 +91,8 @@ export const TradingAddress: FC = () => {
               placeholder={providerAddress?.town || ""}
               onValueChange={onTownNameChanged}
               type="text"
-              error={townName?.error}
+              error={providerAddress ? undefined : townName?.error}
+              required={providerAddress ? false : true}
             />
           </IonCol>
           <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -104,7 +107,8 @@ export const TradingAddress: FC = () => {
               placeholder={providerAddress?.city || ""}
               onValueChange={onCityNameChanged}
               type="text"
-              error={cityName?.error}
+              error={providerAddress ? undefined : cityName?.error}
+              required={providerAddress ? false : true}
             />
           </IonCol>
           <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -119,7 +123,8 @@ export const TradingAddress: FC = () => {
               placeholder={providerAddress?.province || ""}
               onValueChange={onProvinceNameChanged}
               type="text"
-              error={provinceName?.error}
+              error={providerAddress ? undefined : provinceName?.error}
+              required={providerAddress ? false : true}
             />
           </IonCol>
           <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -134,7 +139,8 @@ export const TradingAddress: FC = () => {
               placeholder={providerAddress?.areaCode || ""}
               onValueChange={onAreaCodeChanged}
               type="text"
-              error={areaCode?.error}
+              error={providerAddress ? undefined : areaCode?.error}
+              required={providerAddress ? false : true}
             />
           </IonCol>
           <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>

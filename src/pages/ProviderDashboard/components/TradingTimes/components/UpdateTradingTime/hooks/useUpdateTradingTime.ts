@@ -21,7 +21,7 @@ import { RootState } from "../../../../../../../store/store";
 import { UPDATE_OPERATING_TIME_MESSAGE } from "../../../../../../../utils/messages";
 import { IInput } from "../../../../../../../utils/types";
 import { DAYS } from "../../../constants";
-import { useSuccessControl } from "../../../../../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { AgGridReact } from "ag-grid-react";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
@@ -44,7 +44,7 @@ export const useUpdateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
    *
    */
   const { id } = useParams<{ id: string }>();
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
 
   const { updateOperatingTime } = useUpdateOperatingTime();
 
@@ -136,20 +136,25 @@ export const useUpdateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
       await updateOperatingTime({
         operatingTimeId: Number(id),
         day: day?.value,
-        opens: `${opens?.value || "00"} hrz`,
-        closes: `${closes?.value || "00"} hrz`,
+        opens: opens?.value ? `${opens?.value} hrz` : undefined,
+        closes: closes?.value ? `${closes?.value} hrz` : undefined,
       }).unwrap();
       setUpdateOperatingTimeLoading(false);
 
-      successControl(UPDATE_OPERATING_TIME_MESSAGE, onCloseModal);
+      autoDisimissToast({
+        message: UPDATE_OPERATING_TIME_MESSAGE,
+        onCloseModal,
+      });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setUpdateOperatingTimeLoading(false);
 
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
-          "Something went wrong updateing operating time."
-      );
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
+          "Something went wrong updateing operating time.",
+        buttonDismiss: true,
+      });
     }
   };
 

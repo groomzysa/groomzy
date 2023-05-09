@@ -23,7 +23,18 @@ export const GInput: FC<IGInputProps> = ({
 }) => {
   const [isTouched, setIsTouched] = useState(false);
 
-  const isValid = isEmpty(error);
+  let isValid = undefined;
+
+  if (isTouched) {
+    if (!isEmpty(error)) {
+      isValid = false;
+    } else if (required && isEmpty(value)) {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+  }
+
   return (
     <div>
       {textArea ? (

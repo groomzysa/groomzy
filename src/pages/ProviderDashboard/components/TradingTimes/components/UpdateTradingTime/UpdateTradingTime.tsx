@@ -11,6 +11,7 @@ import {
   IonCol,
   IonText,
   IonSpinner,
+  IonNote,
 } from "@ionic/react";
 import { FC } from "react";
 import TimePicker from "react-time-picker";
@@ -81,6 +82,11 @@ export const UpdateTradingTime: FC<IUpdateTradingTimeProps> = ({ gridRef }) => {
                 placeholder={operatingTime?.day || "Select day"}
                 error={day?.error}
               />
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonNote>NB! Fill both hours and minutes</IonNote>
             </IonCol>
           </IonRow>
           <IonRow class="ion-align-items-center">

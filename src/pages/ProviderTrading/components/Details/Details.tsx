@@ -1,5 +1,4 @@
 import {
-  IonBackButton,
   IonButtons,
   IonCol,
   IonContent,
@@ -20,6 +19,8 @@ import { capitalize, sortBy } from "lodash";
 import "./styles.css";
 import { useDetailsHandlers } from "./hooks";
 import { DAYS } from "./constants";
+import { GIconBackButton } from "../../../../components";
+import { routes } from "../../../../route/routes";
 export const Details: FC = () => {
   /**
    *
@@ -34,7 +35,7 @@ export const Details: FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/" />
+            <GIconBackButton route={routes.home.base.use()} />
           </IonButtons>
           <IonTitle>Details</IonTitle>
         </IonToolbar>

@@ -12,7 +12,7 @@ import {
 import { IInput, IPhoto } from "../../../../../../../utils/types";
 import { useNativeElementsSizeInfo } from "../../../../../../../hooks";
 import { useFetchProvider } from "../../../../../../../api/hooks/queries";
-import { useSuccessControl } from "../../../../../../../hooks/useSuccessControl";
+import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
 import { RefresherEventDetail } from "@ionic/react";
@@ -31,7 +31,7 @@ export const useTradingInfo = () => {
    * Hooks
    *
    */
-  const { successControl } = useSuccessControl();
+  const { autoDisimissToast } = useCustomToast();
 
   const { fetchProvider, provider } = useFetchProvider();
   const { isKeyboardOpen, topToolBarHeight, bottomToolBarHeight } =
@@ -137,14 +137,15 @@ export const useTradingInfo = () => {
       }).unwrap();
       setAddTradingInfoLoading(false);
 
-      successControl(ADD_PROVIDER_TRADING_INFO_MESSAGE, undefined);
+      autoDisimissToast({ message: ADD_PROVIDER_TRADING_INFO_MESSAGE });
     } catch (error) {
       setAddTradingInfoLoading(false);
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
           "Something went wrong creating provider",
-        undefined
-      );
+        buttonDismiss: true,
+      });
     }
   };
 
@@ -160,15 +161,16 @@ export const useTradingInfo = () => {
         logo,
       }).unwrap();
       setUpdateTradingInfoLoading(false);
-      successControl(UPDATE_PROVIDER_TRADING_INFO_MESSAGE, undefined);
+      autoDisimissToast({ message: UPDATE_PROVIDER_TRADING_INFO_MESSAGE });
     } catch (error) {
       setUpdateTradingInfoLoading(false);
 
-      successControl(
-        getErrorMessage(error as ErrorResponse) ||
+      autoDisimissToast({
+        message:
+          getErrorMessage(error as ErrorResponse) ||
           "Something went wrong creating provider",
-        undefined
-      );
+        buttonDismiss: true,
+      });
     }
   };
 

@@ -12,8 +12,14 @@ export const useTradingTimes = (gridRef: RefObject<AgGridReact<any>>) => {
    * Hooks
    *
    */
-  const { columnDefs, defaultColDef, onGridReady, onSelectionChanged } =
-    useGridSettings(gridRef);
+  const {
+    tradingTimesLoading,
+    columnDefs,
+    defaultColDef,
+    hasTradingTimes,
+    onGridReady,
+    onSelectionChanged,
+  } = useGridSettings(gridRef);
 
   const { fetchProvider, provider } = useFetchProvider();
 
@@ -49,7 +55,9 @@ export const useTradingTimes = (gridRef: RefObject<AgGridReact<any>>) => {
   };
 
   return {
-    noProvider: !provider,
+    tradingTimesLoading,
+    hasProvider: !!provider,
+    hasTradingTimes,
     columnDefs,
     defaultColDef,
     onGridReady,

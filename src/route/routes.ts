@@ -3,7 +3,7 @@ import {
   ACCOUNT,
   CONTACTS,
   HOME,
-  PROVIDER_DASHBOARD,
+  DASHBOARD,
   PROVIDER_TRADING,
   SIGN_IN,
   SIGN_UP,
@@ -98,10 +98,10 @@ export const routes = {
   providerDashboard: {
     base: {
       get() {
-        return formatPathName(PROVIDER_DASHBOARD);
+        return formatPathName(DASHBOARD);
       },
       use() {
-        return formatPathName(PROVIDER_DASHBOARD);
+        return formatPathName(DASHBOARD);
       },
     },
     services: {

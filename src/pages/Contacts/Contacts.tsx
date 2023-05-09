@@ -78,6 +78,7 @@ export const Contacts: FC = () => {
                   value={firstName?.value || ""}
                   onValueChange={onFirstNameChange}
                   error={firstName?.error}
+                  required
                 />
                 <GInput
                   label="Last name"
@@ -85,6 +86,7 @@ export const Contacts: FC = () => {
                   value={lastName?.value || ""}
                   onValueChange={onLastNameChange}
                   error={lastName?.error}
+                  required
                 />
               </div>
             </IonCol>
@@ -99,6 +101,7 @@ export const Contacts: FC = () => {
                 value={email?.value || ""}
                 onValueChange={onEmailChange}
                 error={email?.error}
+                required
               />
             </IonCol>
             <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -112,6 +115,7 @@ export const Contacts: FC = () => {
                 value={subject?.value || ""}
                 onValueChange={onSubjectChange}
                 error={subject?.error}
+                required
               />
             </IonCol>
             <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -127,6 +131,7 @@ export const Contacts: FC = () => {
                 error={message?.error}
                 textAreaRows={5}
                 textArea
+                required
               />
             </IonCol>
             <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
@@ -163,15 +168,6 @@ export const Contacts: FC = () => {
                   icon={logoTiktok}
                   onClick={() =>
                     onVisitSocial("https://instagram.com/groomzy_")
-                  }
-                ></IonIcon>
-                <IonIcon
-                  class="contacts-social-icon contacts-whatsapp-logo"
-                  icon={logoWhatsapp}
-                  onClick={() =>
-                    onVisitSocial(
-                      "https://api.whatsapp.com/send?phone=+27671350513"
-                    )
                   }
                 ></IonIcon>
                 <IonIcon
