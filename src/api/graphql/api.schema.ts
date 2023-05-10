@@ -391,6 +391,8 @@ export type Query = {
   service: Service;
   services?: Maybe<ServicesQueryResults>;
   socials: Array<Social>;
+  staff: Staff;
+  staffs?: Maybe<StaffsQueryResults>;
   user?: Maybe<User>;
 };
 
@@ -445,6 +447,20 @@ export type QueryServicesArgs = {
   providerId?: InputMaybe<Scalars['Int']>;
 };
 
+
+export type QueryStaffArgs = {
+  staffId: Scalars['Int'];
+};
+
+
+export type QueryStaffsArgs = {
+  cursor?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  paginationType?: InputMaybe<PaginationType>;
+  providerId?: InputMaybe<Scalars['Int']>;
+};
+
 export type Service = {
   __typename?: 'Service';
   category?: Maybe<CategoryType>;
@@ -485,6 +501,13 @@ export type Staff = {
   lastName?: Maybe<Scalars['String']>;
   services?: Maybe<Array<Service>>;
   updatedAt?: Maybe<Scalars['String']>;
+};
+
+export type StaffsQueryResults = {
+  __typename?: 'StaffsQueryResults';
+  count?: Maybe<Scalars['Int']>;
+  cursor?: Maybe<Scalars['Int']>;
+  staffs: Array<Staff>;
 };
 
 export type Subscription = {
@@ -690,6 +713,30 @@ export type UpdateSocialMutationVariables = Exact<{
 
 export type UpdateSocialMutation = { __typename?: 'Mutation', updateSocial: { __typename?: 'Social', id: number, name?: string | null, username?: string | null } };
 
+export type AddStaffMutationVariables = Exact<{
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+}>;
+
+
+export type AddStaffMutation = { __typename?: 'Mutation', addStaff: { __typename?: 'Staff', id: number, firstName?: string | null, lastName?: string | null } };
+
+export type DeleteStaffMutationVariables = Exact<{
+  staffId: Scalars['Int'];
+}>;
+
+
+export type DeleteStaffMutation = { __typename?: 'Mutation', deleteStaff: { __typename?: 'Staff', id: number, firstName?: string | null, lastName?: string | null } };
+
+export type UpdateStaffMutationVariables = Exact<{
+  staffId: Scalars['Int'];
+  firstName?: InputMaybe<Scalars['String']>;
+  lastName?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type UpdateStaffMutation = { __typename?: 'Mutation', updateStaff: { __typename?: 'Staff', id: number, firstName?: string | null, lastName?: string | null } };
+
 export type AddAccountAddressMutationVariables = Exact<{
   streetNumber: Scalars['String'];
   streetName: Scalars['String'];
@@ -834,6 +881,24 @@ export type SocialsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type SocialsQuery = { __typename?: 'Query', socials: Array<{ __typename?: 'Social', id: number, name?: string | null, username?: string | null }> };
+
+export type StaffQueryVariables = Exact<{
+  staffId: Scalars['Int'];
+}>;
+
+
+export type StaffQuery = { __typename?: 'Query', staff: { __typename?: 'Staff', id: number, firstName?: string | null, lastName?: string | null } };
+
+export type StaffsQueryVariables = Exact<{
+  providerId?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  cursor?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  paginationType?: InputMaybe<PaginationType>;
+}>;
+
+
+export type StaffsQuery = { __typename?: 'Query', staffs?: { __typename?: 'StaffsQueryResults', cursor?: number | null, count?: number | null, staffs: Array<{ __typename?: 'Staff', id: number, firstName?: string | null, lastName?: string | null }> } | null };
 
 export type UserQueryVariables = Exact<{ [key: string]: never; }>;
 

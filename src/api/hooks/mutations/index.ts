@@ -41,6 +41,15 @@ export { useUpdateOperatingTime } from "./operatingTimes/useUpdateOperatingTime"
 
 /**
  *
+ * Staff mutations
+ *
+ */
+export { useCreateStaff } from "./staff/useAddStaff";
+export { useDeleteStaff } from "./staff/useDeleteStaff";
+export { useUpdateStaff } from "./staff/useUpdateStaff";
+
+/**
+ *
  * Social mutations
  *
  */

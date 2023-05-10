@@ -77,7 +77,10 @@ export const GalleryImages: FC<IGalleryImagesProps> = ({ gridRef }) => {
             <IonRow>
               <IonCol class="gallery-images-grid-container">
                 {galleryImagesLoading ? (
-                  <IonSpinner></IonSpinner>
+                  <IonSpinner
+                    color="primary"
+                    class="gallery-images-loading-state"
+                  ></IonSpinner>
                 ) : (
                   !hasGalleryImages && (
                     <div className="gallery-images-empty-state">

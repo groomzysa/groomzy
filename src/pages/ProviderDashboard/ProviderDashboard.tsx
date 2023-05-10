@@ -11,6 +11,7 @@ import {
   businessOutline,
   imageOutline,
   informationCircleOutline,
+  peopleOutline,
 } from "ionicons/icons";
 import { FC } from "react";
 import { Details, Services, TradingTimes, GalleryImages } from "./components";
@@ -35,6 +36,13 @@ import {
   CreateGalleryImage,
   DeleteGalleryImage,
 } from "./components/GalleryImages/components";
+import { Staffs } from "./components/Staffs/Staffs";
+import {
+  CreateStaff,
+  DeleteStaff,
+  UpdateStaff,
+  ViewStaff,
+} from "./components/Staffs/components";
 
 export const ProviderDashboard: FC = () => {
   /**
@@ -114,6 +122,37 @@ export const ProviderDashboard: FC = () => {
           exact
           path={`/${routes.providerDashboard.tradingTimes.viewTradingTime.get()}`}
           component={ViewTradingTime}
+        />
+
+        {/* Staffs routes */}
+        <Route
+          exact
+          path={`/${routes.providerDashboard.staffs.get()}`}
+          render={() => <Staffs gridRef={gridRef} />}
+        />
+
+        <Route
+          exact
+          path={`/${routes.providerDashboard.staffs.createStaff.get()}`}
+          render={() => <CreateStaff gridRef={gridRef} />}
+        />
+
+        <Route
+          exact
+          path={`/${routes.providerDashboard.staffs.updateStaff.get()}`}
+          render={() => <UpdateStaff gridRef={gridRef} />}
+        />
+
+        <Route
+          exact
+          path={`/${routes.providerDashboard.staffs.deleteStaff.get()}`}
+          render={() => <DeleteStaff gridRef={gridRef} />}
+        />
+
+        <Route
+          exact
+          path={`/${routes.providerDashboard.staffs.viewStaff.get()}`}
+          component={ViewStaff}
         />
 
         {/* GalleryImages routes */}
@@ -201,6 +240,14 @@ export const ProviderDashboard: FC = () => {
         >
           <IonIcon icon={informationCircleOutline} />
           <IonLabel>Times</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton
+          tab="staffs"
+          href={`/${routes.providerDashboard.staffs.use()}`}
+        >
+          <IonIcon icon={peopleOutline} />
+          <IonLabel>Staff</IonLabel>
         </IonTabButton>
 
         <IonTabButton

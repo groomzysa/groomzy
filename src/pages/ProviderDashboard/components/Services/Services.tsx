@@ -76,7 +76,10 @@ export const Services: FC<IServicesProps> = ({ gridRef }) => {
             <IonRow>
               <IonCol class="services-grid-container">
                 {servicesLoading ? (
-                  <IonSpinner></IonSpinner>
+                  <IonSpinner
+                    color="primary"
+                    class="services-loading-state"
+                  ></IonSpinner>
                 ) : (
                   !hasServices && (
                     <div className="services-empty-state">

@@ -196,6 +196,48 @@ export const routes = {
       },
     },
 
+    staffs: {
+      get() {
+        return `${routes.providerDashboard.base.get()}/staffs`;
+      },
+      use() {
+        return `${routes.providerDashboard.base.get()}/staffs`;
+      },
+
+      createStaff: {
+        get() {
+          return `${routes.providerDashboard.staffs.get()}/create`;
+        },
+        use() {
+          return `${routes.providerDashboard.staffs.get()}/create`;
+        },
+      },
+      viewStaff: {
+        get() {
+          return `${routes.providerDashboard.staffs.get()}/:id/view`;
+        },
+        use(id: string) {
+          return `${routes.providerDashboard.staffs.get()}/${id}/view`;
+        },
+      },
+      updateStaff: {
+        get() {
+          return `${routes.providerDashboard.staffs.get()}/:id/update`;
+        },
+        use(id: string) {
+          return `${routes.providerDashboard.staffs.get()}/${id}/update`;
+        },
+      },
+      deleteStaff: {
+        get() {
+          return `${routes.providerDashboard.staffs.get()}/:id/delete`;
+        },
+        use(id: string) {
+          return `${routes.providerDashboard.staffs.get()}/${id}/delete`;
+        },
+      },
+    },
+
     gallery: {
       get() {
         return `${routes.providerDashboard.base.get()}/gallery`;

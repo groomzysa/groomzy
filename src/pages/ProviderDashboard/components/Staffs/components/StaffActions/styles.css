@@ -1,0 +1,47 @@
+.icon-container {
+  position: relative;
+  top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ellipse-icon-container {
+  cursor: pointer;
+}
+
+.ellipse-icon {
+  color: var(--ion-text-color);
+  font-size: 1.5rem;
+  pointer-events: none;
+}
+
+.name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  font-weight: 500;
+  color: var(--ion-text-color);
+}
+
+ion-grid.name-field {
+  padding: 0px;
+}
+
+ion-row.name-field {
+  padding: 0px;
+}
+
+ion-col.name-field {
+  padding: 0px;
+}
+
+ion-popover.actions {
+  --width: 120px;
+}
+
+ion-label.action {
+  cursor: pointer;
+}

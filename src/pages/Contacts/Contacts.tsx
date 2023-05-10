@@ -12,12 +12,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import {
-  logoFacebook,
-  logoInstagram,
-  logoTiktok,
-  logoWhatsapp,
-} from "ionicons/icons";
+import { logoFacebook, logoInstagram, logoTiktok } from "ionicons/icons";
 import { FC } from "react";
 import { GInput } from "../../components";
 import { CONTACTS } from "../../utils/pages";

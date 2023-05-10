@@ -1,0 +1,10 @@
+.label-title {
+  font-weight: 700;
+  color: var(--ion-color-primary) !important;
+}
+
+.description {
+  word-wrap: break-word;
+  max-height: 150px;
+  overflow-y: auto;
+}

@@ -1,0 +1,1 @@
+export { useDeleteStaff } from "./useDeleteStaff";

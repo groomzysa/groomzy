@@ -3,24 +3,32 @@
  * Service queries
  *
  */
-export { useFetchServices } from "./service/useFetchServices";
 export { useFetchService } from "./service/useFetchService";
+export { useFetchServices } from "./service/useFetchServices";
+
+/**
+ *
+ * Staff queries
+ *
+ */
+export { useFetchStaff } from "./staff/useFetchStaff";
+export { useFetchStaffs } from "./staff/useFetchStaffs";
 
 /**
  *
  * Operating time queries
  *
  */
-export { useFetchOperatingTimes } from "./operatingTime/useFetchOperatingTimes";
 export { useFetchOperatingTime } from "./operatingTime/useFetchOperatingTime";
+export { useFetchOperatingTimes } from "./operatingTime/useFetchOperatingTimes";
 
 /**
  *
  * Provider queries
  *
  */
-export { useFetchProviders } from "./provider/useFetchProviders";
 export { useFetchProvider } from "./provider/useFetchProvider";
+export { useFetchProviders } from "./provider/useFetchProviders";
 
 /**
  *

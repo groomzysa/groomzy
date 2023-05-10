@@ -16,6 +16,7 @@
   color: var(--ion-color-primary);
 }
 
+.gallery-images-loading-state,
 .gallery-images-empty-state {
   margin: auto;
   position: absolute;

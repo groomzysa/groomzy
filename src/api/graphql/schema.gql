@@ -167,6 +167,8 @@ type Query {
   service(serviceId: Int!): Service!
   services(providerId: Int, limit: Int, cursor: Int, page: Int, paginationType: PaginationType): ServicesQueryResults
   socials: [Social!]!
+  staff(staffId: Int!): Staff!
+  staffs(providerId: Int, limit: Int, cursor: Int, page: Int, paginationType: PaginationType): StaffsQueryResults
   user: User
 }
 
@@ -206,6 +208,12 @@ type Staff {
   firstName: String
   lastName: String
   services: [Service!]
+}
+
+type StaffsQueryResults {
+  staffs: [Staff!]!
+  cursor: Int
+  count: Int
 }
 
 type Subscription {

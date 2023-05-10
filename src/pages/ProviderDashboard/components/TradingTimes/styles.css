@@ -16,6 +16,7 @@
   color: var(--ion-color-primary);
 }
 
+.trading-times-loading-state,
 .trading-times-empty-state {
   margin: auto;
   position: absolute;

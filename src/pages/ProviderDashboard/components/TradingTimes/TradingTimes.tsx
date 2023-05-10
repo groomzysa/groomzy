@@ -70,7 +70,10 @@ export const TradingTimes: FC<ITradingTimesProps> = ({ gridRef }) => {
             <IonRow>
               <IonCol class="trading-times-grid-container">
                 {tradingTimesLoading ? (
-                  <IonSpinner></IonSpinner>
+                  <IonSpinner
+                    color="primary"
+                    class="trading-times-loading-state"
+                  ></IonSpinner>
                 ) : (
                   !hasTradingTimes && (
                     <div className="trading-times-empty-state">

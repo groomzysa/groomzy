@@ -1,0 +1,23 @@
+query staffs(
+  $providerId: Int
+  $limit: Int
+  $cursor: Int
+  $page: Int
+  $paginationType: PaginationType
+) {
+  staffs(
+    providerId: $providerId
+    limit: $limit
+    cursor: $cursor
+    page: $page
+    paginationType: $paginationType
+  ) {
+    staffs {
+      id
+      firstName
+      lastName
+    }
+    cursor
+    count
+  }
+}

@@ -36,6 +36,18 @@ export const DELETED_SERVICE_MESSAGE = `Service deleted successfuly!`;
 
 /**
  *
+ * Staff success messages
+ *
+ */
+export const CREATE_STAFF_MESSAGE = `Staff created successfuly!`;
+export const UPDATE_STAFF_MESSAGE = `Staff updated successfuly!`;
+export const DELETE_STAFF_MESSAGE = `Are you sure want to delete this staff?
+        
+This will be deleted permanently.`;
+export const DELETED_STAFF_MESSAGE = `Staff deleted successfuly!`;
+
+/**
+ *
  * Social success messages
  *
  */
