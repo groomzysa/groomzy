@@ -54,7 +54,7 @@ export const CreateService: FC<ICreateServiceProps> = ({ gridRef }) => {
       isOpen={isOpen}
       backdropDismiss={false}
     >
-      <IonContent>
+      <IonContent fullscreen>
         <IonToolbar>
           <IonTitle>Create service</IonTitle>
           <IonIcon
@@ -64,109 +64,111 @@ export const CreateService: FC<ICreateServiceProps> = ({ gridRef }) => {
             onClick={onCloseModal}
           ></IonIcon>
         </IonToolbar>
-        <IonGrid>
-          <IonRow>
-            <IonCol>
-              <GSelect
-                label="Category"
-                value={category?.value}
-                options={categories}
-                onSelectChange={onCategoryChange}
-                placeholder="Select category (required)"
-                error={category?.error}
-              />
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <GInput
-                label="Name"
-                labelPosition="floating"
-                onValueChange={onNameChange}
-                type="text"
-                value={name?.value || ""}
-                error={name?.error}
-                required
-              />
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <GInput
-                label="Price"
-                labelPosition="floating"
-                onValueChange={onPriceChange}
-                type="number"
-                value={price?.value || ""}
-                error={price?.error}
-                required
-              />
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol class="create-service-duration-container">
-              <GInput
-                label="Duration"
-                labelPosition="floating"
-                onValueChange={onDurationChange}
-                type="number"
-                value={duration?.value || ""}
-                error={duration?.error}
-                required
-              />
-              <IonRadioGroup
-                class="create-service-duration-units-container"
-                value={durationUnit}
-                onIonChange={(e) => onDurationUnitChange(e.target.value)}
-              >
-                <IonRadio labelPlacement="end" value={DurationUnitType.Min}>
-                  Min
-                </IonRadio>
+        <form>
+          <IonGrid>
+            <IonRow>
+              <IonCol>
+                <GSelect
+                  label="Category"
+                  value={category?.value}
+                  options={categories}
+                  onSelectChange={onCategoryChange}
+                  placeholder="Select category (required)"
+                  error={category?.error}
+                />
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <GInput
+                  label="Name"
+                  labelPosition="floating"
+                  onValueChange={onNameChange}
+                  type="text"
+                  value={name?.value || ""}
+                  error={name?.error}
+                  required
+                />
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <GInput
+                  label="Price"
+                  labelPosition="floating"
+                  onValueChange={onPriceChange}
+                  type="number"
+                  value={price?.value || ""}
+                  error={price?.error}
+                  required
+                />
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol class="create-service-duration-container">
+                <GInput
+                  label="Duration"
+                  labelPosition="floating"
+                  onValueChange={onDurationChange}
+                  type="number"
+                  value={duration?.value || ""}
+                  error={duration?.error}
+                  required
+                />
+                <IonRadioGroup
+                  class="create-service-duration-units-container"
+                  value={durationUnit}
+                  onIonChange={(e) => onDurationUnitChange(e.target.value)}
+                >
+                  <IonRadio labelPlacement="end" value={DurationUnitType.Min}>
+                    Min
+                  </IonRadio>
 
-                <IonRadio labelPlacement="end" value={DurationUnitType.Hrs}>
-                  Hrs
-                </IonRadio>
-              </IonRadioGroup>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <GInput
-                type="text"
-                label="Description"
-                labelPosition="floating"
-                onValueChange={onDescriptionChange}
-                value={description?.value || ""}
-                error={description?.error}
-                textAreaRows={5}
-                required
-                textArea
-              />
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <IonButtons>
-                <IonButton
-                  fill="outline"
-                  color="primary"
-                  onClick={onCreateService}
-                  disabled={!onCanCreateService() || createServiceLoading}
-                >
-                  {createServiceLoading ? "Creating..." : "Create"}
-                </IonButton>
-                <IonButton
-                  fill="outline"
-                  color="danger"
-                  onClick={onCloseModal}
-                  disabled={createServiceLoading}
-                >
-                  Cancel
-                </IonButton>
-              </IonButtons>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+                  <IonRadio labelPlacement="end" value={DurationUnitType.Hrs}>
+                    Hrs
+                  </IonRadio>
+                </IonRadioGroup>
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <GInput
+                  type="text"
+                  label="Description"
+                  labelPosition="floating"
+                  onValueChange={onDescriptionChange}
+                  value={description?.value || ""}
+                  error={description?.error}
+                  textAreaRows={5}
+                  required
+                  textArea
+                />
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <IonButtons>
+                  <IonButton
+                    fill="outline"
+                    color="primary"
+                    onClick={onCreateService}
+                    disabled={!onCanCreateService() || createServiceLoading}
+                  >
+                    {createServiceLoading ? "Creating..." : "Create"}
+                  </IonButton>
+                  <IonButton
+                    fill="outline"
+                    color="danger"
+                    onClick={onCloseModal}
+                    disabled={createServiceLoading}
+                  >
+                    Cancel
+                  </IonButton>
+                </IonButtons>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </form>
       </IonContent>
     </IonModal>
   );

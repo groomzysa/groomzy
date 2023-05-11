@@ -74,119 +74,127 @@ export const UpdateService: FC<IUpdateServiceProps> = ({ gridRef }) => {
             class="ion-justify-content-center"
           ></IonSpinner>
         ) : (
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <GSelect
-                  label={"Catedory"}
-                  value={category}
-                  options={categories}
-                  onSelectChange={onCategoryChange}
-                  placeholder={
-                    service?.category
-                      ? formatCategoryLabel(service?.category)
-                      : "Select category"
-                  }
-                  error={category?.error}
-                />
-              </IonCol>
-            </IonRow>
+          <form>
+            <IonGrid>
+              <IonRow>
+                <IonCol>
+                  <GSelect
+                    label={"Catedory"}
+                    value={category}
+                    options={categories}
+                    onSelectChange={onCategoryChange}
+                    placeholder={
+                      service?.category
+                        ? formatCategoryLabel(service?.category)
+                        : "Select category"
+                    }
+                    error={category?.error}
+                  />
+                </IonCol>
+              </IonRow>
 
-            <IonRow>
-              <IonCol>
-                <GInput
-                  label="Name"
-                  labelPosition={service ? "stacked" : "floating"}
-                  onValueChange={onNameChange}
-                  type="text"
-                  value={name?.value || ""}
-                  placeholder={service?.name || ""}
-                  required
-                />
-              </IonCol>
-            </IonRow>
-
-            <IonRow>
-              <IonCol>
-                <GInput
-                  label="Price"
-                  labelPosition={service ? "stacked" : "floating"}
-                  onValueChange={onPriceChange}
-                  type="number"
-                  value={price?.value || ""}
-                  placeholder={service?.price?.toString()}
-                  required
-                />
-              </IonCol>
-            </IonRow>
-
-            <IonRow>
-              <IonCol>
-                <div className="update-service-duration-container">
+              <IonRow>
+                <IonCol>
                   <GInput
-                    type="text"
-                    label="Duration"
+                    label="Name"
                     labelPosition={service ? "stacked" : "floating"}
-                    onValueChange={onDurationChange}
-                    value={duration?.value || ""}
-                    placeholder={service?.duration?.toString()}
+                    onValueChange={onNameChange}
+                    type="text"
+                    value={name?.value || ""}
+                    placeholder={service?.name || ""}
                     required
                   />
-                  <IonRadioGroup
-                    class="update-service-duration-units-container"
-                    value={service?.durationUnit || durationUnit}
-                    onIonChange={(e) => onDurationUnitChange(e.target.value)}
-                  >
-                    <IonRadio labelPlacement="end" value={DurationUnitType.Min}>
-                      Min
-                    </IonRadio>
+                </IonCol>
+              </IonRow>
 
-                    <IonRadio labelPlacement="end" value={DurationUnitType.Hrs}>
-                      Hrs
-                    </IonRadio>
-                  </IonRadioGroup>
-                </div>
-              </IonCol>
-            </IonRow>
+              <IonRow>
+                <IonCol>
+                  <GInput
+                    label="Price"
+                    labelPosition={service ? "stacked" : "floating"}
+                    onValueChange={onPriceChange}
+                    type="number"
+                    value={price?.value || ""}
+                    placeholder={service?.price?.toString()}
+                    required
+                  />
+                </IonCol>
+              </IonRow>
 
-            <IonRow>
-              <IonCol>
-                <GInput
-                  type="text"
-                  label="Description"
-                  labelPosition={service ? "stacked" : "floating"}
-                  onValueChange={onDescriptionChange}
-                  value={description?.value || ""}
-                  placeholder={service?.description || ""}
-                  required
-                  textArea
-                />
-              </IonCol>
-            </IonRow>
+              <IonRow>
+                <IonCol>
+                  <div className="update-service-duration-container">
+                    <GInput
+                      type="text"
+                      label="Duration"
+                      labelPosition={service ? "stacked" : "floating"}
+                      onValueChange={onDurationChange}
+                      value={duration?.value || ""}
+                      placeholder={service?.duration?.toString()}
+                      required
+                    />
+                    <IonRadioGroup
+                      class="update-service-duration-units-container"
+                      value={service?.durationUnit || durationUnit}
+                      onIonChange={(e) => onDurationUnitChange(e.target.value)}
+                    >
+                      <IonRadio
+                        labelPlacement="end"
+                        value={DurationUnitType.Min}
+                      >
+                        Min
+                      </IonRadio>
 
-            <IonRow>
-              <IonCol>
-                <IonButtons>
-                  <IonButton
-                    fill="outline"
-                    color="primary"
-                    onClick={onUpdateService}
-                    disabled={updateServiceLoading}
-                  >
-                    {updateServiceLoading ? "Updating..." : "Update"}
-                  </IonButton>
-                  <IonButton
-                    fill="outline"
-                    color="danger"
-                    onClick={onCloseModal}
-                    disabled={updateServiceLoading}
-                  >
-                    Cancel
-                  </IonButton>
-                </IonButtons>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
+                      <IonRadio
+                        labelPlacement="end"
+                        value={DurationUnitType.Hrs}
+                      >
+                        Hrs
+                      </IonRadio>
+                    </IonRadioGroup>
+                  </div>
+                </IonCol>
+              </IonRow>
+
+              <IonRow>
+                <IonCol>
+                  <GInput
+                    type="text"
+                    label="Description"
+                    labelPosition={service ? "stacked" : "floating"}
+                    onValueChange={onDescriptionChange}
+                    value={description?.value || ""}
+                    placeholder={service?.description || ""}
+                    required
+                    textArea
+                  />
+                </IonCol>
+              </IonRow>
+
+              <IonRow>
+                <IonCol>
+                  <IonButtons>
+                    <IonButton
+                      fill="outline"
+                      color="primary"
+                      onClick={onUpdateService}
+                      disabled={updateServiceLoading}
+                    >
+                      {updateServiceLoading ? "Updating..." : "Update"}
+                    </IonButton>
+                    <IonButton
+                      fill="outline"
+                      color="danger"
+                      onClick={onCloseModal}
+                      disabled={updateServiceLoading}
+                    >
+                      Cancel
+                    </IonButton>
+                  </IonButtons>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </form>
         )}
       </IonContent>
     </IonModal>

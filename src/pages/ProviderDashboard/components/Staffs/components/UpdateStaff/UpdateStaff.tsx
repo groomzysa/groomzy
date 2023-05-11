@@ -61,56 +61,58 @@ export const UpdateStaff: FC<IUpdateStaffProps> = ({ gridRef }) => {
             class="ion-justify-content-center"
           ></IonSpinner>
         ) : (
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <GInput
-                  label="First name"
-                  labelPosition={staff ? "stacked" : "floating"}
-                  onValueChange={onFirstNameChange}
-                  type="text"
-                  value={firstName?.value || ""}
-                  placeholder={staff?.firstName || ""}
-                />
-              </IonCol>
-            </IonRow>
+          <form>
+            <IonGrid>
+              <IonRow>
+                <IonCol>
+                  <GInput
+                    label="First name"
+                    labelPosition={staff ? "stacked" : "floating"}
+                    onValueChange={onFirstNameChange}
+                    type="text"
+                    value={firstName?.value || ""}
+                    placeholder={staff?.firstName || ""}
+                  />
+                </IonCol>
+              </IonRow>
 
-            <IonRow>
-              <IonCol>
-                <GInput
-                  label="Last name"
-                  labelPosition={staff ? "stacked" : "floating"}
-                  onValueChange={onLastNameChange}
-                  type="number"
-                  value={lastName?.value || ""}
-                  placeholder={staff?.lastName || ""}
-                />
-              </IonCol>
-            </IonRow>
+              <IonRow>
+                <IonCol>
+                  <GInput
+                    label="Last name"
+                    labelPosition={staff ? "stacked" : "floating"}
+                    onValueChange={onLastNameChange}
+                    type="number"
+                    value={lastName?.value || ""}
+                    placeholder={staff?.lastName || ""}
+                  />
+                </IonCol>
+              </IonRow>
 
-            <IonRow>
-              <IonCol>
-                <IonButtons>
-                  <IonButton
-                    fill="outline"
-                    color="primary"
-                    onClick={onUpdateStaff}
-                    disabled={updateStaffLoading}
-                  >
-                    {updateStaffLoading ? "Updating..." : "Update"}
-                  </IonButton>
-                  <IonButton
-                    fill="outline"
-                    color="danger"
-                    onClick={onCloseModal}
-                    disabled={updateStaffLoading}
-                  >
-                    Cancel
-                  </IonButton>
-                </IonButtons>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
+              <IonRow>
+                <IonCol>
+                  <IonButtons>
+                    <IonButton
+                      fill="outline"
+                      color="primary"
+                      onClick={onUpdateStaff}
+                      disabled={updateStaffLoading}
+                    >
+                      {updateStaffLoading ? "Updating..." : "Update"}
+                    </IonButton>
+                    <IonButton
+                      fill="outline"
+                      color="danger"
+                      onClick={onCloseModal}
+                      disabled={updateStaffLoading}
+                    >
+                      Cancel
+                    </IonButton>
+                  </IonButtons>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </form>
         )}
       </IonContent>
     </IonModal>

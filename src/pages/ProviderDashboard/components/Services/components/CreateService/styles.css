@@ -1,9 +1,9 @@
 ion-modal.create-service-modal {
   --height: 500px;
+  --max-height: 500px;
   --width: 370px;
   --border-radius: 4px;
-  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --box-shadow: none;
   padding: 10px;
   overflow-y: auto;
 }
@@ -21,9 +21,13 @@ ion-modal.create-service-modal ion-grid {
 }
 
 ion-modal.create-service-modal ion-grid ion-row:last-child {
-  position: absolute;
+  position: relative;
   bottom: 0px;
-  right: 5px;
+}
+
+ion-modal.create-service-modal ion-grid ion-row:last-child ion-col {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .create-service-close-icon {

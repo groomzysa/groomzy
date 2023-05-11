@@ -52,57 +52,59 @@ export const CreateStaff: FC<ICreateStaffProps> = ({ gridRef }) => {
             onClick={onCloseModal}
           ></IonIcon>
         </IonToolbar>
-        <IonGrid>
-          <IonRow>
-            <IonCol>
-              <GInput
-                label="First name"
-                labelPosition="floating"
-                onValueChange={onFirstNameChange}
-                type="text"
-                value={firstName?.value || ""}
-                error={firstName?.error}
-                required
-              />
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <GInput
-                label="Last name"
-                labelPosition="floating"
-                onValueChange={onLastNameChange}
-                type="text"
-                value={lastName?.value || ""}
-                error={lastName?.error}
-                required
-              />
-            </IonCol>
-          </IonRow>
+        <form>
+          <IonGrid>
+            <IonRow>
+              <IonCol>
+                <GInput
+                  label="First name"
+                  labelPosition="floating"
+                  onValueChange={onFirstNameChange}
+                  type="text"
+                  value={firstName?.value || ""}
+                  error={firstName?.error}
+                  required
+                />
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <GInput
+                  label="Last name"
+                  labelPosition="floating"
+                  onValueChange={onLastNameChange}
+                  type="text"
+                  value={lastName?.value || ""}
+                  error={lastName?.error}
+                  required
+                />
+              </IonCol>
+            </IonRow>
 
-          <IonRow>
-            <IonCol>
-              <IonButtons>
-                <IonButton
-                  fill="outline"
-                  color="primary"
-                  onClick={onCreateStaff}
-                  disabled={!onCanCreateStaff() || createStaffLoading}
-                >
-                  {createStaffLoading ? "Creating..." : "Create"}
-                </IonButton>
-                <IonButton
-                  fill="outline"
-                  color="danger"
-                  onClick={onCloseModal}
-                  disabled={createStaffLoading}
-                >
-                  Cancel
-                </IonButton>
-              </IonButtons>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+            <IonRow>
+              <IonCol>
+                <IonButtons>
+                  <IonButton
+                    fill="outline"
+                    color="primary"
+                    onClick={onCreateStaff}
+                    disabled={!onCanCreateStaff() || createStaffLoading}
+                  >
+                    {createStaffLoading ? "Creating..." : "Create"}
+                  </IonButton>
+                  <IonButton
+                    fill="outline"
+                    color="danger"
+                    onClick={onCloseModal}
+                    disabled={createStaffLoading}
+                  >
+                    Cancel
+                  </IonButton>
+                </IonButtons>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </form>
       </IonContent>
     </IonModal>
   );

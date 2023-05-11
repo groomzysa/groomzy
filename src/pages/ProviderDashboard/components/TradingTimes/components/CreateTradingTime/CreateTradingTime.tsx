@@ -58,79 +58,81 @@ export const CreateTradingTime: FC<ICreateTradingTimeProps> = ({ gridRef }) => {
             onClick={onCloseModal}
           ></IonIcon>
         </IonToolbar>
-        <IonGrid>
-          <IonRow>
-            <IonCol>
-              <GSelect
-                label="Day"
-                value={day?.value}
-                options={dayOptions}
-                onSelectChange={onDayChange}
-                placeholder="Select day (required)"
-                error={day?.error}
-              />
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <IonNote>NB! Fill both hours and minutes</IonNote>
-            </IonCol>
-          </IonRow>
-          <IonRow class="ion-align-items-center">
-            <IonCol>
-              <IonText>Opens:</IonText>
-            </IonCol>
-            <IonCol class="create-trading-time-time-container ion-justify-content-end">
-              <TimePicker
-                onChange={(value) => onOpensChange(value)}
-                value={opens?.value || ""}
-                clockIcon={null}
-                disableClock={true}
-                format="HH:mm"
-                required
-              />
-            </IonCol>
-          </IonRow>
-          <IonRow class="ion-align-items-center">
-            <IonCol>
-              <IonText>Closes:</IonText>
-            </IonCol>
-            <IonCol class="create-trading-time-time-container ion-justify-content-end">
-              <TimePicker
-                onChange={(value) => onClosesChange(value)}
-                value={closes?.value || ""}
-                clockIcon={null}
-                disableClock={true}
-                format="HH:mm"
-                required
-              />
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <IonButtons>
-                <IonButton
-                  fill="outline"
-                  color="primary"
-                  onClick={onCreateOperatingTime}
-                  disabled={
-                    !onCanCreateOperatingTime() || createOperatingTimeLoading
-                  }
-                >
-                  {createOperatingTimeLoading ? "Creating..." : "Create"}
-                </IonButton>
-                <IonButton
-                  fill="outline"
-                  color="danger"
-                  onClick={onCloseModal}
-                  disabled={createOperatingTimeLoading}
-                >
-                  Cancel
-                </IonButton>
-              </IonButtons>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+        <form>
+          <IonGrid>
+            <IonRow>
+              <IonCol>
+                <GSelect
+                  label="Day"
+                  value={day?.value}
+                  options={dayOptions}
+                  onSelectChange={onDayChange}
+                  placeholder="Select day (required)"
+                  error={day?.error}
+                />
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <IonNote>NB! Fill both hours and minutes</IonNote>
+              </IonCol>
+            </IonRow>
+            <IonRow class="ion-align-items-center">
+              <IonCol>
+                <IonText>Opens:</IonText>
+              </IonCol>
+              <IonCol class="create-trading-time-time-container ion-justify-content-end">
+                <TimePicker
+                  onChange={(value) => onOpensChange(value)}
+                  value={opens?.value || ""}
+                  clockIcon={null}
+                  disableClock={true}
+                  format="HH:mm"
+                  required
+                />
+              </IonCol>
+            </IonRow>
+            <IonRow class="ion-align-items-center">
+              <IonCol>
+                <IonText>Closes:</IonText>
+              </IonCol>
+              <IonCol class="create-trading-time-time-container ion-justify-content-end">
+                <TimePicker
+                  onChange={(value) => onClosesChange(value)}
+                  value={closes?.value || ""}
+                  clockIcon={null}
+                  disableClock={true}
+                  format="HH:mm"
+                  required
+                />
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <IonButtons>
+                  <IonButton
+                    fill="outline"
+                    color="primary"
+                    onClick={onCreateOperatingTime}
+                    disabled={
+                      !onCanCreateOperatingTime() || createOperatingTimeLoading
+                    }
+                  >
+                    {createOperatingTimeLoading ? "Creating..." : "Create"}
+                  </IonButton>
+                  <IonButton
+                    fill="outline"
+                    color="danger"
+                    onClick={onCloseModal}
+                    disabled={createOperatingTimeLoading}
+                  >
+                    Cancel
+                  </IonButton>
+                </IonButtons>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </form>
       </IonContent>
     </IonModal>
   );

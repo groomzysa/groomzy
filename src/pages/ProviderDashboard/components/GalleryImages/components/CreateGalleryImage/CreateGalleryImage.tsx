@@ -53,65 +53,67 @@ export const CreateGalleryImage: FC<ICreateGalleryImageProps> = ({
             onClick={onCloseModal}
           ></IonIcon>
         </IonToolbar>
-        <IonGrid>
-          <IonRow>
-            <IonCol>
-              <GInput
-                label="Name"
-                labelPosition="floating"
-                onValueChange={onNameChange}
-                type="text"
-                value={name?.value || ""}
-                error={name?.error}
-                required
-              />
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <div
-                className="create-gallery-take-photo-button"
-                onClick={takePhoto}
-              >
-                <IonIcon icon={cameraOutline}></IonIcon>
-                <span>Take a picture</span>
-              </div>
-            </IonCol>
-          </IonRow>
-          {photo && (
+        <form>
+          <IonGrid>
             <IonRow>
-              <IonCol size="6">
-                <IonImg
-                  class="create-gallery-photo-preview"
-                  src={photo.webviewPath}
+              <IonCol>
+                <GInput
+                  label="Name"
+                  labelPosition="floating"
+                  onValueChange={onNameChange}
+                  type="text"
+                  value={name?.value || ""}
+                  error={name?.error}
+                  required
                 />
               </IonCol>
             </IonRow>
-          )}
+            <IonRow>
+              <IonCol>
+                <div
+                  className="create-gallery-take-photo-button"
+                  onClick={takePhoto}
+                >
+                  <IonIcon icon={cameraOutline}></IonIcon>
+                  <span>Take a picture</span>
+                </div>
+              </IonCol>
+            </IonRow>
+            {photo && (
+              <IonRow>
+                <IonCol size="6">
+                  <IonImg
+                    class="create-gallery-photo-preview"
+                    src={photo.webviewPath}
+                  />
+                </IonCol>
+              </IonRow>
+            )}
 
-          <IonRow>
-            <IonCol>
-              <IonButtons>
-                <IonButton
-                  fill="outline"
-                  color="primary"
-                  onClick={onCreateGallery}
-                  disabled={!onCanCreateGallery() || createGalleryLoading}
-                >
-                  {createGalleryLoading ? "Creating..." : "Create"}
-                </IonButton>
-                <IonButton
-                  fill="outline"
-                  color="danger"
-                  onClick={onCloseModal}
-                  disabled={createGalleryLoading}
-                >
-                  Cancel
-                </IonButton>
-              </IonButtons>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+            <IonRow>
+              <IonCol>
+                <IonButtons>
+                  <IonButton
+                    fill="outline"
+                    color="primary"
+                    onClick={onCreateGallery}
+                    disabled={!onCanCreateGallery() || createGalleryLoading}
+                  >
+                    {createGalleryLoading ? "Creating..." : "Create"}
+                  </IonButton>
+                  <IonButton
+                    fill="outline"
+                    color="danger"
+                    onClick={onCloseModal}
+                    disabled={createGalleryLoading}
+                  >
+                    Cancel
+                  </IonButton>
+                </IonButtons>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </form>
       </IonContent>
     </IonModal>
   );

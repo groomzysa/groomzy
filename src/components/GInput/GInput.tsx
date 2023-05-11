@@ -22,10 +22,11 @@ export const GInput: FC<IGInputProps> = ({
   onValueChange,
 }) => {
   const [isTouched, setIsTouched] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
 
   let isValid = undefined;
 
-  if (isTouched) {
+  if (isTouched && isDirty) {
     if (!isEmpty(error)) {
       isValid = false;
     } else if (required && isEmpty(value)) {
@@ -47,7 +48,12 @@ export const GInput: FC<IGInputProps> = ({
           } ${isTouched && "ion-touched"}`}
           required={required}
           value={value}
-          onIonInput={onValueChange}
+          onIonInput={(ev) => {
+            if (isDirty === false) {
+              setIsDirty(true);
+            }
+            onValueChange(ev);
+          }}
           onIonBlur={() => setIsTouched(true)}
           placeholder={placeholder}
           rows={textAreaRows}
@@ -65,7 +71,12 @@ export const GInput: FC<IGInputProps> = ({
           value={value}
           placeholder={placeholder}
           errorText={error}
-          onIonInput={onValueChange}
+          onIonInput={(ev) => {
+            if (isDirty === false) {
+              setIsDirty(true);
+            }
+            onValueChange(ev);
+          }}
           onIonBlur={() => setIsTouched(true)}
         ></IonInput>
       )}

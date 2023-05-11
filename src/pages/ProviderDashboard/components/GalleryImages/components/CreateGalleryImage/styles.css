@@ -21,9 +21,13 @@ ion-modal.create-gallery-modal ion-grid {
 }
 
 ion-modal.create-gallery-modal ion-grid ion-row:last-child {
-  position: absolute;
+  position: relative;
   bottom: 0px;
-  right: 5px;
+}
+
+ion-modal.create-gallery-modal ion-grid ion-row:last-child ion-col {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .create-gallery-close-icon {

@@ -21,9 +21,13 @@ ion-modal.create-staff-modal ion-grid {
 }
 
 ion-modal.create-staff-modal ion-grid ion-row:last-child {
-  position: absolute;
+  position: relative;
   bottom: 0px;
-  right: 5px;
+}
+
+ion-modal.create-staff-modal ion-grid ion-row:last-child on-col {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .create-staff-close-icon {

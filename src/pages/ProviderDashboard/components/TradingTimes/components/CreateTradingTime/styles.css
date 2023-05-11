@@ -19,9 +19,13 @@ ion-modal.create-trading-time-modal ion-grid {
 }
 
 ion-modal.create-trading-time-modal ion-grid ion-row:last-child {
-  position: absolute;
+  position: relative;
   bottom: 0px;
-  right: 5px;
+}
+
+ion-modal.create-trading-time-modal ion-grid ion-row:last-child ion-col {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .create-trading-time-close-icon {
