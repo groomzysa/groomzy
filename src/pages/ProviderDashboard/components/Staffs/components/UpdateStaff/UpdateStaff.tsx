@@ -88,30 +88,25 @@ export const UpdateStaff: FC<IUpdateStaffProps> = ({ gridRef }) => {
                   />
                 </IonCol>
               </IonRow>
-
-              <IonRow>
-                <IonCol>
-                  <IonButtons>
-                    <IonButton
-                      fill="outline"
-                      color="primary"
-                      onClick={onUpdateStaff}
-                      disabled={updateStaffLoading}
-                    >
-                      {updateStaffLoading ? "Updating..." : "Update"}
-                    </IonButton>
-                    <IonButton
-                      fill="outline"
-                      color="danger"
-                      onClick={onCloseModal}
-                      disabled={updateStaffLoading}
-                    >
-                      Cancel
-                    </IonButton>
-                  </IonButtons>
-                </IonCol>
-              </IonRow>
             </IonGrid>
+            <IonButtons>
+              <IonButton
+                fill="outline"
+                color="primary"
+                onClick={onUpdateStaff}
+                disabled={updateStaffLoading}
+              >
+                {updateStaffLoading ? "Updating..." : "Update"}
+              </IonButton>
+              <IonButton
+                fill="outline"
+                color="danger"
+                onClick={onCloseModal}
+                disabled={updateStaffLoading}
+              >
+                Cancel
+              </IonButton>
+            </IonButtons>
           </form>
         )}
       </IonContent>

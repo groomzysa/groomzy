@@ -1,11 +1,16 @@
 ion-modal.update-trading-time-modal {
-  --height: 300px;
+  --height: 350px;
   --width: 300px;
   --border-radius: 4px;
-  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --box-shadow: none;
   padding: 10px;
   overflow-y: auto;
+}
+
+ion-modal.update-trading-time-modal ion-buttons {
+  position: absolute;
+  bottom: 16px;
+  right: 10px;
 }
 
 ion-modal.update-trading-time-modal ion-toolbar {
@@ -20,14 +25,10 @@ ion-modal.update-trading-time-modal ion-grid {
   padding: 10px;
 }
 
-ion-modal.update-trading-time-modal ion-grid ion-row:last-child {
-  position: relative;
-  bottom: 0px;
-}
-
-ion-modal.update-trading-time-modal ion-grid ion-row:last-child ion-col {
-  display: flex;
-  justify-content: flex-end;
+ion-modal.update-trading-time-modal ion-buttons {
+  position: absolute;
+  bottom: 16px;
+  right: 10px;
 }
 
 .custom-popover {

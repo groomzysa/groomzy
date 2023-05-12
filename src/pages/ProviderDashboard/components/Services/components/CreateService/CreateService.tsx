@@ -54,7 +54,7 @@ export const CreateService: FC<ICreateServiceProps> = ({ gridRef }) => {
       isOpen={isOpen}
       backdropDismiss={false}
     >
-      <IonContent fullscreen>
+      <IonContent>
         <IonToolbar>
           <IonTitle>Create service</IonTitle>
           <IonIcon
@@ -145,29 +145,25 @@ export const CreateService: FC<ICreateServiceProps> = ({ gridRef }) => {
                 />
               </IonCol>
             </IonRow>
-            <IonRow>
-              <IonCol>
-                <IonButtons>
-                  <IonButton
-                    fill="outline"
-                    color="primary"
-                    onClick={onCreateService}
-                    disabled={!onCanCreateService() || createServiceLoading}
-                  >
-                    {createServiceLoading ? "Creating..." : "Create"}
-                  </IonButton>
-                  <IonButton
-                    fill="outline"
-                    color="danger"
-                    onClick={onCloseModal}
-                    disabled={createServiceLoading}
-                  >
-                    Cancel
-                  </IonButton>
-                </IonButtons>
-              </IonCol>
-            </IonRow>
           </IonGrid>
+          <IonButtons>
+            <IonButton
+              fill="outline"
+              color="primary"
+              onClick={onCreateService}
+              disabled={!onCanCreateService() || createServiceLoading}
+            >
+              {createServiceLoading ? "Creating..." : "Create"}
+            </IonButton>
+            <IonButton
+              fill="outline"
+              color="danger"
+              onClick={onCloseModal}
+              disabled={createServiceLoading}
+            >
+              Cancel
+            </IonButton>
+          </IonButtons>
         </form>
       </IonContent>
     </IonModal>

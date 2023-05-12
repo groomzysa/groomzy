@@ -57,6 +57,7 @@ export const GInput: FC<IGInputProps> = ({
           onIonBlur={() => setIsTouched(true)}
           placeholder={placeholder}
           rows={textAreaRows}
+          errorText={error}
         ></IonTextarea>
       ) : (
         <IonInput
@@ -77,7 +78,10 @@ export const GInput: FC<IGInputProps> = ({
             }
             onValueChange(ev);
           }}
-          onIonBlur={() => setIsTouched(true)}
+          onIonBlur={(ev) => {
+            ev.target.focus({ preventScroll: true });
+            setIsTouched(true);
+          }}
         ></IonInput>
       )}
       {iconName && (

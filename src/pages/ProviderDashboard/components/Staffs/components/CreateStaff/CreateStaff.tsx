@@ -80,30 +80,25 @@ export const CreateStaff: FC<ICreateStaffProps> = ({ gridRef }) => {
                 />
               </IonCol>
             </IonRow>
-
-            <IonRow>
-              <IonCol>
-                <IonButtons>
-                  <IonButton
-                    fill="outline"
-                    color="primary"
-                    onClick={onCreateStaff}
-                    disabled={!onCanCreateStaff() || createStaffLoading}
-                  >
-                    {createStaffLoading ? "Creating..." : "Create"}
-                  </IonButton>
-                  <IonButton
-                    fill="outline"
-                    color="danger"
-                    onClick={onCloseModal}
-                    disabled={createStaffLoading}
-                  >
-                    Cancel
-                  </IonButton>
-                </IonButtons>
-              </IonCol>
-            </IonRow>
           </IonGrid>
+          <IonButtons>
+            <IonButton
+              fill="outline"
+              color="primary"
+              onClick={onCreateStaff}
+              disabled={!onCanCreateStaff() || createStaffLoading}
+            >
+              {createStaffLoading ? "Creating..." : "Create"}
+            </IonButton>
+            <IonButton
+              fill="outline"
+              color="danger"
+              onClick={onCloseModal}
+              disabled={createStaffLoading}
+            >
+              Cancel
+            </IonButton>
+          </IonButtons>
         </form>
       </IonContent>
     </IonModal>

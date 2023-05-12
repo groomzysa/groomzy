@@ -1,11 +1,14 @@
 ion-modal.create-staff-modal {
-  --height: 300px;
+  --height: 350px;
   --width: 370px;
   --border-radius: 4px;
-  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --box-shadow: none;
   padding: 10px;
   overflow-y: auto;
+}
+
+ion-modal.create-staff-modal ion-content {
+  --keyboard-offset: 0px !important;
 }
 
 ion-modal.create-staff-modal ion-toolbar {
@@ -20,14 +23,10 @@ ion-modal.create-staff-modal ion-grid {
   padding: 10px;
 }
 
-ion-modal.create-staff-modal ion-grid ion-row:last-child {
-  position: relative;
-  bottom: 0px;
-}
-
-ion-modal.create-staff-modal ion-grid ion-row:last-child on-col {
-  display: flex;
-  justify-content: flex-end;
+ion-modal.create-staff-modal ion-buttons {
+  position: absolute;
+  bottom: 16px;
+  right: 10px;
 }
 
 .create-staff-close-icon {

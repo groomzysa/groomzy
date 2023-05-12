@@ -75,7 +75,7 @@ export const CreateGalleryImage: FC<ICreateGalleryImageProps> = ({
                   onClick={takePhoto}
                 >
                   <IonIcon icon={cameraOutline}></IonIcon>
-                  <span>Take a picture</span>
+                  <span>Upload gallery image</span>
                 </div>
               </IonCol>
             </IonRow>
@@ -89,30 +89,25 @@ export const CreateGalleryImage: FC<ICreateGalleryImageProps> = ({
                 </IonCol>
               </IonRow>
             )}
-
-            <IonRow>
-              <IonCol>
-                <IonButtons>
-                  <IonButton
-                    fill="outline"
-                    color="primary"
-                    onClick={onCreateGallery}
-                    disabled={!onCanCreateGallery() || createGalleryLoading}
-                  >
-                    {createGalleryLoading ? "Creating..." : "Create"}
-                  </IonButton>
-                  <IonButton
-                    fill="outline"
-                    color="danger"
-                    onClick={onCloseModal}
-                    disabled={createGalleryLoading}
-                  >
-                    Cancel
-                  </IonButton>
-                </IonButtons>
-              </IonCol>
-            </IonRow>
           </IonGrid>
+          <IonButtons>
+            <IonButton
+              fill="outline"
+              color="primary"
+              onClick={onCreateGallery}
+              disabled={!onCanCreateGallery() || createGalleryLoading}
+            >
+              {createGalleryLoading ? "Creating..." : "Create"}
+            </IonButton>
+            <IonButton
+              fill="outline"
+              color="danger"
+              onClick={onCloseModal}
+              disabled={createGalleryLoading}
+            >
+              Cancel
+            </IonButton>
+          </IonButtons>
         </form>
       </IonContent>
     </IonModal>

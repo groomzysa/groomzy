@@ -107,31 +107,27 @@ export const CreateTradingTime: FC<ICreateTradingTimeProps> = ({ gridRef }) => {
                 />
               </IonCol>
             </IonRow>
-            <IonRow>
-              <IonCol>
-                <IonButtons>
-                  <IonButton
-                    fill="outline"
-                    color="primary"
-                    onClick={onCreateOperatingTime}
-                    disabled={
-                      !onCanCreateOperatingTime() || createOperatingTimeLoading
-                    }
-                  >
-                    {createOperatingTimeLoading ? "Creating..." : "Create"}
-                  </IonButton>
-                  <IonButton
-                    fill="outline"
-                    color="danger"
-                    onClick={onCloseModal}
-                    disabled={createOperatingTimeLoading}
-                  >
-                    Cancel
-                  </IonButton>
-                </IonButtons>
-              </IonCol>
-            </IonRow>
           </IonGrid>
+          <IonButtons>
+            <IonButton
+              fill="outline"
+              color="primary"
+              onClick={onCreateOperatingTime}
+              disabled={
+                !onCanCreateOperatingTime() || createOperatingTimeLoading
+              }
+            >
+              {createOperatingTimeLoading ? "Creating..." : "Create"}
+            </IonButton>
+            <IonButton
+              fill="outline"
+              color="danger"
+              onClick={onCloseModal}
+              disabled={createOperatingTimeLoading}
+            >
+              Cancel
+            </IonButton>
+          </IonButtons>
         </form>
       </IonContent>
     </IonModal>

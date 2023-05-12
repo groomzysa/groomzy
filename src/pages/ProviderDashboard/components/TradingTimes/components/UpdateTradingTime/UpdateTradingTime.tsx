@@ -127,33 +127,25 @@ export const UpdateTradingTime: FC<IUpdateTradingTimeProps> = ({ gridRef }) => {
                   />
                 </IonCol>
               </IonRow>
-              <IonRow>
-                <IonCol>
-                  <IonButtons>
-                    <IonButton
-                      fill="outline"
-                      color="primary"
-                      onClick={onUpdateOperatingTime}
-                      disabled={
-                        updateOperatingTimeLoading || operatingTimeLoading
-                      }
-                    >
-                      {updateOperatingTimeLoading ? "Updating..." : "Update"}
-                    </IonButton>
-                    <IonButton
-                      fill="outline"
-                      color="danger"
-                      onClick={onCloseModal}
-                      disabled={
-                        updateOperatingTimeLoading || operatingTimeLoading
-                      }
-                    >
-                      Cancel
-                    </IonButton>
-                  </IonButtons>
-                </IonCol>
-              </IonRow>
             </IonGrid>
+            <IonButtons>
+              <IonButton
+                fill="outline"
+                color="primary"
+                onClick={onUpdateOperatingTime}
+                disabled={updateOperatingTimeLoading || operatingTimeLoading}
+              >
+                {updateOperatingTimeLoading ? "Updating..." : "Update"}
+              </IonButton>
+              <IonButton
+                fill="outline"
+                color="danger"
+                onClick={onCloseModal}
+                disabled={updateOperatingTimeLoading || operatingTimeLoading}
+              >
+                Cancel
+              </IonButton>
+            </IonButtons>
           </form>
         )}
       </IonContent>

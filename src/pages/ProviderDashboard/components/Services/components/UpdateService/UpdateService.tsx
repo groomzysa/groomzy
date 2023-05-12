@@ -102,7 +102,6 @@ export const UpdateService: FC<IUpdateServiceProps> = ({ gridRef }) => {
                     type="text"
                     value={name?.value || ""}
                     placeholder={service?.name || ""}
-                    required
                   />
                 </IonCol>
               </IonRow>
@@ -116,7 +115,6 @@ export const UpdateService: FC<IUpdateServiceProps> = ({ gridRef }) => {
                     type="number"
                     value={price?.value || ""}
                     placeholder={service?.price?.toString()}
-                    required
                   />
                 </IonCol>
               </IonRow>
@@ -131,7 +129,6 @@ export const UpdateService: FC<IUpdateServiceProps> = ({ gridRef }) => {
                       onValueChange={onDurationChange}
                       value={duration?.value || ""}
                       placeholder={service?.duration?.toString()}
-                      required
                     />
                     <IonRadioGroup
                       class="update-service-duration-units-container"
@@ -165,35 +162,30 @@ export const UpdateService: FC<IUpdateServiceProps> = ({ gridRef }) => {
                     onValueChange={onDescriptionChange}
                     value={description?.value || ""}
                     placeholder={service?.description || ""}
-                    required
+                    textAreaRows={5}
                     textArea
                   />
                 </IonCol>
               </IonRow>
-
-              <IonRow>
-                <IonCol>
-                  <IonButtons>
-                    <IonButton
-                      fill="outline"
-                      color="primary"
-                      onClick={onUpdateService}
-                      disabled={updateServiceLoading}
-                    >
-                      {updateServiceLoading ? "Updating..." : "Update"}
-                    </IonButton>
-                    <IonButton
-                      fill="outline"
-                      color="danger"
-                      onClick={onCloseModal}
-                      disabled={updateServiceLoading}
-                    >
-                      Cancel
-                    </IonButton>
-                  </IonButtons>
-                </IonCol>
-              </IonRow>
             </IonGrid>
+            <IonButtons>
+              <IonButton
+                fill="outline"
+                color="primary"
+                onClick={onUpdateService}
+                disabled={updateServiceLoading}
+              >
+                {updateServiceLoading ? "Updating..." : "Update"}
+              </IonButton>
+              <IonButton
+                fill="outline"
+                color="danger"
+                onClick={onCloseModal}
+                disabled={updateServiceLoading}
+              >
+                Cancel
+              </IonButton>
+            </IonButtons>
           </form>
         )}
       </IonContent>

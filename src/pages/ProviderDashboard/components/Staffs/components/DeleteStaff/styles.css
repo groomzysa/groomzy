@@ -2,8 +2,7 @@ ion-modal.delete-staff-modal {
   --max-height: 200px;
   --width: 370px;
   --border-radius: 4px;
-  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --box-shadow: none;
   padding: 10px;
   overflow-y: auto;
 }
