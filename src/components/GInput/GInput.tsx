@@ -88,7 +88,7 @@ export const GInput: FC<IGInputProps> = ({
         <IonIcon
           icon={iconName}
           slot={iconSlot}
-          class={iconClass}
+          className={iconClass}
           onClick={iconAction}
         ></IonIcon>
       )}

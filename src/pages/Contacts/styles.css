@@ -1,9 +1,15 @@
-.contacts-main-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.contacts-form-keyboard-on {
   margin-top: 10px;
-  margin-bottom: 10px;
+  height: 100%;
+}
+
+.contacts-form,
+.contacts-form-keyboard-on {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 
 .contacts-buttons {

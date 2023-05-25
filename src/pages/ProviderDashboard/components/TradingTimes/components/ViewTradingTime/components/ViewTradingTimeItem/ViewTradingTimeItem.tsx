@@ -10,7 +10,7 @@ export const ViewTradingTimeItem: FC<IViewTradingTimeItemProps> = ({
 }) => {
   return (
     <IonItem lines="none">
-      <IonLabel class="label-title">{label}:</IonLabel>
+      <IonLabel className="label-title">{label}:</IonLabel>
       {isDescription ? (
         <div className="description">{text}</div>
       ) : (

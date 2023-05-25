@@ -1,0 +1,20 @@
+query comment($commentId: Int!) {
+  comment(commentId: $commentId) {
+    id
+    message
+    children {
+      id
+      message
+    }
+    providerLikes {
+      provider {
+        id
+      }
+    }
+    clientLikes {
+      client {
+        id
+      }
+    }
+  }
+}

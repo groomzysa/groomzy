@@ -22,7 +22,7 @@ export const useDeleteService = (
    */
   const { id } = useParams<{ id: string }>();
 
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
 
   const { deleteService } = useDeleteServiceMutation();
 
@@ -64,11 +64,11 @@ export const useDeleteService = (
 
       setDeleteServiceLoading(false);
 
-      autoDisimissToast({ message: DELETED_SERVICE_MESSAGE, onCloseModal });
+      toast({ message: DELETED_SERVICE_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setDeleteServiceLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong deleting service.",

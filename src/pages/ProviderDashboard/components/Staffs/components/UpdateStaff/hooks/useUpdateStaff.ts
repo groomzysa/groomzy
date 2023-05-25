@@ -9,6 +9,7 @@ import { IInput } from "../../../../../../../utils/types";
 import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
+import { useNativeElementsSizeInfo } from "../../../../../../../hooks";
 
 export const useUpdateStaff = (gridRef: RefObject<AgGridReact<any>>) => {
   const [firstName, setFirstName] = useState<IInput<string>>();
@@ -23,7 +24,8 @@ export const useUpdateStaff = (gridRef: RefObject<AgGridReact<any>>) => {
    *
    */
   const { id } = useParams<{ id: string }>();
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
   const { fetchStaff, staffError, staffLoading, staff } = useFetchStaff();
   const { updateStaff } = useUpdateStaffMutation();
   const history = useHistory();
@@ -34,7 +36,7 @@ export const useUpdateStaff = (gridRef: RefObject<AgGridReact<any>>) => {
    *
    */
   if (staffError) {
-    autoDisimissToast({
+    toast({
       message: staffError || "Something went wrong, updating staff.",
       buttonDismiss: true,
     });
@@ -92,11 +94,11 @@ export const useUpdateStaff = (gridRef: RefObject<AgGridReact<any>>) => {
       }).unwrap();
 
       setUpdateStaffLoading(false);
-      autoDisimissToast({ message: UPDATE_STAFF_MESSAGE, onCloseModal });
+      toast({ message: UPDATE_STAFF_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setUpdateStaffLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong, updating staff.",
@@ -117,6 +119,7 @@ export const useUpdateStaff = (gridRef: RefObject<AgGridReact<any>>) => {
     staff,
     staffLoading,
     isOpen,
+    isKeyboardOpen,
     onFirstNameChange,
     onLastNameChange,
     onUpdateStaff,

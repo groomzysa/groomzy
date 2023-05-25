@@ -33,12 +33,11 @@ export const useTradingAddress = () => {
    * Hooks
    *
    */
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
 
   const { fetchProvider, provider } = useFetchProvider();
 
-  const { isKeyboardOpen, topToolBarHeight, bottomToolBarHeight } =
-    useNativeElementsSizeInfo();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
   const { addTradingAddress } = useAddTradingAddress();
 
@@ -167,10 +166,10 @@ export const useTradingAddress = () => {
       }).unwrap();
       setAddTradingAddressLoading(false);
 
-      autoDisimissToast({ message: ADD_PROVIDER_TRADING_ADDRESS_MESSAGE });
+      toast({ message: ADD_PROVIDER_TRADING_ADDRESS_MESSAGE });
     } catch (error) {
       setAddTradingAddressLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong adding trading address",
@@ -195,10 +194,10 @@ export const useTradingAddress = () => {
       }).unwrap();
 
       setUpdateTradingAddressLoading(false);
-      autoDisimissToast({ message: UPDATE_PROVIDER_TRADING_ADDRESS_MESSAGE });
+      toast({ message: UPDATE_PROVIDER_TRADING_ADDRESS_MESSAGE });
     } catch (error) {
       setUpdateTradingAddressLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong updating trading address",
@@ -225,8 +224,6 @@ export const useTradingAddress = () => {
     addTradingAddressLoading,
     updateTradingAddressLoading,
     isKeyboardOpen,
-    topToolBarHeight,
-    bottomToolBarHeight,
     onStreetNumberChanged,
     onStreetNameChanged,
     onTownNameChanged,

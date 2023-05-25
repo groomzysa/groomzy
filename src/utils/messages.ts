@@ -84,6 +84,30 @@ export const DELETED_OPERATING_TIME_MESSAGE = `Operating time deleted successful
 
 /**
  *
+ * Comment success messages
+ *
+ */
+export const CREATE_COMMENT_MESSAGE = `Comment created successfuly!`;
+export const UPDATE_COMMENT_MESSAGE = `Comment updated successfuly!`;
+export const DELETE_COMMENT_MESSAGE = `Are you sure want to delete this comment?
+        
+This will be deleted permanently.`;
+export const DELETED_COMMENT_MESSAGE = `Comment deleted successfuly!`;
+
+/**
+ *
+ * Reply comment success messages
+ *
+ */
+export const CREATE_REPLY_COMMENT_MESSAGE = `Reply comment created successfuly!`;
+export const UPDATE_REPLY_COMMENT_MESSAGE = `Reply comment updated successfuly!`;
+export const DELETE_REPLY_COMMENT_MESSAGE = `Are you sure want to delete this reply comment?
+        
+This will be deleted permanently.`;
+export const DELETED_REPLY_COMMENT_MESSAGE = `Reply comment deleted successfuly!`;
+
+/**
+ *
  * Contact mail success messages
  *
  */

@@ -217,7 +217,7 @@ export const ProviderDashboard: FC = () => {
         />
       </IonRouterOutlet>
 
-      <IonTabBar slot="bottom" keyboard-attach class="bar-assertive">
+      <IonTabBar slot="bottom" keyboard-attach className="bar-assertive">
         <IonTabButton
           tab="services"
           href={`/${routes.providerDashboard.services.use()}`}

@@ -41,6 +41,7 @@ export const UpdateService: FC<IUpdateServiceProps> = ({ gridRef }) => {
     serviceLoading,
     isOpen,
     categories,
+    isKeyboardOpen,
     onNameChange,
     onDescriptionChange,
     onPriceChange,
@@ -71,10 +72,16 @@ export const UpdateService: FC<IUpdateServiceProps> = ({ gridRef }) => {
         {serviceLoading ? (
           <IonSpinner
             color="primary"
-            class="ion-justify-content-center"
+            className="ion-justify-content-center"
           ></IonSpinner>
         ) : (
-          <form>
+          <form
+            className={
+              isKeyboardOpen
+                ? "update-service-form-keyboard-on"
+                : "update-service-form"
+            }
+          >
             <IonGrid>
               <IonRow>
                 <IonCol>
@@ -131,7 +138,7 @@ export const UpdateService: FC<IUpdateServiceProps> = ({ gridRef }) => {
                       placeholder={service?.duration?.toString()}
                     />
                     <IonRadioGroup
-                      class="update-service-duration-units-container"
+                      className="update-service-duration-units-container"
                       value={service?.durationUnit || durationUnit}
                       onIonChange={(e) => onDurationUnitChange(e.target.value)}
                     >

@@ -4,13 +4,14 @@ import { getErrorMessage } from "../../../helpers";
 export const useFetchUser = () => {
   const [
     fetchUser,
-    { data, isLoading, isError, error, isUninitialized, isFetching },
+    { data, isLoading, isError, error, isUninitialized, isFetching, isSuccess },
   ] = useLazyUserQuery();
 
   return {
     fetchUser,
     user: data?.user,
     userIsLoading: isLoading,
+    userIsSuccess: isSuccess,
     userHasError: isError,
     userIsUninitialized: isUninitialized,
     userIsFetching: isFetching,

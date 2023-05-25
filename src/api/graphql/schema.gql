@@ -53,6 +53,30 @@ type Client {
   bookings: [Booking!]
 }
 
+type ClientLike {
+  client: Client
+  comment: Comment
+}
+
+type Comment {
+  id: Int!
+  message: String
+  createdAt: String
+  updatedAt: String
+  client: Client
+  provider: Provider
+  parent: Comment
+  children: [Comment!]
+  providerLikes: [ProviderLike!]
+  clientLikes: [ClientLike!]
+}
+
+type CommentsQueryResults {
+  comments: [Comment!]!
+  cursor: Int
+  count: Int
+}
+
 enum DayType {
   MON
   TUE
@@ -91,6 +115,9 @@ type Message {
 
 type Mutation {
   contactMail(firstName: String!, lastName: String!, email: String!, subject: String!, message: String!): Message!
+  addComment(message: String!, clientId: Int, parentId: Int, providerId: Int): Comment!
+  deleteComment(commentId: Int!): Comment!
+  updateComment(commentId: Int!, message: String): Comment!
   addGallery(name: String!, galleryImage: File!): Gallery!
   deleteGallery(galleryId: Int!): Gallery!
   updateGallery(galleryId: Int!, name: String, galleryImage: File): Gallery!
@@ -157,7 +184,14 @@ type Provider {
   socials: [Social!]
 }
 
+type ProviderLike {
+  provider: Provider
+  comment: Comment
+}
+
 type Query {
+  comment(commentId: Int!): Comment!
+  comments(providerId: Int, limit: Int, cursor: Int, page: Int, paginationType: PaginationType): CommentsQueryResults
   galleries(providerId: Int, limit: Int, cursor: Int, page: Int, paginationType: PaginationType): GalleriesQueryResults
   gallery(galleryId: Int!): Gallery!
   operatingTime(operatingTimeId: Int!): OperatingTime!

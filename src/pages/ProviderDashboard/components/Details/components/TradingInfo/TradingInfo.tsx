@@ -23,8 +23,6 @@ export const TradingInfo: FC = () => {
     addTradingInfoLoading,
     updateTradingInfoLoading,
     isKeyboardOpen,
-    topToolBarHeight,
-    bottomToolBarHeight,
     onTradingNameChange,
     onPhoneNumberChange,
     onAddTradingInfo,
@@ -37,98 +35,97 @@ export const TradingInfo: FC = () => {
       <IonRefresher slot="fixed" onIonRefresh={onRefetchTradingInfo}>
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
-      <IonGrid
-        class="trading-info-main-content"
-        style={{
-          height: isKeyboardOpen
-            ? `calc(100vh - ${topToolBarHeight}px)`
-            : `calc(100vh - ${topToolBarHeight}px - ${bottomToolBarHeight}px - 20px)`,
-        }}
+      <form
+        className={
+          isKeyboardOpen ? "trading-info-form-keyboard-on" : "trading-info-form"
+        }
       >
-        <IonRow>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-            <GInput
-              label="Trading name"
-              labelPosition={provider ? "stacked" : "floating"}
-              value={tradingName?.value || ""}
-              placeholder={provider?.tradingName || ""}
-              onValueChange={onTradingNameChange}
-              type="text"
-              error={provider ? undefined : tradingName?.error}
-              required={provider ? false : true}
-            />
-          </IonCol>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-            <GInput
-              label="Phone number"
-              labelPosition={provider ? "stacked" : "floating"}
-              value={phoneNumber?.value || ""}
-              placeholder={provider?.phone || ""}
-              onValueChange={onPhoneNumberChange}
-              type={"text"}
-              error={provider ? undefined : phoneNumber?.error}
-              required={provider ? false : true}
-            />
-          </IonCol>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-            <IonGrid>
-              <IonRow>
-                <IonCol>
-                  <div
-                    className="trading-info-take-photo-button"
-                    onClick={takePhoto}
-                  >
-                    <IonIcon icon={cameraOutline}></IonIcon>
-                    <span>Upload trading profile</span>
-                  </div>
-                </IonCol>
-              </IonRow>
-              {photo && (
+        <IonGrid>
+          <IonRow>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+              <GInput
+                label="Trading name"
+                labelPosition={provider ? "stacked" : "floating"}
+                value={tradingName?.value || ""}
+                placeholder={provider?.tradingName || ""}
+                onValueChange={onTradingNameChange}
+                type="text"
+                error={provider ? undefined : tradingName?.error}
+                required={provider ? false : true}
+              />
+            </IonCol>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+              <GInput
+                label="Phone number"
+                labelPosition={provider ? "stacked" : "floating"}
+                value={phoneNumber?.value || ""}
+                placeholder={provider?.phone || ""}
+                onValueChange={onPhoneNumberChange}
+                type={"text"}
+                error={provider ? undefined : phoneNumber?.error}
+                required={provider ? false : true}
+              />
+            </IonCol>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+              <IonGrid>
                 <IonRow>
-                  <IonCol size="6">
-                    <IonImg
-                      class="trading-info-photo-preview"
-                      src={photo.webviewPath}
-                    />
+                  <IonCol>
+                    <div
+                      className="trading-info-take-photo-button"
+                      onClick={takePhoto}
+                    >
+                      <IonIcon icon={cameraOutline}></IonIcon>
+                      <span>Upload trading profile</span>
+                    </div>
                   </IonCol>
                 </IonRow>
-              )}
-            </IonGrid>
-          </IonCol>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-            <IonButton
-              onClick={
-                provider
-                  ? () => onUpdateTradingInfo()
-                  : () => onAddTradingInfo()
-              }
-              disabled={updateTradingInfoLoading || addTradingInfoLoading}
-            >
-              {provider
-                ? updateTradingInfoLoading
-                  ? "Updating..."
-                  : "Update"
-                : addTradingInfoLoading
-                ? "Adding..."
-                : "Add details"}
-            </IonButton>
-          </IonCol>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-        </IonRow>
-      </IonGrid>
+                {photo && (
+                  <IonRow>
+                    <IonCol size="6">
+                      <IonImg
+                        className="trading-info-photo-preview"
+                        src={photo.webviewPath}
+                      />
+                    </IonCol>
+                  </IonRow>
+                )}
+              </IonGrid>
+            </IonCol>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+              <IonButton
+                onClick={
+                  provider
+                    ? () => onUpdateTradingInfo()
+                    : () => onAddTradingInfo()
+                }
+                disabled={updateTradingInfoLoading || addTradingInfoLoading}
+              >
+                {provider
+                  ? updateTradingInfoLoading
+                    ? "Updating..."
+                    : "Update"
+                  : addTradingInfoLoading
+                  ? "Adding..."
+                  : "Add details"}
+              </IonButton>
+            </IonCol>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+          </IonRow>
+        </IonGrid>
+      </form>
     </>
   );
 };

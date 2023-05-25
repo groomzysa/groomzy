@@ -41,7 +41,7 @@ export const Account: FC<IAccountProps> = ({ user }) => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
+      <IonContent>
         {displayedContent === "info" && <AccountInfo user={user} />}
         {displayedContent === "address" && <AccountAddress user={user} />}
       </IonContent>

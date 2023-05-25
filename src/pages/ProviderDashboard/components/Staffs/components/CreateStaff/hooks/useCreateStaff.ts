@@ -16,6 +16,7 @@ import { IInput } from "../../../../../../../utils/types";
 import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
+import { useNativeElementsSizeInfo } from "../../../../../../../hooks";
 
 export const useCreateStaff = (gridRef: RefObject<AgGridReact<any>>) => {
   const [firstName, setFirstName] = useState<IInput<string>>();
@@ -30,7 +31,9 @@ export const useCreateStaff = (gridRef: RefObject<AgGridReact<any>>) => {
    * Hooks
    *
    */
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
+
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
   const { createStaff } = useCreateStaffMutation();
 
@@ -105,11 +108,11 @@ export const useCreateStaff = (gridRef: RefObject<AgGridReact<any>>) => {
 
       setCreateStaffLoading(false);
 
-      autoDisimissToast({ message: CREATE_STAFF_MESSAGE, onCloseModal });
+      toast({ message: CREATE_STAFF_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setCreateStaffLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong creating staff.",
@@ -123,6 +126,7 @@ export const useCreateStaff = (gridRef: RefObject<AgGridReact<any>>) => {
     lastName,
     createStaffLoading,
     isOpen,
+    isKeyboardOpen,
     onFirstNameChange,
     onLastNameChange,
     onCreateStaff,

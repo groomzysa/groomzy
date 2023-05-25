@@ -35,7 +35,7 @@ export const ViewService: FC = () => {
         {serviceLoading ? (
           <IonSpinner
             color="primary"
-            class="ion-justify-content-center"
+            className="ion-justify-content-center"
           ></IonSpinner>
         ) : (
           <IonList>

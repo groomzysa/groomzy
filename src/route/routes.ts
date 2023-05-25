@@ -94,6 +94,14 @@ export const routes = {
         return `${routes.providerTrading.base.use(id)}/gallery`;
       },
     },
+    reviews: {
+      get() {
+        return `${routes.providerTrading.base.get()}/reviews`;
+      },
+      use(id: string) {
+        return `${routes.providerTrading.base.use(id)}/reviews`;
+      },
+    },
   },
   providerDashboard: {
     base: {

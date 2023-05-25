@@ -25,6 +25,7 @@ import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { AgGridReact } from "ag-grid-react";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
+import { useNativeElementsSizeInfo } from "../../../../../../../hooks";
 
 export const useUpdateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
   const {
@@ -44,7 +45,8 @@ export const useUpdateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
    *
    */
   const { id } = useParams<{ id: string }>();
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
   const { updateOperatingTime } = useUpdateOperatingTime();
 
@@ -141,7 +143,7 @@ export const useUpdateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
       }).unwrap();
       setUpdateOperatingTimeLoading(false);
 
-      autoDisimissToast({
+      toast({
         message: UPDATE_OPERATING_TIME_MESSAGE,
         onCloseModal,
       });
@@ -149,7 +151,7 @@ export const useUpdateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
     } catch (error) {
       setUpdateOperatingTimeLoading(false);
 
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong updateing operating time.",
@@ -164,6 +166,7 @@ export const useUpdateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
   }
 
   return {
+    isKeyboardOpen,
     operatingTime,
     operatingTimeLoading,
     day,

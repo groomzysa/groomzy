@@ -68,11 +68,11 @@ export const TradingTimes: FC<ITradingTimesProps> = ({ gridRef }) => {
             </IonRow>
 
             <IonRow>
-              <IonCol class="trading-times-grid-container">
+              <IonCol className="trading-times-grid-container">
                 {tradingTimesLoading ? (
                   <IonSpinner
                     color="primary"
-                    class="trading-times-loading-state"
+                    className="trading-times-loading-state"
                   ></IonSpinner>
                 ) : (
                   !hasTradingTimes && (
@@ -126,7 +126,7 @@ export const TradingTimes: FC<ITradingTimesProps> = ({ gridRef }) => {
                       Before adding trading times, please add provider details.
                     </IonText>
                     <IonText
-                      class="trading-times-no-provider-link"
+                      className="trading-times-no-provider-link"
                       onClick={onToAddDetails}
                     >
                       <strong>Click here to add details</strong>

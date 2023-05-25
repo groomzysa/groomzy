@@ -36,7 +36,7 @@ export const ViewTradingTime: FC = () => {
         {operatingTimeLoading ? (
           <IonSpinner
             color="primary"
-            class="ion-justify-content-center"
+            className="ion-justify-content-center"
           ></IonSpinner>
         ) : (
           <IonList>

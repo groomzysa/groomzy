@@ -22,9 +22,9 @@ export const useRequestPasswordReset = () => {
    * Hooks
    *
    */
-  const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
 
   const { requestPasswordReset } = useRequestPasswordResetMutation();
 
@@ -69,11 +69,11 @@ export const useRequestPasswordReset = () => {
         role: isProvider ? UserRole.Provider : UserRole.Client,
       }).unwrap();
       setRequestPasswordResetLoading(false);
-      autoDisimissToast({ message: response.requestPasswordReset.message });
+      toast({ message: response.requestPasswordReset.message });
       history.push(`/${routes.passwordReset.base.use()}`);
     } catch (error) {
       setRequestPasswordResetLoading(false);
-      autoDisimissToast({
+      toast({
         message: getErrorMessage(error as ErrorResponse) || "",
         buttonDismiss: true,
       });
@@ -84,7 +84,6 @@ export const useRequestPasswordReset = () => {
     email,
     isProvider,
     isKeyboardOpen,
-    topToolBarHeight,
     requestPasswordResetLoading,
     onEmailChange,
     onIsProvider,

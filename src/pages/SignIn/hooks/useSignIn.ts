@@ -26,10 +26,9 @@ export const useSignIn = () => {
    * Hooks
    *
    */
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
 
-  const { isKeyboardOpen, keyboardHeight, topToolBarHeight } =
-    useNativeElementsSizeInfo();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
   const { signIn } = useSignInMutation();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -109,7 +108,7 @@ export const useSignIn = () => {
       }
     } catch (error) {
       setSignInLoading(false);
-      autoDisimissToast({
+      toast({
         message: getErrorMessage(error as ErrorResponse) || "",
         buttonDismiss: true,
       });
@@ -122,8 +121,6 @@ export const useSignIn = () => {
     password,
     isProvider,
     showPassword,
-    keyboardHeight,
-    topToolBarHeight,
     isKeyboardOpen,
     setIsProvider,
     onPasswordChange,

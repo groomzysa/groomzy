@@ -41,7 +41,7 @@ export const Details: FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen class="provider-trading-ion-content">
+      <IonContent fullscreen className="provider-trading-ion-content">
         <IonRefresher slot="fixed" onIonRefresh={() => {}}>
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
@@ -71,10 +71,10 @@ export const Details: FC = () => {
             <IonCol sizeXs="12" sizeSm="8" sizeMd="6">
               <IonRow>
                 <IonCol>
-                  <IonNote class="time-header">Day</IonNote>
+                  <IonNote className="time-header">Day</IonNote>
                 </IonCol>
                 <IonCol>
-                  <IonNote class="time-header">Times</IonNote>
+                  <IonNote className="time-header">Times</IonNote>
                 </IonCol>
               </IonRow>
             </IonCol>

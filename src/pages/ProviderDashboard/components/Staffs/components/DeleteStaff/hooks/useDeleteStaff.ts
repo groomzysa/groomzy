@@ -20,7 +20,7 @@ export const useDeleteStaff = (gridRef: React.RefObject<AgGridReact<any>>) => {
    */
   const { id } = useParams<{ id: string }>();
 
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
 
   const { deleteStaff } = useDeleteStaffMutation();
 
@@ -62,11 +62,11 @@ export const useDeleteStaff = (gridRef: React.RefObject<AgGridReact<any>>) => {
 
       setDeleteStaffLoading(false);
 
-      autoDisimissToast({ message: DELETED_STAFF_MESSAGE, onCloseModal });
+      toast({ message: DELETED_STAFF_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setDeleteStaffLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong deleting staff.",

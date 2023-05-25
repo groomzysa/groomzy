@@ -1,7 +1,7 @@
 import { useAddServiceMutation } from "../../../graphql/mutations/service/addService.enhanced";
 import { getErrorMessage } from "../../../helpers";
 
-export const useCreateService = () => {
+export const useAddService = () => {
   const [createService, { data, isLoading, isError, isSuccess, error }] =
     useAddServiceMutation();
 

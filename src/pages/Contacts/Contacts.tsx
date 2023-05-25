@@ -26,14 +26,13 @@ export const Contacts: FC = () => {
    *
    */
   const {
+    isKeyboardOpen,
     firstName,
     lastName,
     email,
     subject,
     message,
     contactMailLoading,
-    isKeyboardOpen,
-    topToolBarHeight,
     onFirstNameChange,
     onLastNameChange,
     onEmailChange,
@@ -54,129 +53,128 @@ export const Contacts: FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
-        <IonGrid
-          class="contacts-main-content"
-          style={{
-            height: isKeyboardOpen
-              ? `calc(100vh - ${topToolBarHeight}px + 100px)`
-              : `calc(100vh - ${topToolBarHeight}px - 20px)`,
-          }}
+      <IonContent>
+        <form
+          className={
+            isKeyboardOpen ? "contacts-form-keyboard-on" : "contacts-form"
+          }
         >
-          <IonRow>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-              <div className="contacts-names-container">
+          <IonGrid>
+            <IonRow>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+              <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+                <div className="contacts-names-container">
+                  <GInput
+                    label="First name"
+                    type="text"
+                    value={firstName?.value || ""}
+                    onValueChange={onFirstNameChange}
+                    error={firstName?.error}
+                    required
+                  />
+                  <GInput
+                    label="Last name"
+                    type="text"
+                    value={lastName?.value || ""}
+                    onValueChange={onLastNameChange}
+                    error={lastName?.error}
+                    required
+                  />
+                </div>
+              </IonCol>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+              <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
                 <GInput
-                  label="First name"
-                  type="text"
-                  value={firstName?.value || ""}
-                  onValueChange={onFirstNameChange}
-                  error={firstName?.error}
+                  label="Email"
+                  type="email"
+                  value={email?.value || ""}
+                  onValueChange={onEmailChange}
+                  error={email?.error}
                   required
                 />
+              </IonCol>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+              <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
                 <GInput
-                  label="Last name"
+                  label="Subject"
                   type="text"
-                  value={lastName?.value || ""}
-                  onValueChange={onLastNameChange}
-                  error={lastName?.error}
+                  value={subject?.value || ""}
+                  onValueChange={onSubjectChange}
+                  error={subject?.error}
                   required
                 />
-              </div>
-            </IonCol>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-              <GInput
-                label="Email"
-                type="email"
-                value={email?.value || ""}
-                onValueChange={onEmailChange}
-                error={email?.error}
-                required
-              />
-            </IonCol>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-              <GInput
-                label="Subject"
-                type="text"
-                value={subject?.value || ""}
-                onValueChange={onSubjectChange}
-                error={subject?.error}
-                required
-              />
-            </IonCol>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-              <GInput
-                label="Message"
-                type="text"
-                value={message?.value || ""}
-                onValueChange={onMessageChange}
-                error={message?.error}
-                textAreaRows={5}
-                textArea
-                required
-              />
-            </IonCol>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-              <IonButtons class="contacts-buttons">
-                <IonButton
-                  color="primary"
-                  fill="solid"
-                  onClick={onContactMail}
-                  disabled={contactMailLoading}
-                >
-                  {contactMailLoading ? "Sending..." : "Send"}
-                </IonButton>
-              </IonButtons>
-            </IonCol>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-              <IonRow class="ion-justify-content-center">
-                <IonIcon
-                  class="contacts-social-icon contacts-instagram-logo"
-                  icon={logoInstagram}
-                  onClick={() =>
-                    onVisitSocial("https://instagram.com/groomzy_")
-                  }
-                ></IonIcon>
-                <IonIcon
-                  class="contacts-social-icon contacts-tiktok-logo"
-                  icon={logoTiktok}
-                  onClick={() =>
-                    onVisitSocial("https://instagram.com/groomzy_")
-                  }
-                ></IonIcon>
-                <IonIcon
-                  class="contacts-social-icon contacts-facebook-logo"
-                  icon={logoFacebook}
-                  onClick={() =>
-                    onVisitSocial("https://instagram.com/groomzy_")
-                  }
-                ></IonIcon>
-              </IonRow>
-            </IonCol>
-            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          </IonRow>
-        </IonGrid>
+              </IonCol>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+              <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+                <GInput
+                  label="Message"
+                  type="text"
+                  value={message?.value || ""}
+                  onValueChange={onMessageChange}
+                  error={message?.error}
+                  textAreaRows={5}
+                  textArea
+                  required
+                />
+              </IonCol>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+              <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+                <IonButtons className="contacts-buttons">
+                  <IonButton
+                    color="primary"
+                    fill="solid"
+                    onClick={onContactMail}
+                    disabled={contactMailLoading}
+                  >
+                    {contactMailLoading ? "Sending..." : "Send"}
+                  </IonButton>
+                </IonButtons>
+              </IonCol>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+              <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+                <IonRow className="ion-justify-content-center">
+                  <IonIcon
+                    className="contacts-social-icon contacts-instagram-logo"
+                    icon={logoInstagram}
+                    onClick={() =>
+                      onVisitSocial("https://instagram.com/groomzy_")
+                    }
+                  ></IonIcon>
+                  <IonIcon
+                    className="contacts-social-icon contacts-tiktok-logo"
+                    icon={logoTiktok}
+                    onClick={() =>
+                      onVisitSocial("https://instagram.com/groomzy_")
+                    }
+                  ></IonIcon>
+                  <IonIcon
+                    className="contacts-social-icon contacts-facebook-logo"
+                    icon={logoFacebook}
+                    onClick={() =>
+                      onVisitSocial("https://instagram.com/groomzy_")
+                    }
+                  ></IonIcon>
+                </IonRow>
+              </IonCol>
+              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            </IonRow>
+          </IonGrid>
+        </form>
       </IonContent>
     </IonPage>
   );

@@ -34,13 +34,13 @@ export const TradingTimesActions: FC<IServiceActionsProps> = ({ props }) => {
   } = useTradingTimeActions();
 
   return (
-    <IonGrid class="day-field">
-      <IonRow class="day-field">
-        <IonCol class="day-field day">
+    <IonGrid className="day-field">
+      <IonRow className="day-field">
+        <IonCol className="day-field day">
           <span title={data?.day}>{data?.day}</span>
         </IonCol>
         {node.isSelected() && (
-          <IonCol class="icon-container day-field">
+          <IonCol className="icon-container day-field">
             <span
               title="Actions"
               className="ellipse-icon-container"
@@ -52,7 +52,7 @@ export const TradingTimesActions: FC<IServiceActionsProps> = ({ props }) => {
               ></IonIcon>
             </span>
             <IonPopover
-              class="actions"
+              className="actions"
               ref={popover}
               isOpen={popoverOpen}
               onWillDismiss={onClosePopover}
@@ -60,7 +60,7 @@ export const TradingTimesActions: FC<IServiceActionsProps> = ({ props }) => {
               <IonList>
                 <IonItem lines="none">
                   <IonLabel
-                    class="action"
+                    className="action"
                     onClick={() => {
                       onViewService(data?.id);
                     }}
@@ -70,7 +70,7 @@ export const TradingTimesActions: FC<IServiceActionsProps> = ({ props }) => {
                 </IonItem>
                 <IonItem lines="none">
                   <IonLabel
-                    class="action"
+                    className="action"
                     onClick={() => onUpdateService(data?.id)}
                   >
                     Update
@@ -79,7 +79,7 @@ export const TradingTimesActions: FC<IServiceActionsProps> = ({ props }) => {
 
                 <IonItem lines="none">
                   <IonLabel
-                    class="action"
+                    className="action"
                     onClick={() => onDeleteService(data?.id)}
                   >
                     Delete

@@ -1,0 +1,33 @@
+.reviews-comment {
+  margin: 0px;
+  box-shadow: none;
+  border: 1px solid lightgray;
+}
+
+.reply-comment,
+.reviews-comment-input {
+  margin-left: 50px;
+}
+
+.reply-comment {
+  padding: 10px;
+}
+
+.reply-icon {
+  color: var(--ion-color-primary);
+  --ionicon-stroke-width: 64px;
+}
+
+.update-icon {
+  color: var(--ion-color-warning);
+}
+
+.delete-icon {
+  color: var(--ion-color-danger);
+}
+
+.reply-icon,
+.update-icon,
+.delete-icon {
+  --ionicon-stroke-width: 48px;
+}

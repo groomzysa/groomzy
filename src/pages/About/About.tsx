@@ -36,12 +36,14 @@ export const About: FC = () => {
       </IonHeader>
 
       <IonContent fullscreen>
-        <IonGrid class="about-main-content">
+        <IonGrid className="about-main-content">
           <IonRow>
             <IonCol sizeXs="0" sizeSm="2" sizeLg="3"></IonCol>
             <IonCol sizeXs="12" sizeSm="8" sizeLg="6">
               <IonCard>
-                <IonCardHeader class="about-header">Background</IonCardHeader>
+                <IonCardHeader className="about-header">
+                  Background
+                </IonCardHeader>
                 <IonCardContent>
                   <IonText>
                     Groomzy is a concept that was born in times of the 2020
@@ -53,7 +55,7 @@ export const About: FC = () => {
               </IonCard>
 
               <IonCard>
-                <IonCardHeader class="about-header">
+                <IonCardHeader className="about-header">
                   Birth of Groomzy
                 </IonCardHeader>
                 <IonCardContent>
@@ -124,7 +126,7 @@ export const About: FC = () => {
               </IonCard>
 
               <IonCard>
-                <IonCardHeader class="about-header">
+                <IonCardHeader className="about-header">
                   Values and Missions
                 </IonCardHeader>
                 <IonCardContent>

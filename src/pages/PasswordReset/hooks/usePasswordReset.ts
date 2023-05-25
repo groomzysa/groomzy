@@ -21,9 +21,9 @@ export const usePasswordReset = () => {
    * Hooks
    *
    */
-  const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
 
   const { resetPassword } = useResetPassword();
 
@@ -80,13 +80,13 @@ export const usePasswordReset = () => {
         passwordResetOTP: passwordResetOTP?.value!,
       }).unwrap();
       setResetPasswordLoading(false);
-      autoDisimissToast({ message: response.resetPassword.message });
+      toast({ message: response.resetPassword.message });
       setTimeout(() => {
         history.push(`/${routes.signIn.base.use()}`);
       }, 2500);
     } catch (error) {
       setResetPasswordLoading(false);
-      autoDisimissToast({
+      toast({
         message: getErrorMessage(error as ErrorResponse) || "",
         buttonDismiss: true,
       });
@@ -98,7 +98,6 @@ export const usePasswordReset = () => {
     passwordResetOTP,
     showPassword,
     isKeyboardOpen,
-    topToolBarHeight,
     resetPasswordLoading,
     onPasswordChange,
     onShowPassword,

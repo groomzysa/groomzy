@@ -41,8 +41,8 @@ export const Menu: FC<{ user?: User | null }> = ({ user }) => {
     <IonMenu contentId="main">
       <IonContent>
         <IonList id="menu-list">
-          <IonListHeader class="menu-header">
-            <IonAvatar class="menu-avatar">
+          <IonListHeader className="menu-header">
+            <IonAvatar className="menu-avatar">
               <img
                 alt={user?.firstName || "Avatar"}
                 src={
@@ -111,7 +111,7 @@ export const Menu: FC<{ user?: User | null }> = ({ user }) => {
                 routerDirection="none"
                 lines="none"
                 detail={false}
-                class="signout"
+                className="signout"
                 onClick={() => signOutHandler()}
               >
                 <IonIcon slot="start" icon={logOutOutline} />
@@ -124,7 +124,7 @@ export const Menu: FC<{ user?: User | null }> = ({ user }) => {
           routerDirection="none"
           lines="none"
           detail={false}
-          class="copyright-and-version-container"
+          className="copyright-and-version-container"
         >
           <div className="copyright-and-version">
             <IonLabel slot="start">v1.0.0</IonLabel>

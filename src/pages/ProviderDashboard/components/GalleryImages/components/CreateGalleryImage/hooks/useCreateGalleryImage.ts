@@ -17,6 +17,7 @@ import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
+import { useNativeElementsSizeInfo } from "../../../../../../../hooks";
 
 export const useCreateGalleryImage = (gridRef: RefObject<AgGridReact<any>>) => {
   const [name, setName] = useState<IInput<string>>();
@@ -33,7 +34,9 @@ export const useCreateGalleryImage = (gridRef: RefObject<AgGridReact<any>>) => {
    * Hooks
    *
    */
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
+
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
   const { createGallery } = useCreateGalleryImageMutation();
 
@@ -139,11 +142,11 @@ export const useCreateGalleryImage = (gridRef: RefObject<AgGridReact<any>>) => {
 
       setCreateGalleryLoading(false);
 
-      autoDisimissToast({ message: CREATE_GALLERY_MESSAGE, onCloseModal });
+      toast({ message: CREATE_GALLERY_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setCreateGalleryLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong creating gallery image.",
@@ -157,6 +160,7 @@ export const useCreateGalleryImage = (gridRef: RefObject<AgGridReact<any>>) => {
     createGalleryLoading,
     isOpen,
     photo,
+    isKeyboardOpen,
     takePhoto,
     onNameChange,
     onCreateGallery,

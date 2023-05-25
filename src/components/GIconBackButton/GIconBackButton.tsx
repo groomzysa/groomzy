@@ -9,7 +9,7 @@ export const GIconBackButton: FC<IGIconBackButtonProps> = ({ route }) => {
   const history = useHistory();
   return (
     <IonIcon
-      class="g-icon-back-button"
+      className="g-icon-back-button"
       icon={arrowBack}
       onClick={() => {
         history.push(route);

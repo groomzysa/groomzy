@@ -25,7 +25,7 @@ export const ServiceProvider: FC<IServiceProviderProps> = ({ provider }) => {
   const { navigateToProviderTrading } = useServiceProviderHandlers();
 
   return (
-    <IonCard class="card">
+    <IonCard className="card">
       <div className="media-img-container">
         <img
           loading="lazy"

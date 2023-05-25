@@ -3,7 +3,7 @@ import { useIonToast } from "@ionic/react";
 export const useCustomToast = () => {
   const [present, dismiss] = useIonToast();
 
-  const autoDisimissToast = ({
+  const toast = ({
     message,
     position = "middle",
     duration = 2000,
@@ -41,6 +41,6 @@ export const useCustomToast = () => {
   };
 
   return {
-    autoDisimissToast,
+    toast,
   };
 };

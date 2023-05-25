@@ -1,0 +1,20 @@
+mutation deleteComment($commentId: Int!) {
+  deleteComment(commentId: $commentId) {
+    id
+    message
+    children {
+      id
+      message
+    }
+    providerLikes {
+      provider {
+        id
+      }
+    }
+    clientLikes {
+      client {
+        id
+      }
+    }
+  }
+}

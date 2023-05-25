@@ -1,0 +1,20 @@
+mutation updateComment($commentId: Int!, $message: String) {
+  updateComment(commentId: $commentId, message: $message) {
+    id
+    message
+    children {
+      id
+      message
+    }
+    providerLikes {
+      provider {
+        id
+      }
+    }
+    clientLikes {
+      client {
+        id
+      }
+    }
+  }
+}

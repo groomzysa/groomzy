@@ -1,0 +1,81 @@
+query comments(
+  $providerId: Int
+  $limit: Int
+  $cursor: Int
+  $page: Int
+  $paginationType: PaginationType
+) {
+  comments(
+    providerId: $providerId
+    limit: $limit
+    cursor: $cursor
+    page: $page
+    paginationType: $paginationType
+  ) {
+    comments {
+      id
+      message
+      parent {
+        ...CommentFields
+      }
+      children {
+        ...CommentFields
+      }
+      providerLikes {
+        provider {
+          id
+        }
+      }
+      clientLikes {
+        client {
+          id
+        }
+      }
+    }
+    cursor
+    count
+  }
+}
+
+fragment ParentChildCommentFields on Comment {
+  id
+  message
+  parent {
+    id
+  }
+  children {
+    id
+    message
+  }
+  providerLikes {
+    provider {
+      id
+    }
+  }
+  clientLikes {
+    client {
+      id
+    }
+  }
+}
+
+fragment CommentFields on Comment {
+  id
+  message
+  parent {
+    id
+  }
+  children {
+    ...ParentChildCommentFields
+  }
+  providerLikes {
+    provider {
+      id
+    }
+  }
+  clientLikes {
+    client {
+      id
+    }
+  }
+}

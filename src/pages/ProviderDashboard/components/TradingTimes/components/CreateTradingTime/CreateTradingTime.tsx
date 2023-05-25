@@ -34,6 +34,7 @@ export const CreateTradingTime: FC<ICreateTradingTimeProps> = ({ gridRef }) => {
     isOpen,
     createOperatingTimeLoading,
     dayOptions,
+    isKeyboardOpen,
     onDayChange,
     onOpensChange,
     onClosesChange,
@@ -58,7 +59,13 @@ export const CreateTradingTime: FC<ICreateTradingTimeProps> = ({ gridRef }) => {
             onClick={onCloseModal}
           ></IonIcon>
         </IonToolbar>
-        <form>
+        <form
+          className={
+            isKeyboardOpen
+              ? "create-trading-time-form-keyboard-on"
+              : "create-trading-time-form"
+          }
+        >
           <IonGrid>
             <IonRow>
               <IonCol>
@@ -77,26 +84,25 @@ export const CreateTradingTime: FC<ICreateTradingTimeProps> = ({ gridRef }) => {
                 <IonNote>NB! Fill both hours and minutes</IonNote>
               </IonCol>
             </IonRow>
-            <IonRow class="ion-align-items-center">
+            <IonRow className="ion-align-items-center">
               <IonCol>
                 <IonText>Opens:</IonText>
               </IonCol>
-              <IonCol class="create-trading-time-time-container ion-justify-content-end">
+              <IonCol className="create-trading-time-time-container ion-justify-content-end">
                 <TimePicker
                   onChange={(value) => onOpensChange(value)}
                   value={opens?.value || ""}
-                  clockIcon={null}
                   disableClock={true}
                   format="HH:mm"
                   required
                 />
               </IonCol>
             </IonRow>
-            <IonRow class="ion-align-items-center">
+            <IonRow className="ion-align-items-center">
               <IonCol>
                 <IonText>Closes:</IonText>
               </IonCol>
-              <IonCol class="create-trading-time-time-container ion-justify-content-end">
+              <IonCol className="create-trading-time-time-container ion-justify-content-end">
                 <TimePicker
                   onChange={(value) => onClosesChange(value)}
                   value={closes?.value || ""}

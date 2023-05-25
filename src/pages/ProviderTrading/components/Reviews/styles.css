@@ -1,0 +1,24 @@
+.review-new-comment-btn {
+  margin: 0px;
+  box-shadow: none;
+  border: 1px solid lightgray;
+}
+
+.reviews-empty-state-container {
+  height: calc(100vh - 180px);
+}
+
+.reviews-empty-state-container-input {
+  height: calc(100vh - 300px);
+}
+
+.reviews-empty-state {
+  margin: auto;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  text-align: center;
+}

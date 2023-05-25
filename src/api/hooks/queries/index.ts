@@ -8,6 +8,14 @@ export { useFetchServices } from "./service/useFetchServices";
 
 /**
  *
+ * Comment queries
+ *
+ */
+export { useFetchComment } from "./comment/useFetchComment";
+export { useFetchComments } from "./comment/useFetchComments";
+
+/**
+ *
  * Staff queries
  *
  */

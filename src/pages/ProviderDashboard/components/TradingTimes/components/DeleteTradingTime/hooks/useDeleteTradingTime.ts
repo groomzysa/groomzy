@@ -20,7 +20,7 @@ export const useDeleteTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
    *
    */
   const { id } = useParams<{ id: string }>();
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
   const { deleteOperatingTime } = useDeleteOperatingTime();
 
   const history = useHistory();
@@ -62,14 +62,14 @@ export const useDeleteTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
 
       setDeleteOperatingTimeLoading(false);
 
-      autoDisimissToast({
+      toast({
         message: DELETED_OPERATING_TIME_MESSAGE,
         onCloseModal,
       });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setDeleteOperatingTimeLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong deleting Operating time.",

@@ -32,6 +32,7 @@ export const UpdateStaff: FC<IUpdateStaffProps> = ({ gridRef }) => {
     staff,
     staffLoading,
     isOpen,
+    isKeyboardOpen,
     onFirstNameChange,
     onLastNameChange,
     onUpdateStaff,
@@ -58,10 +59,16 @@ export const UpdateStaff: FC<IUpdateStaffProps> = ({ gridRef }) => {
         {staffLoading ? (
           <IonSpinner
             color="primary"
-            class="ion-justify-content-center"
+            className="ion-justify-content-center"
           ></IonSpinner>
         ) : (
-          <form>
+          <form
+            className={
+              isKeyboardOpen
+                ? "update-staff-form-keyboard-on"
+                : "update-staff-form"
+            }
+          >
             <IonGrid>
               <IonRow>
                 <IonCol>

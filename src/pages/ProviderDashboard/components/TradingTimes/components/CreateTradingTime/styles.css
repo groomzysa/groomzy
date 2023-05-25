@@ -5,20 +5,22 @@ ion-modal.create-trading-time-modal {
   --box-shadow: none;
 }
 
-ion-modal.create-trading-time-modal ion-content {
-  --keyboard-offset: 0px !important;
-}
-
 ion-modal.create-trading-time-modal ion-toolbar {
   position: fixed;
 }
 
-ion-modal.create-trading-time-modal ion-grid {
-  position: relative;
+ion-modal.create-trading-time-modal .create-trading-time-form-keyboard-on {
+  position: absolute;
   top: 56px;
   height: calc(100% - 56px);
-  overflow-y: auto;
-  padding: 10px;
+  width: 100%;
+}
+
+ion-modal.create-trading-time-modal .create-trading-time-form {
+  position: absolute;
+  top: 56px;
+  height: calc(100% - 56px);
+  width: 100%;
 }
 
 ion-modal.create-trading-time-modal ion-buttons {

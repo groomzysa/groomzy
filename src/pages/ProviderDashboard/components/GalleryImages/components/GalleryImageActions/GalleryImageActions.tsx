@@ -32,13 +32,13 @@ export const GalleryImageActions: FC<IGalleryImageActionsProps> = ({
     onDeleteGallery,
   } = useGalleryImageActions();
   return (
-    <IonGrid class="name-field">
-      <IonRow class="name-field">
-        <IonCol class="name-field name">
+    <IonGrid className="name-field">
+      <IonRow className="name-field">
+        <IonCol className="name-field name">
           <span title={data?.name}>{data?.name}</span>
         </IonCol>
         {node.isSelected() && (
-          <IonCol class="icon-container name-field">
+          <IonCol className="icon-container name-field">
             <span
               title="Actions"
               className="ellipse-icon-container"
@@ -50,7 +50,7 @@ export const GalleryImageActions: FC<IGalleryImageActionsProps> = ({
               ></IonIcon>
             </span>
             <IonPopover
-              class="actions"
+              className="actions"
               ref={popover}
               isOpen={popoverOpen}
               onWillDismiss={onClosePopover}
@@ -58,7 +58,7 @@ export const GalleryImageActions: FC<IGalleryImageActionsProps> = ({
               <IonList>
                 <IonItem lines="none">
                   <IonLabel
-                    class="action"
+                    className="action"
                     onClick={() => onDeleteGallery(data?.id)}
                   >
                     Delete

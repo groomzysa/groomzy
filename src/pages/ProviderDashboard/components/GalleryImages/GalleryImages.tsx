@@ -75,11 +75,11 @@ export const GalleryImages: FC<IGalleryImagesProps> = ({ gridRef }) => {
             </IonRow>
 
             <IonRow>
-              <IonCol class="gallery-images-grid-container">
+              <IonCol className="gallery-images-grid-container">
                 {galleryImagesLoading ? (
                   <IonSpinner
                     color="primary"
-                    class="gallery-images-loading-state"
+                    className="gallery-images-loading-state"
                   ></IonSpinner>
                 ) : (
                   !hasGalleryImages && (
@@ -133,7 +133,7 @@ export const GalleryImages: FC<IGalleryImagesProps> = ({ gridRef }) => {
                       Before adding gallery image, please add provider details.
                     </IonText>
                     <IonText
-                      class="gallery-images-no-provider-link"
+                      className="gallery-images-no-provider-link"
                       onClick={onToAddDetails}
                     >
                       <strong>Click here to add details</strong>

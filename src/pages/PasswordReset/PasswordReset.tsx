@@ -24,7 +24,6 @@ export const PasswordReset: FC = () => {
     passwordResetOTP,
     showPassword,
     isKeyboardOpen,
-    topToolBarHeight,
     resetPasswordLoading,
     onPasswordChange,
     onPasswordResetOTPChange,
@@ -43,16 +42,15 @@ export const PasswordReset: FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
-        <form>
-          <IonGrid
-            class="reset-password-main-content"
-            style={{
-              height: isKeyboardOpen
-                ? `calc(100vh - ${topToolBarHeight}px)`
-                : `calc(100vh - ${topToolBarHeight}px - 20px)`,
-            }}
-          >
+      <IonContent>
+        <form
+          className={
+            isKeyboardOpen
+              ? "reset-password-form-keyboard-on"
+              : "reset-password-form"
+          }
+        >
+          <IonGrid>
             <IonRow>
               <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
               <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">

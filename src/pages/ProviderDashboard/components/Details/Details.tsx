@@ -45,7 +45,7 @@ export const Details: FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
+      <IonContent>
         {displayedContent === "info" && <TradingInfo />}
         {displayedContent === "address" && <TradingAddress />}
       </IonContent>

@@ -37,6 +37,7 @@ export const UpdateTradingTime: FC<IUpdateTradingTimeProps> = ({ gridRef }) => {
     isOpen,
     updateOperatingTimeLoading,
     dayOptions,
+    isKeyboardOpen,
     onDayChange,
     onOpensChange,
     onClosesChange,
@@ -63,10 +64,16 @@ export const UpdateTradingTime: FC<IUpdateTradingTimeProps> = ({ gridRef }) => {
         {operatingTimeLoading ? (
           <IonSpinner
             color="primary"
-            class="ion-justify-content-center"
+            className="ion-justify-content-center"
           ></IonSpinner>
         ) : (
-          <form>
+          <form
+            className={
+              isKeyboardOpen
+                ? "update-trading-time-form-keyboard-on"
+                : "update-trading-time-form"
+            }
+          >
             <IonGrid>
               <IonRow>
                 <IonCol>
@@ -85,11 +92,11 @@ export const UpdateTradingTime: FC<IUpdateTradingTimeProps> = ({ gridRef }) => {
                   <IonNote>NB! Fill both hours and minutes</IonNote>
                 </IonCol>
               </IonRow>
-              <IonRow class="ion-align-items-center">
+              <IonRow className="ion-align-items-center">
                 <IonCol>
                   <IonText>Opens:</IonText>
                 </IonCol>
-                <IonCol class="update-trading-time-time-container ion-justify-content-end">
+                <IonCol className="update-trading-time-time-container ion-justify-content-end">
                   <TimePicker
                     onChange={(value) => onOpensChange(value)}
                     value={opens?.value || ""}
@@ -106,11 +113,11 @@ export const UpdateTradingTime: FC<IUpdateTradingTimeProps> = ({ gridRef }) => {
                   />
                 </IonCol>
               </IonRow>
-              <IonRow class="ion-align-items-center">
+              <IonRow className="ion-align-items-center">
                 <IonCol>
                   <IonText>Closes:</IonText>
                 </IonCol>
-                <IonCol class="update-trading-time-time-container ion-justify-content-end">
+                <IonCol className="update-trading-time-time-container ion-justify-content-end">
                   <TimePicker
                     onChange={(value) => onClosesChange(value)}
                     value={closes?.value || ""}

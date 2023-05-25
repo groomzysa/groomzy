@@ -22,7 +22,7 @@ export const useDeleteGalleryImage = (
    */
   const { id } = useParams<{ id: string }>();
 
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
 
   const { deleteGallery } = useDeleteGalleryImageMutation();
 
@@ -64,11 +64,11 @@ export const useDeleteGalleryImage = (
 
       setDeleteGalleryLoading(false);
 
-      autoDisimissToast({ message: DELETED_GALLERY_MESSAGE, onCloseModal });
+      toast({ message: DELETED_GALLERY_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setDeleteGalleryLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong deleting gallery image.",

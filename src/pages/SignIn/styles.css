@@ -1,9 +1,15 @@
-.sign-in-main-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.sign-in-form-keyboard-on {
   margin-top: 10px;
-  margin-bottom: 10px;
+  height: 100%;
+}
+
+.sign-in-form,
+.sign-in-form-keyboard-on {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 
 .sign-in-space-between {

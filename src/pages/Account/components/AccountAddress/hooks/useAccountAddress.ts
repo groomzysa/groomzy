@@ -32,9 +32,9 @@ export const useAccountAddress = (user: User) => {
    * Hooks
    *
    */
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
 
-  const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
   const { fetchUser } = useFetchUser();
 
@@ -156,10 +156,10 @@ export const useAccountAddress = (user: User) => {
       }).unwrap();
 
       addAccountAddressLoading = false;
-      autoDisimissToast({ message: ADD_PROVIDER_TRADING_ADDRESS_MESSAGE });
+      toast({ message: ADD_PROVIDER_TRADING_ADDRESS_MESSAGE });
     } catch (error) {
       addAccountAddressLoading = false;
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong adding address",
@@ -184,11 +184,11 @@ export const useAccountAddress = (user: User) => {
 
       updateAccountAddressLoading = false;
       addAccountAddressLoading = false;
-      autoDisimissToast({ message: UPDATE_PROVIDER_TRADING_ADDRESS_MESSAGE });
+      toast({ message: UPDATE_PROVIDER_TRADING_ADDRESS_MESSAGE });
     } catch (error) {
       updateAccountAddressLoading = false;
       addAccountAddressLoading = false;
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong updating address",
@@ -214,7 +214,6 @@ export const useAccountAddress = (user: User) => {
     areaCode,
     addAccountAddressLoading,
     updateAccountAddressLoading,
-    topToolBarHeight,
     isKeyboardOpen,
     onStreetNumberChanged,
     onStreetNameChanged,

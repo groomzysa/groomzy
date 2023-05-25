@@ -31,11 +31,10 @@ export const useTradingInfo = () => {
    * Hooks
    *
    */
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
 
   const { fetchProvider, provider } = useFetchProvider();
-  const { isKeyboardOpen, topToolBarHeight, bottomToolBarHeight } =
-    useNativeElementsSizeInfo();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
   const { addTradingInfo } = useAddTradingInfo();
 
@@ -137,10 +136,10 @@ export const useTradingInfo = () => {
       }).unwrap();
       setAddTradingInfoLoading(false);
 
-      autoDisimissToast({ message: ADD_PROVIDER_TRADING_INFO_MESSAGE });
+      toast({ message: ADD_PROVIDER_TRADING_INFO_MESSAGE });
     } catch (error) {
       setAddTradingInfoLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong creating provider",
@@ -161,11 +160,11 @@ export const useTradingInfo = () => {
         logo,
       }).unwrap();
       setUpdateTradingInfoLoading(false);
-      autoDisimissToast({ message: UPDATE_PROVIDER_TRADING_INFO_MESSAGE });
+      toast({ message: UPDATE_PROVIDER_TRADING_INFO_MESSAGE });
     } catch (error) {
       setUpdateTradingInfoLoading(false);
 
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong creating provider",
@@ -195,8 +194,6 @@ export const useTradingInfo = () => {
     addTradingInfoLoading,
     updateTradingInfoLoading,
     isKeyboardOpen,
-    topToolBarHeight,
-    bottomToolBarHeight,
     onTradingNameChange,
     onPhoneNumberChange,
     onAddTradingInfo,

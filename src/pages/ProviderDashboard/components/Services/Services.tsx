@@ -74,11 +74,11 @@ export const Services: FC<IServicesProps> = ({ gridRef }) => {
             </IonRow>
 
             <IonRow>
-              <IonCol class="services-grid-container">
+              <IonCol className="services-grid-container">
                 {servicesLoading ? (
                   <IonSpinner
                     color="primary"
-                    class="services-loading-state"
+                    className="services-loading-state"
                   ></IonSpinner>
                 ) : (
                   !hasServices && (
@@ -132,7 +132,7 @@ export const Services: FC<IServicesProps> = ({ gridRef }) => {
                       Before adding services, please add provider details.
                     </IonText>
                     <IonText
-                      class="service-no-provider-link"
+                      className="service-no-provider-link"
                       onClick={onToAddDetails}
                     >
                       <strong>Click here to add details</strong>

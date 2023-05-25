@@ -23,14 +23,13 @@ export const RequestPasswordReset: FC = () => {
     email,
     isProvider,
     isKeyboardOpen,
-    topToolBarHeight,
     requestPasswordResetLoading,
     onEmailChange,
     onIsProvider,
     onRequestPasswordReset,
     onCanRequestPasswordReset,
   } = useRequestPasswordReset();
-  console.log(requestPasswordResetLoading);
+
   return (
     <IonPage>
       <IonHeader>
@@ -42,16 +41,15 @@ export const RequestPasswordReset: FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
-        <form>
-          <IonGrid
-            class="request-reset-password-main-content"
-            style={{
-              height: isKeyboardOpen
-                ? `calc(100vh - ${topToolBarHeight}px)`
-                : `calc(100vh - ${topToolBarHeight}px - 20px)`,
-            }}
-          >
+      <IonContent>
+        <form
+          className={
+            isKeyboardOpen
+              ? "request-reset-password-form-keyboard-on"
+              : "request-reset-password-form"
+          }
+        >
+          <IonGrid>
             <IonRow>
               <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
               <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">

@@ -74,11 +74,11 @@ export const Staffs: FC<IStaffsProps> = ({ gridRef }) => {
             </IonRow>
 
             <IonRow>
-              <IonCol class="staffs-grid-container">
+              <IonCol className="staffs-grid-container">
                 {staffsLoading ? (
                   <IonSpinner
                     color="primary"
-                    class="staffs-loading-state"
+                    className="staffs-loading-state"
                   ></IonSpinner>
                 ) : (
                   !hasStaffs && (
@@ -130,7 +130,7 @@ export const Staffs: FC<IStaffsProps> = ({ gridRef }) => {
                       Before adding staffs, please add provider details.
                     </IonText>
                     <IonText
-                      class="service-no-provider-link"
+                      className="service-no-provider-link"
                       onClick={onToAddDetails}
                     >
                       <strong>Click here to add details</strong>

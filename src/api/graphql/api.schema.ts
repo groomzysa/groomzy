@@ -65,6 +65,33 @@ export type Client = {
   user?: Maybe<User>;
 };
 
+export type ClientLike = {
+  __typename?: 'ClientLike';
+  client?: Maybe<Client>;
+  comment?: Maybe<Comment>;
+};
+
+export type Comment = {
+  __typename?: 'Comment';
+  children?: Maybe<Array<Comment>>;
+  client?: Maybe<Client>;
+  clientLikes?: Maybe<Array<ClientLike>>;
+  createdAt?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  message?: Maybe<Scalars['String']>;
+  parent?: Maybe<Comment>;
+  provider?: Maybe<Provider>;
+  providerLikes?: Maybe<Array<ProviderLike>>;
+  updatedAt?: Maybe<Scalars['String']>;
+};
+
+export type CommentsQueryResults = {
+  __typename?: 'CommentsQueryResults';
+  comments: Array<Comment>;
+  count?: Maybe<Scalars['Int']>;
+  cursor?: Maybe<Scalars['Int']>;
+};
+
 export enum DayType {
   Fri = 'FRI',
   Mon = 'MON',
@@ -105,6 +132,7 @@ export type Message = {
 export type Mutation = {
   __typename?: 'Mutation';
   addAccountAddress: Address;
+  addComment: Comment;
   addGallery: Gallery;
   addOperatingTime: OperatingTime;
   addService: Service;
@@ -114,6 +142,7 @@ export type Mutation = {
   addTradingInfo: Provider;
   addUser: User;
   contactMail: Message;
+  deleteComment: Comment;
   deleteGallery: Gallery;
   deleteOperatingTime: OperatingTime;
   deleteService: Service;
@@ -124,6 +153,7 @@ export type Mutation = {
   signIn: UserToken;
   updateAccount: User;
   updateAccountAddress: Address;
+  updateComment: Comment;
   updateGallery: Gallery;
   updateOperatingTime: OperatingTime;
   updateService: Service;
@@ -141,6 +171,14 @@ export type MutationAddAccountAddressArgs = {
   streetName: Scalars['String'];
   streetNumber: Scalars['String'];
   town: Scalars['String'];
+};
+
+
+export type MutationAddCommentArgs = {
+  clientId?: InputMaybe<Scalars['Int']>;
+  message: Scalars['String'];
+  parentId?: InputMaybe<Scalars['Int']>;
+  providerId?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -216,6 +254,11 @@ export type MutationContactMailArgs = {
 };
 
 
+export type MutationDeleteCommentArgs = {
+  commentId: Scalars['Int'];
+};
+
+
 export type MutationDeleteGalleryArgs = {
   galleryId: Scalars['Int'];
 };
@@ -277,6 +320,12 @@ export type MutationUpdateAccountAddressArgs = {
   streetName?: InputMaybe<Scalars['String']>;
   streetNumber?: InputMaybe<Scalars['String']>;
   town?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateCommentArgs = {
+  commentId: Scalars['Int'];
+  message?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -380,8 +429,16 @@ export type Provider = {
   user?: Maybe<User>;
 };
 
+export type ProviderLike = {
+  __typename?: 'ProviderLike';
+  comment?: Maybe<Comment>;
+  provider?: Maybe<Provider>;
+};
+
 export type Query = {
   __typename?: 'Query';
+  comment: Comment;
+  comments?: Maybe<CommentsQueryResults>;
   galleries?: Maybe<GalleriesQueryResults>;
   gallery: Gallery;
   operatingTime: OperatingTime;
@@ -394,6 +451,20 @@ export type Query = {
   staff: Staff;
   staffs?: Maybe<StaffsQueryResults>;
   user?: Maybe<User>;
+};
+
+
+export type QueryCommentArgs = {
+  commentId: Scalars['Int'];
+};
+
+
+export type QueryCommentsArgs = {
+  cursor?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  paginationType?: InputMaybe<PaginationType>;
+  providerId?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -549,6 +620,31 @@ export type UserToken = {
   token: Scalars['String'];
   user: User;
 };
+
+export type AddCommentMutationVariables = Exact<{
+  message: Scalars['String'];
+  parentId?: InputMaybe<Scalars['Int']>;
+  clientId?: InputMaybe<Scalars['Int']>;
+  providerId?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type AddCommentMutation = { __typename?: 'Mutation', addComment: { __typename?: 'Comment', id: number, message?: string | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null } };
+
+export type DeleteCommentMutationVariables = Exact<{
+  commentId: Scalars['Int'];
+}>;
+
+
+export type DeleteCommentMutation = { __typename?: 'Mutation', deleteComment: { __typename?: 'Comment', id: number, message?: string | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null } };
+
+export type UpdateCommentMutationVariables = Exact<{
+  commentId: Scalars['Int'];
+  message?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type UpdateCommentMutation = { __typename?: 'Mutation', updateComment: { __typename?: 'Comment', id: number, message?: string | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null } };
 
 export type AddGalleryMutationVariables = Exact<{
   name: Scalars['String'];
@@ -809,6 +905,28 @@ export type UpdateAccountAddressMutationVariables = Exact<{
 
 
 export type UpdateAccountAddressMutation = { __typename?: 'Mutation', updateAccountAddress: { __typename?: 'Address', id: number, streetNumber?: string | null, streetName?: string | null, town?: string | null, city?: string | null, province?: string | null, areaCode?: string | null } };
+
+export type CommentQueryVariables = Exact<{
+  commentId: Scalars['Int'];
+}>;
+
+
+export type CommentQuery = { __typename?: 'Query', comment: { __typename?: 'Comment', id: number, message?: string | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null } };
+
+export type CommentsQueryVariables = Exact<{
+  providerId?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  cursor?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  paginationType?: InputMaybe<PaginationType>;
+}>;
+
+
+export type CommentsQuery = { __typename?: 'Query', comments?: { __typename?: 'CommentsQueryResults', cursor?: number | null, count?: number | null, comments: Array<{ __typename?: 'Comment', id: number, message?: string | null, parent?: { __typename?: 'Comment', id: number, message?: string | null, parent?: { __typename?: 'Comment', id: number } | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null, parent?: { __typename?: 'Comment', id: number } | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null } | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null, parent?: { __typename?: 'Comment', id: number } | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null, parent?: { __typename?: 'Comment', id: number } | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null }> } | null };
+
+export type ParentChildCommentFieldsFragment = { __typename?: 'Comment', id: number, message?: string | null, parent?: { __typename?: 'Comment', id: number } | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null };
+
+export type CommentFieldsFragment = { __typename?: 'Comment', id: number, message?: string | null, parent?: { __typename?: 'Comment', id: number } | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null, parent?: { __typename?: 'Comment', id: number } | null, children?: Array<{ __typename?: 'Comment', id: number, message?: string | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null }> | null, providerLikes?: Array<{ __typename?: 'ProviderLike', provider?: { __typename?: 'Provider', id: number } | null }> | null, clientLikes?: Array<{ __typename?: 'ClientLike', client?: { __typename?: 'Client', id: number } | null }> | null };
 
 export type GalleriesQueryVariables = Exact<{
   providerId?: InputMaybe<Scalars['Int']>;

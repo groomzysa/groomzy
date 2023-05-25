@@ -26,9 +26,18 @@ export { useUpdateTradingAddress } from "./provider/useUpdateTradingAddress";
  * Service mutations
  *
  */
-export { useCreateService as useAddService } from "./service/useAddService";
+export { useAddService } from "./service/useAddService";
 export { useUpdateService } from "./service/useUpdateService";
 export { useDeleteService } from "./service/useDeleteService";
+
+/**
+ *
+ * Comment mutations
+ *
+ */
+export { useAddComment } from "./comment/useAddComment";
+export { useUpdateComment } from "./comment/useUpdateComment";
+export { useDeleteComment } from "./comment/useDeleteComment";
 
 /**
  *

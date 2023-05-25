@@ -5,9 +5,9 @@ import { useContactMail as useContactMailMutation } from "../../../api/hooks/mut
 import { CONTACT_MAIL_SENT_MESSAGE } from "../../../utils/messages";
 import { IInput } from "../../../utils/types";
 import { useCustomToast } from "../../../hooks/useCustomToast";
-import { useNativeElementsSizeInfo } from "../../../hooks";
 import { getErrorMessage } from "../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
+import { useNativeElementsSizeInfo } from "../../../hooks";
 
 export const useContactMail = () => {
   const [firstName, setFirstName] = useState<IInput<string>>();
@@ -15,16 +15,16 @@ export const useContactMail = () => {
   const [email, setEmail] = useState<IInput<string>>();
   const [subject, setSubject] = useState<IInput<string>>();
   const [message, setMessage] = useState<IInput<string>>();
-  let contactMailLoading = false;
+  const [contactMailLoading, setContactMailLoading] = useState(false);
 
   /**
    *
    * Hooks
    *
    */
-  const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
+  const { toast } = useCustomToast();
 
-  const { autoDisimissToast } = useCustomToast();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
   const { contactMail } = useContactMailMutation();
 
@@ -104,7 +104,7 @@ export const useContactMail = () => {
 
   const onContactMail = async () => {
     if (!onCanContactMail()) return;
-    contactMailLoading = true;
+    setContactMailLoading(true);
     try {
       await contactMail({
         email: email!.value,
@@ -114,12 +114,12 @@ export const useContactMail = () => {
         subject: subject!.value,
       }).unwrap();
 
-      contactMailLoading = false;
+      setContactMailLoading(false);
 
-      autoDisimissToast({ message: CONTACT_MAIL_SENT_MESSAGE });
+      toast({ message: CONTACT_MAIL_SENT_MESSAGE });
     } catch (error) {
-      contactMailLoading = false;
-      autoDisimissToast({
+      setContactMailLoading(false);
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong sending email.",
@@ -129,14 +129,13 @@ export const useContactMail = () => {
   };
 
   return {
+    isKeyboardOpen,
     firstName,
     lastName,
     email,
     subject,
     message,
     contactMailLoading,
-    isKeyboardOpen,
-    topToolBarHeight,
     onFirstNameChange,
     onLastNameChange,
     onEmailChange,

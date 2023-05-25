@@ -23,7 +23,6 @@ export const AccountInfo: FC<IAccountInfoProps> = ({ user }) => {
     photo,
     updateAccountLoading,
     isKeyboardOpen,
-    topToolBarHeight,
     onUpdateAccountInfo,
     takePhoto,
     onEmailChange,
@@ -36,100 +35,99 @@ export const AccountInfo: FC<IAccountInfoProps> = ({ user }) => {
       <IonRefresher slot="fixed" onIonRefresh={onRefetchAccountInfo}>
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
-      <IonGrid
-        class="account-info-main-content"
-        style={{
-          height: isKeyboardOpen
-            ? `calc(100vh - ${topToolBarHeight}px)`
-            : `calc(100vh - ${topToolBarHeight}px - 20px)`,
-        }}
+      <form
+        className={
+          isKeyboardOpen ? "account-info-form-keyboard-on" : "account-info-form"
+        }
       >
-        <IonRow>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-            <GInput
-              label="First name"
-              type="text"
-              labelPosition={user?.firstName ? "stacked" : "floating"}
-              value={firstName?.value || ""}
-              placeholder={user?.firstName || ""}
-              onValueChange={onFirstNameChange}
-            />
-          </IonCol>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-            <GInput
-              label="Last name"
-              type="text"
-              labelPosition={user?.lastName ? "stacked" : "floating"}
-              value={lastName?.value || ""}
-              placeholder={user?.lastName || ""}
-              onValueChange={onLastNameChange}
-            />
-          </IonCol>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-            <GInput
-              label="Email"
-              type="text"
-              labelPosition={user?.email ? "stacked" : "floating"}
-              value={email?.value || ""}
-              placeholder={user?.email || ""}
-              onValueChange={onEmailChange}
-              error={email?.error}
-            />
-          </IonCol>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-            <IonGrid>
-              <IonRow>
-                <IonCol>
-                  <div
-                    className="account-info-take-photo-button"
-                    onClick={takePhoto}
-                  >
-                    <IonIcon icon={cameraOutline}></IonIcon>
-                    <span>Upload your profile image</span>
-                  </div>
-                </IonCol>
-              </IonRow>
-              {photo && (
+        <IonGrid>
+          <IonRow>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+              <GInput
+                label="First name"
+                type="text"
+                labelPosition={user?.firstName ? "stacked" : "floating"}
+                value={firstName?.value || ""}
+                placeholder={user?.firstName || ""}
+                onValueChange={onFirstNameChange}
+              />
+            </IonCol>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+              <GInput
+                label="Last name"
+                type="text"
+                labelPosition={user?.lastName ? "stacked" : "floating"}
+                value={lastName?.value || ""}
+                placeholder={user?.lastName || ""}
+                onValueChange={onLastNameChange}
+              />
+            </IonCol>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+              <GInput
+                label="Email"
+                type="text"
+                labelPosition={user?.email ? "stacked" : "floating"}
+                value={email?.value || ""}
+                placeholder={user?.email || ""}
+                onValueChange={onEmailChange}
+                error={email?.error}
+              />
+            </IonCol>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+              <IonGrid>
                 <IonRow>
-                  <IonCol size="6">
-                    <IonImg
-                      class="account-info-photo-preview"
-                      src={photo.webviewPath}
-                    />
+                  <IonCol>
+                    <div
+                      className="account-info-take-photo-button"
+                      onClick={takePhoto}
+                    >
+                      <IonIcon icon={cameraOutline}></IonIcon>
+                      <span>Upload your profile image</span>
+                    </div>
                   </IonCol>
                 </IonRow>
-              )}
-            </IonGrid>
-          </IonCol>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-        </IonRow>
+                {photo && (
+                  <IonRow>
+                    <IonCol size="6">
+                      <IonImg
+                        className="account-info-photo-preview"
+                        src={photo.webviewPath}
+                      />
+                    </IonCol>
+                  </IonRow>
+                )}
+              </IonGrid>
+            </IonCol>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+          </IonRow>
 
-        <IonRow>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-          <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-            <IonButton
-              onClick={onUpdateAccountInfo}
-              disabled={updateAccountLoading}
-            >
-              {updateAccountLoading ? "Updating..." : "Update"}
-            </IonButton>
-          </IonCol>
-          <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-        </IonRow>
-      </IonGrid>
+          <IonRow>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+            <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
+              <IonButton
+                onClick={onUpdateAccountInfo}
+                disabled={updateAccountLoading}
+              >
+                {updateAccountLoading ? "Updating..." : "Update"}
+              </IonButton>
+            </IonCol>
+            <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
+          </IonRow>
+        </IonGrid>
+      </form>
     </>
   );
 };

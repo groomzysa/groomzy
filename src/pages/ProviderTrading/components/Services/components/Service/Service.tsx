@@ -6,14 +6,14 @@ import "./styles.css";
 export const Service: FC<IServiceProps> = ({ service }) => {
   const { name, price, description, duration, durationUnit } = service;
   return (
-    <IonCard class="provider-trading-service-container">
-      <IonCardContent class="provider-trading-service-content">
+    <IonCard className="provider-trading-service-container">
+      <IonCardContent className="provider-trading-service-content">
         <IonGrid>
           <IonRow>
             <IonCol>
               <span className="provider-trading-service-name">{name}</span>
             </IonCol>
-            <IonCol class="provider-trading-service-price-container">
+            <IonCol className="provider-trading-service-price-container">
               <span>{`(R${price?.toFixed(2)})`}</span>
             </IonCol>
           </IonRow>

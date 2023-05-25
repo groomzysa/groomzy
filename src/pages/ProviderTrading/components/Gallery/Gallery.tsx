@@ -73,7 +73,7 @@ export const Gallery: FC = () => {
               return (
                 <IonCol key={gallery.id} sizeXs="12" sizeSm="6" sizeMd="3">
                   <IonImg
-                    class="provider-trading-gallery-image"
+                    className="provider-trading-gallery-image"
                     src={gallery.galleryImageUrl!}
                     alt={gallery.name!}
                   ></IonImg>

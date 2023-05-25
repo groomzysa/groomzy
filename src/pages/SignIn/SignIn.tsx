@@ -35,7 +35,6 @@ export const SignIn: FC = () => {
     showPassword,
     signInLoading,
     isKeyboardOpen,
-    topToolBarHeight,
     onEmailChange,
     onForgotPassword,
     onIsProvider,
@@ -57,16 +56,13 @@ export const SignIn: FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
-        <form>
-          <IonGrid
-            class="sign-in-main-content"
-            style={{
-              height: isKeyboardOpen
-                ? `calc(100vh - ${topToolBarHeight}px)`
-                : `calc(100vh - ${topToolBarHeight}px - 20px)`,
-            }}
-          >
+      <IonContent>
+        <form
+          className={
+            isKeyboardOpen ? "sign-in-form-keyboard-on" : "sign-in-form"
+          }
+        >
+          <IonGrid>
             <IonRow>
               <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
               <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
@@ -116,7 +112,7 @@ export const SignIn: FC = () => {
             <IonRow>
               <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
               <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-                <IonRow class="ion-align-items-baseline sign-in-space-between">
+                <IonRow className="ion-align-items-baseline sign-in-space-between">
                   <IonButton
                     onClick={onSignIn}
                     disabled={signInLoading || !onCanSignIn()}
@@ -126,7 +122,7 @@ export const SignIn: FC = () => {
 
                   <IonText
                     onClick={onForgotPassword}
-                    class="sign-in-forgot-password"
+                    className="sign-in-forgot-password"
                   >
                     Forgot password?
                   </IonText>
@@ -138,7 +134,7 @@ export const SignIn: FC = () => {
             <IonRow>
               <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
               <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-                <IonText onClick={onNewMember} class="sign-in-new-member">
+                <IonText onClick={onNewMember} className="sign-in-new-member">
                   Not yet signed up?
                 </IonText>
               </IonCol>

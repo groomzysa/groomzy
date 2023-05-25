@@ -31,6 +31,7 @@ export const CreateGalleryImage: FC<ICreateGalleryImageProps> = ({
     name,
     photo,
     createGalleryLoading,
+    isKeyboardOpen,
     takePhoto,
     onCloseModal,
     onNameChange,
@@ -53,7 +54,13 @@ export const CreateGalleryImage: FC<ICreateGalleryImageProps> = ({
             onClick={onCloseModal}
           ></IonIcon>
         </IonToolbar>
-        <form>
+        <form
+          className={
+            isKeyboardOpen
+              ? "create-gallery-form-keyboard-on"
+              : "create-gallery-form"
+          }
+        >
           <IonGrid>
             <IonRow>
               <IonCol>
@@ -83,7 +90,7 @@ export const CreateGalleryImage: FC<ICreateGalleryImageProps> = ({
               <IonRow>
                 <IonCol size="6">
                   <IonImg
-                    class="create-gallery-photo-preview"
+                    className="create-gallery-photo-preview"
                     src={photo.webviewPath}
                   />
                 </IonCol>

@@ -25,6 +25,7 @@ import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { AgGridReact } from "ag-grid-react";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
+import { useNativeElementsSizeInfo } from "../../../../../../../hooks";
 
 export const useCreateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
   const {
@@ -42,7 +43,9 @@ export const useCreateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
    * Custom hooks
    *
    */
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
+
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
   const { addOperatingTime } = useAddOperatingTime();
 
@@ -136,11 +139,11 @@ export const useCreateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
 
       setAddOperatingTimeLoading(false);
 
-      autoDisimissToast({ message: ADD_OPERATING_TIME_MESSAGE, onCloseModal });
+      toast({ message: ADD_OPERATING_TIME_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setAddOperatingTimeLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong adding operating time.",
@@ -161,6 +164,7 @@ export const useCreateTradingTime = (gridRef: RefObject<AgGridReact<any>>) => {
     isOpen,
     dayOptions,
     createOperatingTimeLoading: addOperatingTimeLoading,
+    isKeyboardOpen,
     onDayChange,
     onOpensChange,
     onClosesChange,

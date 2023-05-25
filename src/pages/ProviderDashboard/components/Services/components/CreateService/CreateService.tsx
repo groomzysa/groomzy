@@ -37,6 +37,7 @@ export const CreateService: FC<ICreateServiceProps> = ({ gridRef }) => {
     createServiceLoading,
     isOpen,
     categories,
+    isKeyboardOpen,
     onNameChange,
     onDescriptionChange,
     onPriceChange,
@@ -64,7 +65,13 @@ export const CreateService: FC<ICreateServiceProps> = ({ gridRef }) => {
             onClick={onCloseModal}
           ></IonIcon>
         </IonToolbar>
-        <form>
+        <form
+          className={
+            isKeyboardOpen
+              ? "create-service-form-keyboard-on"
+              : "create-service-form"
+          }
+        >
           <IonGrid>
             <IonRow>
               <IonCol>
@@ -105,7 +112,7 @@ export const CreateService: FC<ICreateServiceProps> = ({ gridRef }) => {
               </IonCol>
             </IonRow>
             <IonRow>
-              <IonCol class="create-service-duration-container">
+              <IonCol className="create-service-duration-container">
                 <GInput
                   label="Duration"
                   labelPosition="floating"
@@ -116,7 +123,7 @@ export const CreateService: FC<ICreateServiceProps> = ({ gridRef }) => {
                   required
                 />
                 <IonRadioGroup
-                  class="create-service-duration-units-container"
+                  className="create-service-duration-units-container"
                   value={durationUnit}
                   onIonChange={(e) => onDurationUnitChange(e.target.value)}
                 >

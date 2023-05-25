@@ -6,7 +6,7 @@ import "./styles.css";
 export const ViewStaffItem: FC<IViewStaffItemProps> = ({ label, text }) => {
   return (
     <IonItem lines="none">
-      <IonLabel slot="start" class="label-title">
+      <IonLabel slot="start" className="label-title">
         {label}:
       </IonLabel>
 

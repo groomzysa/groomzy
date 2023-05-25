@@ -29,6 +29,7 @@ export const CreateStaff: FC<ICreateStaffProps> = ({ gridRef }) => {
     lastName,
     createStaffLoading,
     isOpen,
+    isKeyboardOpen,
     onFirstNameChange,
     onLastNameChange,
     onCreateStaff,
@@ -52,7 +53,13 @@ export const CreateStaff: FC<ICreateStaffProps> = ({ gridRef }) => {
             onClick={onCloseModal}
           ></IonIcon>
         </IonToolbar>
-        <form>
+        <form
+          className={
+            isKeyboardOpen
+              ? "create-staff-form-keyboard-on"
+              : "create-staff-form"
+          }
+        >
           <IonGrid>
             <IonRow>
               <IonCol>

@@ -24,6 +24,7 @@ import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { formatCategoryLabel } from "../../../utils";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
+import { useNativeElementsSizeInfo } from "../../../../../../../hooks";
 
 export const useCreateService = (gridRef: RefObject<AgGridReact<any>>) => {
   const [category, setCategory] = useState<IInput<CategoryType>>();
@@ -44,7 +45,9 @@ export const useCreateService = (gridRef: RefObject<AgGridReact<any>>) => {
    * Hooks
    *
    */
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
+
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
   const { createService } = useCreateServiceMutation();
 
@@ -167,11 +170,11 @@ export const useCreateService = (gridRef: RefObject<AgGridReact<any>>) => {
 
       setCreateServiceLoading(false);
 
-      autoDisimissToast({ message: CREATE_SERVICE_MESSAGE, onCloseModal });
+      toast({ message: CREATE_SERVICE_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setCreateServiceLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong creating service.",
@@ -190,6 +193,7 @@ export const useCreateService = (gridRef: RefObject<AgGridReact<any>>) => {
     createServiceLoading,
     isOpen,
     categories,
+    isKeyboardOpen,
     onNameChange,
     onPriceChange,
     onDescriptionChange,

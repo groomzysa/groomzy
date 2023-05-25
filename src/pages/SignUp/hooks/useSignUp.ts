@@ -27,9 +27,9 @@ export const useSignUp = () => {
    * Hooks
    *
    */
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
 
-  const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
   const { addUserTrigger } = useAddUser();
   const history = useHistory();
@@ -97,11 +97,11 @@ export const useSignUp = () => {
         role: isProvider ? UserRole.Provider : UserRole.Client,
       }).unwrap();
       setAddUserLoading(false);
-      autoDisimissToast({ message: SIGN_UP_MESSAGE });
+      toast({ message: SIGN_UP_MESSAGE });
       history.replace(`/${routes.signIn.base.use()}`);
     } catch (error) {
       setAddUserLoading(false);
-      autoDisimissToast({
+      toast({
         message: getErrorMessage(error as ErrorResponse) || "",
         buttonDismiss: true,
       });
@@ -140,7 +140,6 @@ export const useSignUp = () => {
     showPassword,
     addUserLoading,
     isKeyboardOpen,
-    topToolBarHeight,
     onFirstNameChange,
     onLastNameChange,
     onEmailChange,

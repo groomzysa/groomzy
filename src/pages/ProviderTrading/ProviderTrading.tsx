@@ -11,9 +11,10 @@ import {
   businessOutline,
   imageOutline,
   informationCircleOutline,
+  readerOutline,
 } from "ionicons/icons";
 import { FC } from "react";
-import { Details, Gallery, Services } from "./components";
+import { Details, Gallery, Reviews, Services } from "./components";
 
 import "./styles.css";
 import { routes } from "../../route/routes";
@@ -37,6 +38,11 @@ export const ProviderTrading: FC = () => {
         <Route
           path={`/${routes.providerTrading.gallery.get()}`}
           component={Gallery}
+        />
+
+        <Route
+          path={`/${routes.providerTrading.reviews.get()}`}
+          component={Reviews}
         />
 
         <Route
@@ -79,6 +85,14 @@ export const ProviderTrading: FC = () => {
         >
           <IonIcon icon={imageOutline} />
           <IonLabel>Gallery</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton
+          tab="reviews"
+          href={`/${routes.providerTrading.reviews.use(id)}`}
+        >
+          <IonIcon icon={readerOutline} />
+          <IonLabel>Reviews</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

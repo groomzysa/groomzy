@@ -61,7 +61,7 @@ const App: React.FC = () => {
             <IonRouterOutlet id="main" animated={false}>
               <Route
                 exact
-                path={"/"}
+                path="/"
                 render={() => {
                   if (
                     !isEmpty(token) &&
@@ -79,6 +79,7 @@ const App: React.FC = () => {
                   return <Redirect exact to={`/${routes.home.base.use()}`} />;
                 }}
               />
+
               <Route
                 exact
                 path={`/${routes.account.base.get()}`}
@@ -90,6 +91,7 @@ const App: React.FC = () => {
                   return <Account user={user} />;
                 }}
               />
+
               <Route
                 exact
                 path={`/${routes.signIn.base.get()}`}
@@ -112,6 +114,7 @@ const App: React.FC = () => {
                   return <SignIn />;
                 }}
               />
+
               <Route
                 exact
                 path={`/${routes.signUp.base.get()}`}
@@ -134,6 +137,7 @@ const App: React.FC = () => {
                   return <SignUp />;
                 }}
               />
+
               <Route
                 exact
                 path={`/${routes.requestPasswordReset.base.get()}`}
@@ -182,14 +186,16 @@ const App: React.FC = () => {
 
               <Route
                 exact
+                path={`/${routes.contacts.base.get()}`}
+                render={() => <Contacts />}
+              />
+
+              <Route
+                exact
                 path={`/${routes.about.base.get()}`}
                 component={About}
               />
-              <Route
-                exact
-                path={`/${routes.contacts.base.get()}`}
-                component={Contacts}
-              />
+
               <Route
                 path={`/${routes.providerDashboard.base.get()}`}
                 render={() => {
@@ -200,6 +206,7 @@ const App: React.FC = () => {
                   return <ProviderDashboard />;
                 }}
               />
+
               <Route
                 path={`/${routes.home.base.get()}`}
                 render={() => {
@@ -215,6 +222,7 @@ const App: React.FC = () => {
                   return <HomeExplorer />;
                 }}
               />
+
               <Route
                 path={`/${routes.providerTrading.base.get()}`}
                 render={() => {
@@ -230,6 +238,7 @@ const App: React.FC = () => {
                   return <ProviderTrading />;
                 }}
               />
+
               <Route
                 render={() => {
                   return <Redirect exact to="/" />;

@@ -13,13 +13,13 @@ export const GSelect: FC<IGSelectProps> = ({
   labelPosition = "floating",
 }) => {
   return (
-    <IonItem class="g-select-container">
+    <IonItem className="g-select-container">
       <IonSelect
         label={label}
         labelPlacement={labelPosition}
         placeholder={placeholder}
         interface="popover"
-        class="g-select"
+        className="g-select"
         value={value}
         onIonChange={(e) => onSelectChange(e)}
       >

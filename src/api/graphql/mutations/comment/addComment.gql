@@ -1,0 +1,30 @@
+mutation addComment(
+  $message: String!
+  $parentId: Int
+  $clientId: Int
+  $providerId: Int
+) {
+  addComment(
+    message: $message
+    parentId: $parentId
+    clientId: $clientId
+    providerId: $providerId
+  ) {
+    id
+    message
+    children {
+      id
+      message
+    }
+    providerLikes {
+      provider {
+        id
+      }
+    }
+    clientLikes {
+      client {
+        id
+      }
+    }
+  }
+}

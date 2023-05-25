@@ -16,6 +16,7 @@ import { useCustomToast } from "../../../../../../../hooks/useCustomToast";
 import { formatCategoryLabel } from "../../../utils";
 import { getErrorMessage } from "../../../../../../../api/helpers";
 import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
+import { useNativeElementsSizeInfo } from "../../../../../../../hooks";
 
 export const useUpdateService = (gridRef: RefObject<AgGridReact<any>>) => {
   const [category, setCategory] = useState<IInput<CategoryType>>();
@@ -34,7 +35,8 @@ export const useUpdateService = (gridRef: RefObject<AgGridReact<any>>) => {
    *
    */
   const { id } = useParams<{ id: string }>();
-  const { autoDisimissToast } = useCustomToast();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
+  const { toast } = useCustomToast();
   const { fetchService, serviceError, serviceLoading, service } =
     useFetchService();
   const { updateService } = useUpdateServiceMutation();
@@ -57,7 +59,7 @@ export const useUpdateService = (gridRef: RefObject<AgGridReact<any>>) => {
    *
    */
   if (serviceError) {
-    autoDisimissToast({
+    toast({
       message: serviceError || "Something went wrong, updating service.",
       buttonDismiss: true,
     });
@@ -143,11 +145,11 @@ export const useUpdateService = (gridRef: RefObject<AgGridReact<any>>) => {
       }).unwrap();
 
       setUpdateServiceLoading(false);
-      autoDisimissToast({ message: UPDATE_SERVICE_MESSAGE, onCloseModal });
+      toast({ message: UPDATE_SERVICE_MESSAGE, onCloseModal });
       gridApi?.purgeInfiniteCache();
     } catch (error) {
       setUpdateServiceLoading(false);
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong, updating service.",
@@ -173,6 +175,7 @@ export const useUpdateService = (gridRef: RefObject<AgGridReact<any>>) => {
     serviceLoading,
     isOpen,
     categories,
+    isKeyboardOpen,
     onNameChange,
     onPriceChange,
     onDescriptionChange,

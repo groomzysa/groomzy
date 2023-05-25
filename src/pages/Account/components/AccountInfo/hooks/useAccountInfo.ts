@@ -24,9 +24,9 @@ export const useAccountInfo = () => {
    * Hooks
    *
    */
-  const { autoDisimissToast } = useCustomToast();
+  const { toast } = useCustomToast();
 
-  const { isKeyboardOpen, topToolBarHeight } = useNativeElementsSizeInfo();
+  const { isKeyboardOpen } = useNativeElementsSizeInfo();
 
   const { fetchUser } = useFetchUser();
 
@@ -106,10 +106,10 @@ export const useAccountInfo = () => {
 
       updateAccountLoading = false;
 
-      autoDisimissToast({ message: UPDATE_USER_ACCOUNT_MESSAGE });
+      toast({ message: UPDATE_USER_ACCOUNT_MESSAGE });
     } catch (error) {
       updateAccountLoading = false;
-      autoDisimissToast({
+      toast({
         message:
           getErrorMessage(error as ErrorResponse) ||
           "Something went wrong updating account.",
@@ -130,7 +130,6 @@ export const useAccountInfo = () => {
     photo,
     updateAccountLoading,
     isKeyboardOpen,
-    topToolBarHeight,
     onFirstNameChange,
     onLastNameChange,
     onEmailChange,

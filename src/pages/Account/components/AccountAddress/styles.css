@@ -1,9 +1,15 @@
-.account-address-main-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.account-address-form-keyboard-on {
   margin-top: 10px;
-  margin-bottom: 10px;
+  height: 100%;
+}
+
+.account-address-form,
+.account-address-form-keyboard-on {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 
 .account-address-street-name-container {

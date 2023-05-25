@@ -11,6 +11,7 @@ export const SERVICE_CATEGORIES = [
 
 export const VALID_URL_PATH_NAMES = [
   `/${routes.about.base.get()}`,
+  `/${routes.contacts.base.get()}`,
   `/${routes.account.base.get()}`,
   `/${routes.providerDashboard.base.get()}`,
 ];
