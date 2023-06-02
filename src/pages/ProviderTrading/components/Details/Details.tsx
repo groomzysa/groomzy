@@ -1,9 +1,11 @@
 import {
+  IonAvatar,
   IonButtons,
   IonCol,
   IonContent,
   IonGrid,
   IonHeader,
+  IonIcon,
   IonLoading,
   IonNote,
   IonPage,
@@ -21,14 +23,14 @@ import { useDetailsHandlers } from "./hooks";
 import { DAYS } from "./constants";
 import { GIconBackButton } from "../../../../components";
 import { routes } from "../../../../route/routes";
+import { personCircleOutline } from "ionicons/icons";
 export const Details: FC = () => {
   /**
    *
    * Custom hooks
    *
    */
-  const { provider, providerError, providerHasError, providerLoading, mapRef } =
-    useDetailsHandlers();
+  const { provider, providerLoading, mapRef } = useDetailsHandlers();
 
   return (
     <IonPage>
@@ -49,15 +51,6 @@ export const Details: FC = () => {
         <IonLoading isOpen={providerLoading} />
 
         <IonGrid>
-          {providerHasError && (
-            <IonRow>
-              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-              <IonCol sizeXs="10" sizeSm="8" sizeMd="6" sizeLg="4">
-                <span className="error">{providerError}</span>
-              </IonCol>
-              <IonCol sizeXs="1" sizeSm="2" sizeMd="3" sizeLg="4"></IonCol>
-            </IonRow>
-          )}
           <IonRow>
             <IonCol>
               <capacitor-google-map
@@ -67,39 +60,63 @@ export const Details: FC = () => {
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol sizeXs="0" sizeSm="2" sizeMd="3"></IonCol>
-            <IonCol sizeXs="12" sizeSm="8" sizeMd="6">
+            <IonCol sizeXs="12" sizeMd="6">
               <IonRow>
                 <IonCol>
-                  <IonNote className="time-header">Day</IonNote>
+                  <IonNote className="time-header">Business times</IonNote>
                 </IonCol>
+              </IonRow>
+              <IonRow>
                 <IonCol>
-                  <IonNote className="time-header">Times</IonNote>
+                  {sortBy(provider?.operatingTimes || [], (operatingTime) => {
+                    return DAYS.indexOf(operatingTime.day!);
+                  }).map((operatingTime) => {
+                    const { day, opens, closes, id } = operatingTime;
+                    return (
+                      <IonRow key={id}>
+                        <IonCol>
+                          <IonNote>{capitalize(day?.toString())}</IonNote>
+                        </IonCol>
+                        <IonCol>
+                          <IonNote>{`${opens} - ${closes}`}</IonNote>
+                        </IonCol>
+                      </IonRow>
+                    );
+                  })}
                 </IonCol>
               </IonRow>
             </IonCol>
-            <IonCol sizeXs="0" sizeSm="2" sizeMd="3"></IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol sizeXs="0" sizeSm="2" sizeMd="3"></IonCol>
-            <IonCol sizeXs="12" sizeSm="8" sizeMd="6">
-              {sortBy(provider?.operatingTimes || [], (operatingTime) => {
-                return DAYS.indexOf(operatingTime.day!);
-              }).map((operatingTime) => {
-                const { day, opens, closes, id } = operatingTime;
-                return (
-                  <IonRow key={id}>
-                    <IonCol>
-                      <IonNote>{capitalize(day?.toString())}</IonNote>
-                    </IonCol>
-                    <IonCol>
-                      <IonNote>{`${opens} - ${closes}`}</IonNote>
-                    </IonCol>
-                  </IonRow>
-                );
-              })}
+            <IonCol sizeXs="12" sizeMd="6">
+              <IonRow>
+                <IonCol>
+                  <IonNote className="staffs-header">Staffs</IonNote>
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol>
+                  {provider?.staffs?.map((staff) => {
+                    const { id, firstName } = staff;
+                    return (
+                      <IonRow key={id}>
+                        <IonCol>
+                          <div className="staff-container">
+                            <IonAvatar className="avater">
+                              <IonIcon
+                                className="avatr-icon"
+                                icon={personCircleOutline}
+                              ></IonIcon>
+                            </IonAvatar>
+                            <IonNote className="staff-name">
+                              {firstName}
+                            </IonNote>
+                          </div>
+                        </IonCol>
+                      </IonRow>
+                    );
+                  })}
+                </IonCol>
+              </IonRow>
             </IonCol>
-            <IonCol sizeXs="0" sizeSm="2" sizeMd="3"></IonCol>
           </IonRow>
         </IonGrid>
       </IonContent>

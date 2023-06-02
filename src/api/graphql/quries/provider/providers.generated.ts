@@ -17,7 +17,7 @@ export type ProvidersQueryVariables = Types.Exact<{
 }>;
 
 
-export type ProvidersQueryResult = { __typename?: 'Query', providers: Array<{ __typename?: 'Provider', id: number, tradingName?: string | null, phone?: string | null, logoUrl?: string | null, addresses?: Array<{ __typename?: 'Address', id: number, streetNumber?: string | null, streetName?: string | null, town?: string | null, city?: string | null, province?: string | null, areaCode?: string | null }> | null, operatingTimes?: Array<{ __typename?: 'OperatingTime', id: number, day?: Types.DayType | null, opens?: string | null, closes?: string | null }> | null, socials?: Array<{ __typename?: 'Social', id: number, name?: string | null, username?: string | null }> | null }> };
+export type ProvidersQueryResult = { __typename?: 'Query', providers: Array<{ __typename?: 'Provider', id: number, tradingName?: string | null, phone?: string | null, logoUrl?: string | null, addresses?: Array<{ __typename?: 'Address', id: number, streetNumber?: string | null, streetName?: string | null, town?: string | null, city?: string | null, province?: string | null, areaCode?: string | null }> | null, operatingTimes?: Array<{ __typename?: 'OperatingTime', id: number, day?: Types.DayType | null, opens?: string | null, closes?: string | null }> | null, socials?: Array<{ __typename?: 'Social', id: number, name?: string | null, username?: string | null }> | null, staffs?: Array<{ __typename?: 'Staff', id: number, firstName?: string | null, lastName?: string | null }> | null }> };
 
 
 export const ProvidersDocument = `
@@ -46,6 +46,11 @@ export const ProvidersDocument = `
       id
       name
       username
+    }
+    staffs {
+      id
+      firstName
+      lastName
     }
   }
 }

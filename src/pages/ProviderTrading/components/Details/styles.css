@@ -9,6 +9,29 @@ ion-content.provider-trading-ion-content {
   --background: transparent;
 }
 
+.staffs-header,
 .time-header {
   font-weight: 700;
+}
+
+.staff-container {
+  width: 48px;
+}
+
+.avater {
+  width: 48px;
+  height: 48px;
+}
+
+.avatr-icon {
+  color: var(--ion-color-primary);
+  font-size: 48px;
+}
+
+.staff-name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
 }

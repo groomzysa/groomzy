@@ -24,5 +24,10 @@ query providers($search: String) {
       name
       username
     }
+    staffs {
+      id
+      firstName
+      lastName
+    }
   }
 }

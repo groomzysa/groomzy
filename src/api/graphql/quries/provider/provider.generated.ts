@@ -17,7 +17,7 @@ export type ProviderQueryVariables = Types.Exact<{
 }>;
 
 
-export type ProviderQueryResult = { __typename?: 'Query', provider?: { __typename?: 'Provider', id: number, tradingName?: string | null, phone?: string | null, addresses?: Array<{ __typename?: 'Address', id: number, streetNumber?: string | null, streetName?: string | null, town?: string | null, city?: string | null, province?: string | null, areaCode?: string | null }> | null, operatingTimes?: Array<{ __typename?: 'OperatingTime', id: number, day?: Types.DayType | null, opens?: string | null, closes?: string | null }> | null } | null };
+export type ProviderQueryResult = { __typename?: 'Query', provider?: { __typename?: 'Provider', id: number, tradingName?: string | null, phone?: string | null, addresses?: Array<{ __typename?: 'Address', id: number, streetNumber?: string | null, streetName?: string | null, town?: string | null, city?: string | null, province?: string | null, areaCode?: string | null }> | null, operatingTimes?: Array<{ __typename?: 'OperatingTime', id: number, day?: Types.DayType | null, opens?: string | null, closes?: string | null }> | null, staffs?: Array<{ __typename?: 'Staff', id: number, firstName?: string | null, lastName?: string | null }> | null } | null };
 
 
 export const ProviderDocument = `
@@ -40,6 +40,11 @@ export const ProviderDocument = `
       day
       opens
       closes
+    }
+    staffs {
+      id
+      firstName
+      lastName
     }
   }
 }

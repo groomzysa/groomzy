@@ -3,16 +3,23 @@ import {
   GoogleMapConfig,
   MarkerClickCallbackData,
 } from "@capacitor/google-maps/dist/typings/definitions";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { addressName } from "../../../../../utils/address";
 import { MAP_CONFIG } from "../constants";
 import { getAddressPosition } from "../../../../../utils/location";
 import { useFetchProvider } from "../../../../../api/hooks/queries";
 import { useParams } from "react-router-dom";
-import { isEqual } from "lodash";
+import {
+  Provider,
+  ProviderQueryVariables,
+} from "../../../../../api/graphql/api.schema";
+import { getErrorMessage } from "../../../../../api/helpers";
+import { ErrorResponse } from "@rtk-query/graphql-request-base-query/dist/GraphqlBaseQueryTypes";
+import { useIonToast } from "@ionic/react";
 
 export const useDetailsHandlers = () => {
-  const [mapConfig, setMapConfig] = useState(MAP_CONFIG);
+  const [provider, setProvider] = useState<Provider | undefined | null>();
+  const [providerLoading, setProviderLoading] = useState(false);
   const { id } = useParams<{ id: string }>();
   const mapRef = useRef(null);
 
@@ -21,38 +28,83 @@ export const useDetailsHandlers = () => {
    * Hooks
    *
    */
-  const {
-    fetchProvider,
-    provider,
-    providerError,
-    providerHasError,
-    providerLoading,
-  } = useFetchProvider();
+  const [present, dismiss] = useIonToast();
 
-  /**
-   *
-   * State check
-   *
-   */
+  const { fetchProvider } = useFetchProvider();
 
-  if (provider?.addresses?.length) {
-    getAddressPosition(addressName(provider.addresses[0])).then(
-      (addressPosition) => {
-        if (addressPosition) {
-          const newMapConfig = {
-            ...mapConfig,
-            center: addressPosition,
-            zoom: 14,
-          };
+  const createMap = useCallback(
+    async (mapConfig: GoogleMapConfig, address: string) => {
+      if (!mapRef.current) return;
 
-          if (!isEqual(mapConfig, newMapConfig)) {
-            setMapConfig(newMapConfig);
-            createMap(newMapConfig);
+      const map = await GoogleMap.create({
+        id: "google-map",
+        element: mapRef.current,
+        apiKey: process.env.REACT_APP_GROOMZY_GOOGLE_API_KEY || "",
+        config: mapConfig,
+      });
+
+      map.setOnMarkerClickListener((marker) => markerClick(marker));
+
+      map.addMarker({
+        coordinate: mapConfig.center,
+        title: address,
+      });
+    },
+    []
+  );
+
+  const fetchProviderData = useCallback(
+    async (variables: ProviderQueryVariables) => {
+      try {
+        setProviderLoading(true);
+        const response = await fetchProvider(variables).unwrap();
+
+        const providerData = response.provider;
+
+        if (!providerData) {
+          setProviderLoading(false);
+
+          return;
+        }
+
+        if (providerData.addresses?.length) {
+          const address = addressName(providerData.addresses[0]);
+          const addressPosition = await getAddressPosition(address);
+
+          if (addressPosition) {
+            const newMapConfig = {
+              ...MAP_CONFIG,
+              center: addressPosition,
+              zoom: 14,
+            };
+
+            createMap(newMapConfig, address);
           }
         }
+
+        setProvider(response.provider);
+        setProviderLoading(false);
+      } catch (error) {
+        setProviderLoading(false);
+
+        present({
+          message:
+            getErrorMessage(error as ErrorResponse) ||
+            "Something went wrong fetching data",
+          layout: "stacked",
+          buttons: [
+            {
+              text: "Ok",
+              handler: () => {
+                dismiss();
+              },
+            },
+          ],
+        });
       }
-    );
-  }
+    },
+    [fetchProvider, createMap, dismiss, present]
+  );
 
   /**
    *
@@ -60,8 +112,12 @@ export const useDetailsHandlers = () => {
    *
    */
   useEffect(() => {
-    fetchProvider({ providerId: Number(id) });
-  }, [fetchProvider, id]);
+    if (!id) {
+      return;
+    }
+
+    fetchProviderData({ providerId: Number(id) });
+  }, [fetchProviderData, id]);
 
   /**
    *
@@ -75,35 +131,9 @@ export const useDetailsHandlers = () => {
     );
   };
 
-  const createMap = async (mapConfig: GoogleMapConfig) => {
-    if (!mapRef.current) return;
-
-    const map = await GoogleMap.create({
-      id: "google-map",
-      element: mapRef.current,
-      apiKey: process.env.REACT_APP_GROOMZY_GOOGLE_API_KEY || "",
-      config: mapConfig,
-    });
-
-    map.setOnMarkerClickListener((marker) => markerClick(marker));
-
-    if (
-      mapConfig.center.lat !== MAP_CONFIG.center.lat &&
-      mapConfig.center.lat !== MAP_CONFIG.center.lng &&
-      provider?.addresses?.[0]
-    ) {
-      map.addMarker({
-        coordinate: mapConfig.center,
-        title: addressName(provider.addresses[0]),
-      });
-    }
-  };
-
   return {
     mapRef,
     provider,
-    providerError,
-    providerHasError,
     providerLoading,
   };
 };

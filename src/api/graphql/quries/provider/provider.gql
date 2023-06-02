@@ -18,5 +18,10 @@ query provider($providerId: Int) {
       opens
       closes
     }
+    staffs {
+      id
+      firstName
+      lastName
+    }
   }
 }
