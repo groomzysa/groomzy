@@ -1,4 +1,11 @@
-import { Dispatch, SetStateAction, useEffect, useState, useMemo } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+} from "react";
 import { useAddComment } from "../../../../../api/hooks/mutations";
 import { isEmpty } from "lodash";
 import { IInput } from "../../../../../utils/types";
@@ -8,8 +15,13 @@ import { getErrorMessage } from "../../../../../api/helpers";
 import { CREATE_COMMENT_MESSAGE } from "../../../../../utils/messages";
 import { useParams } from "react-router-dom";
 import { useFetchComments } from "../../../../../api/hooks/queries";
-import { Comment } from "../../../../../api/graphql/api.schema";
+import {
+  Comment,
+  CommentsQueryVariables,
+} from "../../../../../api/graphql/api.schema";
 import { api } from "../../../../../api";
+import { RefresherEventDetail } from "@ionic/react";
+import { PAGE_SIZE } from "../constants";
 
 export const useReviews = () => {
   const [message, setMessage] = useState<IInput<string>>();
@@ -30,7 +42,8 @@ export const useReviews = () => {
 
   const { createComment } = useAddComment();
 
-  const { fetchComments, comments, commentsLoading } = useFetchComments();
+  const { fetchComments, comments, cursor, commentsLoading } =
+    useFetchComments();
 
   const commentsByParentId = useMemo(() => {
     const group: { [key: number]: Comment[] } = {};
@@ -42,6 +55,13 @@ export const useReviews = () => {
     return group;
   }, [comments]);
 
+  const fetchCommentsData = useCallback(
+    (variables: CommentsQueryVariables) => {
+      fetchComments(variables);
+    },
+    [fetchComments]
+  );
+
   /**
    *
    * Effects
@@ -49,11 +69,15 @@ export const useReviews = () => {
    */
 
   useEffect(() => {
-    fetchComments({
+    if (!providerId) {
+      return;
+    }
+
+    fetchCommentsData({
       providerId: Number(providerId),
       limit: 10,
     });
-  }, [fetchComments, providerId]);
+  }, [fetchCommentsData, providerId]);
 
   /**
    *
@@ -89,6 +113,21 @@ export const useReviews = () => {
     }
 
     setShowMessageInput(!showMessageInput);
+  };
+
+  const onRefetchComments = async (
+    event: CustomEvent<RefresherEventDetail>
+  ) => {
+    if (!providerId) {
+      return;
+    }
+
+    fetchCommentsData({
+      providerId: Number(providerId),
+      limit: PAGE_SIZE,
+      cursor,
+    });
+    event.detail.complete();
   };
 
   const onCanAddComment = (): boolean => {
@@ -129,7 +168,7 @@ export const useReviews = () => {
     setShowMessageInput(!showMessageInput);
   };
 
-  const getReplies = (parentId: number) => {
+  const onGetReplies = (parentId: number) => {
     return commentsByParentId[parentId];
   };
 
@@ -140,11 +179,12 @@ export const useReviews = () => {
     showMessageInput,
     addCommentLoading,
     commentsLoading,
-    getReplies,
+    onGetReplies,
     onMessageChange,
     onCanAddComment,
     onAddComment,
     onShowMessageInput,
     onCancel,
+    onRefetchComments,
   };
 };

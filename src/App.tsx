@@ -53,9 +53,8 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        {userLoading ? (
-          <IonLoading isOpen={userLoading} spinner="bubbles"></IonLoading>
-        ) : (
+        <IonLoading isOpen={userLoading} spinner="bubbles"></IonLoading>
+        {!userLoading && (
           <>
             <Menu user={user} />
             <IonRouterOutlet id="main" animated={false}>
